@@ -171,13 +171,47 @@ tr:last-child td{border-bottom:none}
 /* EMPTY */
 .empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
 
-/* ROUTE MAP */
-.route-map-box{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:32px}
-.route-map-header{padding:14px 18px 0;display:flex;align-items:center;gap:8px}
-.route-map-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500}
-.route-map-total{margin-left:auto;font-size:12px;color:var(--muted)}
-.route-map-svg-wrap{padding:12px 18px 18px;overflow-x:auto}
-.route-map-svg-wrap svg{min-width:320px;display:block}
+/* ROUTE VISUAL */
+.route-visual{display:flex;align-items:center;gap:0;margin-bottom:48px;overflow-x:auto;padding:4px 0 12px}
+.route-visual-stop{display:flex;flex-direction:column;border-radius:14px;overflow:hidden;border:1.5px solid var(--border);background:var(--white);flex-shrink:0;width:150px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.route-visual-stop:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.rv-img{height:100px;background-size:cover;background-position:center}
+.rv-body{padding:10px 12px}
+.rv-flag{font-size:16px;margin-bottom:2px}
+.rv-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:400;color:var(--ink)}
+.rv-date{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:0.5px}
+.rv-connector{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding:0 4px;margin-bottom:40px}
+.rv-mode{font-size:14px;margin-bottom:4px}
+.rv-line{flex:1;width:24px;height:1px;background:var(--border);margin-top:4px}
+
+/* DAY NAV BUTTONS */
+.day-nav{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.day-nav-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap}
+.day-nav-btn:hover:not(:disabled){border-color:var(--ink);color:var(--ink);background:var(--cream)}
+.day-nav-btn:disabled{opacity:0.3;cursor:not-allowed}
+.day-nav-center{flex:1;text-align:center;font-size:13px;color:var(--muted)}
+
+/* GMAP EMBED */
+.gmap-box{border-radius:14px;overflow:hidden;margin-bottom:32px;border:1px solid var(--border)}
+.gmap-header{padding:14px 18px;background:var(--white);display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.gmap-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500}
+.gmap-open{margin-left:auto;font-size:12px;color:#7F77DD;text-decoration:none;font-weight:500}
+.gmap-open:hover{opacity:0.7}
+.gmap-frame{width:100%;height:280px;display:block;border:none}
+
+/* EXPANDED PLACE INFO */
+.tl-content{transition:all .2s}
+.tl-item.expanded .tl-content{background:var(--cream);border-radius:10px;padding:12px 14px;margin-left:-14px}
+.tl-item.expanded .tl-dot{background:var(--accent)!important;width:13px;height:13px;margin-left:-1.5px}
+.place-story{margin-top:10px;padding:12px 14px;background:var(--white);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;font-size:13px;line-height:1.7;color:var(--ink2);display:none}
+.tl-item.expanded .place-story{display:block}
+.place-story-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;color:var(--ink);margin-bottom:6px}
+.tl-item{cursor:pointer}
+.tl-item:not(.expanded):hover .tl-place{color:var(--accent)}
+
+@media(max-width:640px){
+  .route-visual{gap:0}.rv-line{width:16px}.route-visual-stop{width:120px}.rv-img{height:80px}
+}
 
 /* CREW AVATARS */
 .crew-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
@@ -234,31 +268,33 @@ tr:last-child td{border-bottom:none}
 
 <!-- OVERVIEW -->
 <div id="overview" class="section active">
-  <div class="section-label">The Journey</div>
-  <h2 class="section-title">15 วัน · 2 ประเทศ · 7 จุดหมาย</h2>
 
-  <div class="stats-row">
-    <div class="stat"><div class="stat-num">15</div><div class="stat-label">วัน</div></div>
-    <div class="stat"><div class="stat-num">2</div><div class="stat-label">ประเทศ</div></div>
-    <div class="stat"><div class="stat-num">30+</div><div class="stat-label">สถานที่</div></div>
-    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">ความทรงจำ</div></div>
-  </div>
-
-  <!-- Route -->
-  <div class="route-strip">
-    <div class="route-stop"><div class="route-dot" style="background:#C4914A"></div><div class="route-name">BKK</div><div class="route-date">28 May</div></div>
-    <div class="route-line"></div><div class="plane-icon">✈</div><div class="route-line"></div>
-    <div class="route-stop"><div class="route-dot" style="background:#2D6A4F"></div><div class="route-name">Copenhagen</div><div class="route-date">28 May</div></div>
-    <div class="route-line"></div><div class="plane-icon">✈</div><div class="route-line"></div>
-    <div class="route-stop"><div class="route-dot" style="background:#B5341E"></div><div class="route-name">Lake Como</div><div class="route-date">1 Jun</div></div>
-    <div class="route-line"></div><div class="plane-icon">🚂</div><div class="route-line"></div>
-    <div class="route-stop"><div class="route-dot" style="background:#B5341E"></div><div class="route-name">Cinque Terre</div><div class="route-date">3 Jun</div></div>
-    <div class="route-line"></div><div class="plane-icon">🚗</div><div class="route-line"></div>
-    <div class="route-stop"><div class="route-dot" style="background:#B5341E"></div><div class="route-name">Dolomites</div><div class="route-date">5 Jun</div></div>
-    <div class="route-line"></div><div class="plane-icon">🚗</div><div class="route-line"></div>
-    <div class="route-stop"><div class="route-dot" style="background:#B5341E"></div><div class="route-name">Milan</div><div class="route-date">9 Jun</div></div>
-    <div class="route-line"></div><div class="plane-icon">✈</div><div class="route-line"></div>
-    <div class="route-stop"><div class="route-dot" style="background:#C4914A"></div><div class="route-name">BKK</div><div class="route-date">11 Jun</div></div>
+  <!-- Big visual route timeline -->
+  <div class="route-visual">
+    <a class="route-visual-stop" onclick="openDay('dk29')" style="cursor:pointer">
+      <div class="rv-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+      <div class="rv-body"><div class="rv-flag">🇩🇰</div><div class="rv-name">Copenhagen</div><div class="rv-date">28 May – 1 Jun</div></div>
+    </a>
+    <div class="rv-connector"><span class="rv-mode">✈️</span><div class="rv-line"></div></div>
+    <a class="route-visual-stop" onclick="openDay('it01')" style="cursor:pointer">
+      <div class="rv-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+      <div class="rv-body"><div class="rv-flag">🇮🇹</div><div class="rv-name">Lake Como</div><div class="rv-date">1 – 3 Jun</div></div>
+    </a>
+    <div class="rv-connector"><span class="rv-mode">🚂</span><div class="rv-line"></div></div>
+    <a class="route-visual-stop" onclick="openDay('it04')" style="cursor:pointer">
+      <div class="rv-img" style="background-image:url('https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+      <div class="rv-body"><div class="rv-flag">🇮🇹</div><div class="rv-name">Cinque Terre</div><div class="rv-date">3 – 5 Jun</div></div>
+    </a>
+    <div class="rv-connector"><span class="rv-mode">🚗</span><div class="rv-line"></div></div>
+    <a class="route-visual-stop" onclick="openDay('it06')" style="cursor:pointer">
+      <div class="rv-img" style="background-image:url('https://images.unsplash.com/photo-1651578852608-0200168d48f6?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+      <div class="rv-body"><div class="rv-flag">🇮🇹</div><div class="rv-name">Dolomites</div><div class="rv-date">5 – 9 Jun</div></div>
+    </a>
+    <div class="rv-connector"><span class="rv-mode">🚗</span><div class="rv-line"></div></div>
+    <a class="route-visual-stop" onclick="openDay('it10')" style="cursor:pointer">
+      <div class="rv-img" style="background-image:url('https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+      <div class="rv-body"><div class="rv-flag">🇮🇹</div><div class="rv-name">Milan</div><div class="rv-date">9 – 11 Jun</div></div>
+    </a>
   </div>
 
   <div class="regions">
@@ -411,44 +447,25 @@ tr:last-child td{border-bottom:none}
   <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:24px">
     <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:500">The Crew</div>
     <div style="display:flex;gap:16px;flex-wrap:wrap">
-      <div class="crew-member">
-        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" alt="Ploy">
-        <span class="crew-name" style="font-size:12px">Ploy</span>
-        <span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span>
-      </div>
-      <div class="crew-member">
-        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" alt="P">
-        <span class="crew-name" style="font-size:12px">P</span>
-        <span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span>
-      </div>
-      <div class="crew-member">
-        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede" alt="Peachy">
-        <span class="crew-name" style="font-size:12px">Peachy</span>
-        <span style="font-size:10px;color:var(--muted)">🇩🇰</span>
-      </div>
-      <div class="crew-member">
-        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4" alt="Name">
-        <span class="crew-name" style="font-size:12px">Name</span>
-        <span style="font-size:10px;color:var(--muted)">🇮🇹</span>
-      </div>
-      <div class="crew-member">
-        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc" alt="Fern">
-        <span class="crew-name" style="font-size:12px">Fern</span>
-        <span style="font-size:10px;color:var(--muted)">🇮🇹</span>
-      </div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" alt="Ploy"><span class="crew-name" style="font-size:12px">Ploy</span><span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" alt="P"><span class="crew-name" style="font-size:12px">P</span><span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede" alt="Peachy"><span class="crew-name" style="font-size:12px">Peachy</span><span style="font-size:10px;color:var(--muted)">🇩🇰</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4" alt="Name"><span class="crew-name" style="font-size:12px">Name</span><span style="font-size:10px;color:var(--muted)">🇮🇹</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc" alt="Fern"><span class="crew-name" style="font-size:12px">Fern</span><span style="font-size:10px;color:var(--muted)">🇮🇹</span></div>
     </div>
   </div>
 
   <div class="expense-stats">
-    <div class="e-card"><div class="e-num" id="total-amt">0</div><div class="e-label">รวมทั้งหมด</div></div>
-    <div class="e-card"><div class="e-num" id="per-person">0</div><div class="e-label">ต่อคน (เฉลี่ย)</div></div>
+    <div class="e-card"><div class="e-num" id="total-amt">0</div><div class="e-label">รวม (THB)</div></div>
+    <div class="e-card"><div class="e-num" id="per-person">0</div><div class="e-label">ต่อคน (THB)</div></div>
     <div class="e-card"><div class="e-num" id="item-count">0</div><div class="e-label">รายการ</div></div>
   </div>
+
   <div class="add-form">
     <h3>เพิ่มรายการ</h3>
     <div class="form-grid">
       <input class="form-input" id="e-desc" type="text" placeholder="รายการ เช่น ค่าโรงแรม Como">
-      <input class="form-input" id="e-amt" type="number" placeholder="จำนวนเงิน" min="0">
+      <input class="form-input" id="e-amt" type="number" placeholder="จำนวนเงิน" min="0" step="0.01">
       <select class="form-select" id="e-cat">
         <option value="food">🍜 อาหาร</option>
         <option value="transport">✈️ เดินทาง</option>
@@ -457,7 +474,7 @@ tr:last-child td{border-bottom:none}
         <option value="other">📦 อื่นๆ</option>
       </select>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 120px;gap:10px;margin-bottom:0">
+    <div style="display:grid;grid-template-columns:1fr 1fr 140px 120px;gap:10px;margin-bottom:0">
       <select class="form-select" id="e-payer">
         <option value="">ใครจ่าย?</option>
         <option value="Ploy">Ploy</option>
@@ -478,16 +495,35 @@ tr:last-child td{border-bottom:none}
           <button onclick="selectAllCrew()" style="margin-top:8px;width:100%;padding:5px;background:var(--cream);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px">ทุกคน</button>
         </div>
       </div>
-      <input class="form-input" id="e-cur" type="text" placeholder="สกุลเงิน เช่น DKK">
+      <select class="form-select" id="e-cur">
+        <option value="THB">🇹🇭 THB</option>
+        <option value="DKK">🇩🇰 DKK</option>
+        <option value="EUR">🇪🇺 Euro</option>
+      </select>
       <button class="btn-add" onclick="addExpense()">+ เพิ่ม</button>
     </div>
   </div>
-  <div class="expense-table-wrap">
-    <div id="expense-list"><div class="empty">ยังไม่มีรายการ</div></div>
+
+  <div style="display:flex;gap:10px;margin-bottom:16px">
+    <button onclick="showSettlement()" style="flex:1;padding:11px;background:var(--ink);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500">💰 สรุปยอด — ใครโอนให้ใคร?</button>
+    <button onclick="resetExpenses()" style="padding:11px 18px;background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted)">🗑 Reset</button>
   </div>
+
+  <div class="expense-table-wrap">
+    <div id="expense-list"><div class="empty">ยังไม่มีรายการ — ข้อมูลจะบันทึกไว้อัตโนมัติ</div></div>
+  </div>
+
   <div class="split-box">
     <h3>สรุปยอดต่อคน</h3>
     <div id="split-summary"><div class="empty">เพิ่มรายการเพื่อดูยอดหาร</div></div>
+  </div>
+
+  <div id="settlement-box" style="display:none;margin-top:20px;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:400">💸 วิธีจ่ายเงินคืนที่ประหยัดที่สุด</h3>
+      <button onclick="document.getElementById('settlement-box').style.display='none'" style="background:none;border:none;cursor:pointer;font-size:18px;color:var(--muted)">✕</button>
+    </div>
+    <div id="settlement-list"></div>
   </div>
 </div>
 
@@ -684,90 +720,89 @@ function showSection(id,btn){
   window.scrollTo({top:document.querySelector('.sticky-nav').offsetTop-10,behavior:'smooth'});
 }
 
-function buildRouteMap(items, isDk){
-  const stops = items.filter(it=>it.type==='place'||it.type==='hotel'||it.type==='flight');
-  if(stops.length<2) return '';
-  const acc = isDk?'#2D6A4F':'#B5341E';
-  const lineC = isDk?'#9FE1CB':'#F5C4B3';
+const DAY_ORDER = ['dk28','dk29','dk30','dk31','dk01','it01','it02','it03','it04','it05','it06','it07','it08','it09','it10','it11'];
 
-  const PAD=18, DOT=9, LABEL_H=36, ROW_H=72;
-  const cols = stops.length;
-  const W = Math.max(360, cols*110 + PAD*2);
-  const H = 130;
-  const xs = stops.map((_,i)=> PAD + i*(W - PAD*2)/(cols-1));
-  const CY = 52;
+// Place stories - interesting facts shown on click
+const PLACE_STORIES = {
+  'Nyhavn': {title:'Nyhavn — คลองสีสันแห่งโคเปนเฮเกน', story:'Nyhavn แปลว่า "ท่าเรือใหม่" สร้างในปี 1671 ตามคำสั่งของกษัตริย์ Christian V เพื่อเชื่อมเมืองกับทะเล Hans Christian Andersen นักเขียนเทพนิยายชื่อดังเคยอาศัยอยู่ที่นี่ถึง 3 ช่วงชีวิต บ้านสีสดใสที่เห็นอยู่นี้เป็นโกดังสินค้าเก่าในอดีต ตอนนี้กลายเป็นร้านอาหารและบาร์ริมคลองที่สวยที่สุดในสแกนดิเนเวีย'},
+  'Torvehallerne KBH': {title:'Torvehallerne — ตลาดสดสไตล์ Nordic', story:'เปิดในปี 2011 ในชื่อว่า "ตลาดหลังคากระจก" มี 60+ ร้านค้าและ stall ขายทุกอย่างตั้งแต่ smørrebrød (ขนมปังเปิดหน้าเดนมาร์ก) ไปจนถึง truffle และ specialty coffee ถือเป็น food hall ที่ดีที่สุดแห่งหนึ่งในยุโรปเหนือ'},
+  'Amalienborg Palace': {title:'Amalienborg — บ้านพักราชวงศ์เดนมาร์ก', story:'ประกอบด้วยพระราชวัง 4 หลังรูป Rococo ล้อมรอบจัตุรัสแปดเหลี่ยม สร้างราวปี 1750 เป็นที่ประทับของราชวงศ์เดนมาร์กมาตั้งแต่ปี 1784 พิธีเปลี่ยนยามทุกวันเที่ยง เป็น highlight ที่นักท่องเที่ยวห้ามพลาด'},
+  'Rosenborg Castle': {title:'Rosenborg — ปราสาทเรอเนสซองส์ใจกลางสวน', story:'สร้างในช่วงปี 1606–1633 โดยกษัตริย์ Christian IV เดิมเป็นบ้านพักฤดูร้อน ปัจจุบันเก็บรักษา Crown Jewels และเพชร "เพื่อน"ของเดนมาร์กอายุกว่า 400 ปี สวน King\'s Garden รอบข้างเป็นสวนสาธารณะที่เก่าแก่ที่สุดในโคเปนเฮเกน'},
+  'Louisiana Museum': {title:'Louisiana — พิพิธภัณฑ์ที่วิวสวยที่สุดในเดนมาร์ก', story:'ตั้งอยู่ริมช่องแคบ Øresund มองเห็นชายฝั่งสวีเดน เปิดตัวปี 1958 มีคอลเลกชัน Picasso, Henry Moore, Calder และศิลปินร่วมสมัยชั้นนำ สวนประติมากรรมริมทะเลเป็นจุดที่คนมาถ่ายรูปมากที่สุด ชื่อ "Louisiana" ไม่เกี่ยวกับรัฐอเมริกา แต่ตั้งตามภรรยา 3 คนของเจ้าของเดิมที่ชื่อ Louise ทุกคน'},
+  'La Banchina': {title:'La Banchina — บาร์ sauna ริมน้ำแบบ Copenhagen', story:'สัญลักษณ์วัฒนธรรม "harbour bathing" ของโคเปนเฮเกน ที่นี่มีทั้ง sauna ริมน้ำ oyster bar และ natural wine ในบรรยากาศเรียบง่ายสไตล์สแกนดิเนเวีย คนท้องถิ่นมักมาดื่ม Aperol ดูพระอาทิตย์ตกหลังเลิกงาน'},
+  'Varenna': {title:'Varenna — อัญมณีแห่ง Lake Como', story:'หมู่บ้านสีพาสเทลอายุกว่า 1,400 ปี ตั้งอยู่บนหน้าผาริมทะเลสาบ Como ฝั่งตะวันออก Passeggiata degli Innamorati หรือ "Lovers\' Walk" เป็นเส้นทางเดินริมน้ำแคบๆที่แทบไม่มีสาธารณะให้เดิน ขึ้นชื่อว่าโรแมนติกที่สุดใน Lake Como'},
+  'Villa Monastero Garden': {title:'Villa Monastero — สวนบนซากอาราม', story:'ตั้งอยู่บนที่ตั้งของอารามสตรีในศตวรรษที่ 12 ถูกยุบและเปลี่ยนเป็นวิลล่าในศตวรรษที่ 17 สวนยาว 2 กม. ริมทะเลสาบเต็มไปด้วยต้นไม้หายากจากทั่วโลก มีเรือนกระจกเก่าและศาลาวิคตอเรียน'},
+  'Castello di Vezio': {title:'Castello di Vezio — ป้อมปราการยุคกลาง', story:'สร้างในศตวรรษที่ 11 โดยชาวลอมบาร์ด ตั้งสูงเหนือ Varenna 200 เมตร มีตำนานเล่าว่าราชินี Theodolinda ประทับที่นี่ในช่วงต้นยุคกลาง จากยอดหอสามารถมองเห็น Lake Como ได้รอบทิศทาง'},
+  'Manarola Viewpoint': {title:'Manarola — จุดถ่ายรูปไอคอนิกที่สุดของ Cinque Terre', story:'Manarola เป็นหมู่บ้านที่เก่าแก่ที่สุดใน Cinque Terre สร้างตั้งแต่ปี 1338 ชื่อมาจากภาษา Latin "Manium Arula" แปลว่าแท่นบูชาขนาดเล็ก Viewpoint ที่เห็นบ้านสีสดเรียงซ้อนกันริมทะเลเป็นภาพที่ถูกถ่ายซ้ำมากที่สุดในอิตาลี'},
+  'Vernazza': {title:'Vernazza — ท่าเรือที่สวยที่สุดใน Cinque Terre', story:'ชื่อ Vernazza มาจากคำ Latin "verna" แปลว่าทาสที่เกิดในบ้าน หรืออาจมาจาก "vernaccia" ชื่อองุ่นพื้นถิ่น เป็นหนึ่งในห้าหมู่บ้านที่ถูกประกาศเป็น UNESCO World Heritage ปี 1997 ยังคงมีชาวบ้านจริงๆอยู่อาศัย ต่างจากบางหมู่บ้านที่กลายเป็นแต่ที่พักนักท่องเที่ยว'},
+  'Seceda กระเช้า': {title:'Seceda — ยอดเขาที่วิว Dolomites สวยที่สุด', story:'Seceda สูง 2,519 เมตร เป็นจุดชมวิว Dolomites ที่นิยมมากที่สุดแห่งหนึ่ง สันเขาหินปูนรูปประหลาดที่เห็นเรียงกันเรียกว่า "Geisler Peaks" หรือ Odle กระเช้าขึ้นไปสองชั้นจาก Ortisei ใช้เวลาแค่ 15 นาที แต่พาคุณไปสู่โลกอีกใบ'},
+  'Alpe di Siusi': {title:'Alpe di Siusi — ทุ่งหญ้าอัลไพน์ที่ใหญ่ที่สุดในยุโรป', story:'"Alpe" ในภาษา Ladin และอิตาเลียนแปลว่า "ทุ่งหญ้าสูง" ส่วน "Siusi" มาจากชื่อหมู่บ้านด้านล่าง รวมกันแปลว่า "ทุ่งหญ้าบนที่สูงแห่ง Siusi" มีพื้นที่ 56 ตร.กม. อยู่สูงระหว่าง 1,680–2,350 เมตร เป็นส่วนหนึ่งของ UNESCO World Heritage Dolomites มีแดด 300+ วันต่อปี ฉายา "หม้อใส่ดอกไม้แห่ง Dolomites" เพราะในฤดูร้อนเต็มไปด้วยดอกไม้ป่านับร้อยสายพันธุ์'},
+  'Tre Cime di Lavaredo': {title:'Tre Cime — 3 ยอดเขาอันโด่งดังที่สุดของ Dolomites', story:'"Tre Cime" แปลว่า "สามยอด" สูง 2,999 เมตร เป็นสัญลักษณ์ของ Dolomites และถูกจัดเป็น UNESCO World Heritage ในสงครามโลกครั้งที่ 1 พื้นที่นี้เป็นสมรภูมิรบระหว่างอิตาลีและออสเตรีย ยังมีสนามเพลาะหินอยู่ในภูเขา Loop Trail รอบ 3 ยอดเขาระยะ 10 กม. เป็น must-do ของ Dolomites'},
+  'Lago di Braies': {title:'Lago di Braies — ทะเลสาบมรกตแห่ง Dolomites', story:'เรียกในเยอรมันว่า Pragser Wildsee แปลว่า "ทะเลสาบป่าแห่ง Prags" น้ำสีเขียวมรกตเกิดจากแร่ธาตุ copper sulfate และตะกอนธารน้ำแข็ง เคยใช้เป็นฉากในซีรีส์ Netflix "Babylon Berlin" และภาพยนตร์หลายเรื่อง ต้องจองที่จอดรถล่วงหน้าในช่วง high season'},
+  'Verona': {title:'Verona — เมืองแห่งรักอมตะ', story:'Verona เป็นเมืองที่ Shakespeare เลือกเป็นฉากของ "Romeo & Juliet" แม้ว่าตัวละครนั้นจะไม่มีตัวตนจริง แต่ที่นี่มี "บ้านจูเลียต" ที่คนมาจูบล็อคและเขียนจดหมายรักทิ้งไว้ Arena di Verona เป็น amphitheater โรมันอายุ 2,000 ปียังใช้จัด opera concert อยู่จนทุกวันนี้'},
+  'Duomo di Milano + Rooftop': {title:'Duomo di Milano — มหาวิหารที่ใช้เวลาสร้าง 600 ปี', story:'เริ่มสร้างปี 1386 เสร็จสมบูรณ์ปี 1965 ใช้เวลา 579 ปี มีหอแหลม (spire) 135 ยอด และรูปปั้น 3,400 ชิ้น ยอดสูงสุดมีรูปปั้น "Madonnina" ทองคำขนาด 4.2 เมตร ที่นักมิลาน ถือเป็นเทพผู้ปกปักรักษาเมือง Rooftop เดินได้และมองเห็น Alps ในวันที่อากาศใส'},
+  'Navigli District': {title:'Navigli — คลองสายศิลปะแห่งมิลาน', story:'ระบบคลอง Navigli สร้างตั้งแต่ศตวรรษที่ 12 เป็นเส้นทางขนหินอ่อน Candoglia ที่ใช้สร้าง Duomo Leonardo da Vinci เคยช่วยออกแบบระบบประตูน้ำที่นี่ ปัจจุบันย่านนี้ได้ชื่อว่า "Brooklyn ของมิลาน" เต็มไปด้วยบาร์ แกลลอรี และ aperitivo ดีที่สุดของเมือง'},
+  'Galleria Vittorio Emanuele II': {title:'Galleria Vittorio Emanuele II — ห้างแรกของโลก', story:'เปิดปี 1877 ถือเป็น shopping mall ที่เก่าแก่ที่สุดในโลก สร้างถวายกษัตริย์ Vittorio Emanuele II ผู้รวมชาติอิตาลี พื้น mosaic ตรงกลางมีวัวที่ต้องเอาส้นเท้าหมุนบนลูกอัณฑะวัว 3 รอบเพื่อขอโชค แบรนด์ Prada สาขาแรกของโลกเปิดที่นี่ตั้งแต่ปี 1913'},
+  'Fondazione Prada': {title:'Fondazione Prada — โรงกลั่นเหล้าที่กลายเป็นพิพิธภัณฑ์', story:'ตั้งอยู่ใน complex โรงกลั่น Gin เก่าอายุ 100 ปี ออกแบบโดย Rem Koolhaas เปิดปี 2015 นอกจากงานศิลปะร่วมสมัย ยังมี "Bar Luce" ที่ Wes Anderson ออกแบบเป็นส่วนตัว เป็น instagrammable spot ที่คนรู้จักน้อยกว่าที่ควรจะรู้จัก'},
+  'Lago di Carezza': {title:'Lago di Carezza — ทะเลสาบสายรุ้ง', story:'ในภาษา Ladin เรียกว่า "Carjëza" แปลว่า "สายรุ้ง" ชาวพื้นเมืองเชื่อว่าสีสวยงามมาจากสายรุ้งที่ตกลงมาในทะเลสาบ น้ำใสจนมองเห็นก้อนหินใต้น้ำ สะท้อนภาพยอดเขา Latemar ที่ยืนตระหง่านอยู่เบื้องหลัง เป็นทะเลสาบที่ถ่ายรูปสวยมากที่สุดแห่งหนึ่งในอิตาลี'},
+};
 
-  // zig-zag y so labels don't collide: even=top, odd=bottom
-  const labelY = (i)=> i%2===0 ? CY-28 : CY+24;
-  const labelAnchor=(i)=> i===0?'start': i===cols-1?'end':'middle';
+function buildGoogleMapsEmbed(items, dayTitle){
+  const places = items.filter(it=>(it.type==='place'||it.type==='hotel') && (it.mapLabel||it.place));
+  if(places.length<1) return '';
+  const names = places.map(p=>p.mapLabel||p.place.replace(/[\u{1F300}-\u{1FAFF}]/gu,'').trim());
 
-  let svgParts=[];
+  // Link ที่กดเปิด Google Maps จริงๆ (ทำงานได้เสมอ)
+  const mapsLink = names.length>=2
+    ? `https://www.google.com/maps/dir/${names.map(n=>encodeURIComponent(n)).join('/')}`
+    : `https://www.google.com/maps/search/${encodeURIComponent(names[0])}`;
 
-  // path line
-  const pathD = xs.map((x,i)=>(i===0?`M${x},${CY}`:`L${x},${CY}`)).join(' ');
-  svgParts.push(`<path d="${pathD}" fill="none" stroke="${lineC}" stroke-width="3" stroke-dasharray="6 4"/>`);
+  // Embed iframe: ใช้ OpenStreetMap ผ่าน iframe-api ที่ไม่ต้อง key
+  // แสดง map centered ที่จุดแรก พร้อม marker
+  const first = places[0];
+  // ถ้ามี lat/lon ใช้เลย ถ้าไม่มีใช้ bounding box ของเมือง
+  const hasCoords = first.lat && first.lon;
 
-  // travel time badges between stops
-  stops.forEach((stop,i)=>{
-    if(i===0) return;
-    const x1=xs[i-1], x2=xs[i], mx=(x1+x2)/2;
-    const travel=stop.travelFrom||'';
-    const mode=stop.travelMode||'🚗';
-    if(travel){
-      svgParts.push(`<rect x="${mx-26}" y="${CY-11}" width="52" height="22" rx="11" fill="white" stroke="${lineC}" stroke-width="1.5"/>`);
-      svgParts.push(`<text x="${mx}" y="${CY+4}" text-anchor="middle" font-size="10" fill="#8C897F" font-family="DM Sans,sans-serif">${mode} ${travel}</text>`);
-    }
-  });
+  // สร้าง pin list แต่ละจุด
+  const pinList = places.map((p,i)=>{
+    const name = p.mapLabel||p.place.replace(/[\u{1F300}-\u{1FAFF}]/gu,'').trim();
+    const url = p.mapUrl||`https://www.google.com/maps/search/${encodeURIComponent(name)}`;
+    return `<a href="${url}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink);text-decoration:none;padding:5px 12px;background:var(--cream);border-radius:20px;border:1px solid var(--border);white-space:nowrap">
+      <span style="background:var(--accent);color:white;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">${i+1}</span>
+      ${name}
+    </a>`;
+  }).join('');
 
-  // dots + labels
-  stops.forEach((stop,i)=>{
-    const x=xs[i];
-    const isHotel=stop.type==='hotel';
-    const isFlight=stop.type==='flight';
-    const dotColor = isFlight?'#B5341E': isHotel?'#2D6A4F': acc;
-    // tick line to label
-    const ly=labelY(i);
-    const tickEnd=ly>CY?CY+DOT:CY-DOT;
-    svgParts.push(`<line x1="${x}" y1="${tickEnd}" x2="${x}" y2="${ly+(ly<CY?14:-2)}" stroke="${lineC}" stroke-width="1" stroke-dasharray="2 2"/>`);
-    // dot
-    svgParts.push(`<circle cx="${x}" cy="${CY}" r="${DOT}" fill="${dotColor}" stroke="white" stroke-width="2"/>`);
-    if(isFlight) svgParts.push(`<text x="${x}" y="${CY+4}" text-anchor="middle" font-size="8" fill="white">✈</text>`);
-    else if(isHotel) svgParts.push(`<text x="${x}" y="${CY+4}" text-anchor="middle" font-size="8" fill="white">🏡</text>`);
-    else svgParts.push(`<text x="${x}" y="${CY+4}" text-anchor="middle" font-size="9" font-weight="600" fill="white">${i+1}</text>`);
-    // name label — truncate
-    const raw = stop.mapLabel||stop.place.replace(/[✈️🏡🚂🚗🍩⛴️]/gu,'').trim();
-    const label = raw.length>14? raw.slice(0,13)+'…': raw;
-    const anchor=labelAnchor(i);
-    const lx = anchor==='start'?x-2: anchor==='end'?x+2:x;
-    svgParts.push(`<text x="${lx}" y="${ly}" text-anchor="${anchor}" font-size="10.5" font-weight="500" fill="#1A1814" font-family="DM Sans,sans-serif">${label}</text>`);
-    // time sub-label
-    if(stop.time){
-      const ty = ly>CY? ly+13: ly-1;
-      // only show if space
-      svgParts.push(`<text x="${lx}" y="${ty+(ly<CY?13:0)}" text-anchor="${anchor}" font-size="9" fill="#8C897F" font-family="DM Sans,sans-serif">${stop.time}</text>`);
-    }
-  });
+  // สร้าง query string สำหรับ Google Maps embed (ไม่ต้อง API key สำหรับ /maps/embed?pb= แต่ต้องมี encoded path)
+  // วิธีที่ดีที่สุดโดยไม่ต้อง key: ใช้ place search query
+  const searchQuery = encodeURIComponent(names[0] + (names.length>1?' near '+names[names.length-1]:''));
+  // Google Maps embed ไม่ต้อง API key ถ้าใช้ /maps?q=&output=embed
+  const embedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(names[0])}&output=embed&hl=th&z=13`;
 
-  // total travel time
-  const totalMins = stops.reduce((s,st)=>{
-    if(!st.travelFrom) return s;
-    const m=st.travelFrom.match(/(\d+)\s*hr?\s*(\d*)/i);
-    if(m) return s+parseInt(m[1]||0)*60+parseInt(m[2]||0);
-    const m2=st.travelFrom.match(/(\d+)\s*min/i);
-    if(m2) return s+parseInt(m2[1]);
-    return s;
-  },0);
-  const totalStr = totalMins>0?`รวมเวลาเดินทาง ~${Math.floor(totalMins/60)?Math.floor(totalMins/60)+'h ':''} ${totalMins%60?totalMins%60+'m':''}`:'';
-
-  return `<div class="route-map-box">
-    <div class="route-map-header">
-      <span class="route-map-label">เส้นทางวันนี้</span>
-      ${totalStr?`<span class="route-map-total">🕐 ${totalStr.trim()}</span>`:''}
+  return `<div class="gmap-box">
+    <div class="gmap-header">
+      <span class="gmap-label">📍 ${places.length} จุดหมายวันนี้</span>
+      <a class="gmap-open" href="${mapsLink}" target="_blank">เปิดเส้นทาง →</a>
     </div>
-    <div class="route-map-svg-wrap">
-      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-        ${svgParts.join('\n')}
-      </svg>
+    <div style="padding:10px 18px;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">${pinList}</div>
+    <div style="position:relative;height:280px;background:#f0ede8">
+      <iframe style="width:100%;height:100%;border:none;display:block"
+        loading="lazy"
+        src="${embedSrc}"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <div style="position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:6px">
+        ${places.map((p,i)=>{
+          const name=p.mapLabel||p.place.replace(/[\u{1F300}-\u{1FAFF}]/gu,'').trim();
+          const url=p.mapUrl||`https://www.google.com/maps/search/${encodeURIComponent(name)}`;
+          return `<a href="${url}" target="_blank"
+            style="display:flex;align-items:center;gap:6px;background:white;padding:5px 10px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:11px;font-weight:500;color:var(--ink);text-decoration:none;white-space:nowrap">
+            <span style="background:var(--accent);color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">${i+1}</span>
+            ${name.length>18?name.slice(0,17)+'…':name}
+          </a>`;
+        }).join('')}
+      </div>
     </div>
   </div>`;
 }
@@ -784,16 +819,92 @@ function openDay(key){
   detail.style.display='block';
   const accentColor=day.isDk?'var(--dk-green)':'var(--it-red)';
 
-  const routeMap = buildRouteMap(day.items, day.isDk);
+  const idx = DAY_ORDER.indexOf(key);
+  const prevKey = idx>0?DAY_ORDER[idx-1]:null;
+  const nextKey = idx<DAY_ORDER.length-1?DAY_ORDER[idx+1]:null;
+  const prevDay = prevKey?DAYS[prevKey]:null;
+  const nextDay = nextKey?DAYS[nextKey]:null;
 
+  const navHtml=`<div class="day-nav">
+    <button class="day-nav-btn" onclick="openDay('${prevKey}')" ${!prevKey?'disabled':''}>← ${prevDay?prevDay.title:'—'}</button>
+    <div class="day-nav-center">${day.title}</div>
+    <button class="day-nav-btn" onclick="openDay('${nextKey}')" ${!nextKey?'disabled':''} style="text-align:right">${nextDay?nextDay.title:'—'} →</button>
+  </div>`;
+
+  // Build route SVG (enhanced)
+  const stops = day.items.filter(it=>it.type==='place'||it.type==='hotel'||it.type==='flight');
+  let routeMapHtml = '';
+  if(stops.length>=2){
+    const acc=day.isDk?'#2D6A4F':'#B5341E';
+    const lineC=day.isDk?'#9FE1CB':'#F5C4B3';
+    const bgC=day.isDk?'#EAF4EE':'#FBF0ED';
+    const PAD=20,DOT=10,CY=60;
+    const cols=stops.length;
+    const W=Math.max(380,cols*120+PAD*2);
+    const H=140;
+    const xs=stops.map((_,i)=>PAD+i*(W-PAD*2)/(cols-1));
+    const labelY=(i)=>i%2===0?CY-34:CY+28;
+    const labelAnchor=(i)=>i===0?'start':i===cols-1?'end':'middle';
+    let svg=[];
+    // background
+    svg.push(`<rect width="${W}" height="${H}" fill="${bgC}" rx="12"/>`);
+    // path
+    const pathD=xs.map((x,i)=>(i===0?`M${x},${CY}`:`L${x},${CY}`)).join(' ');
+    svg.push(`<path d="${pathD}" fill="none" stroke="${lineC}" stroke-width="4" stroke-dasharray="8 5"/>`);
+    // travel badges
+    stops.forEach((stop,i)=>{
+      if(i===0||!stop.travelFrom) return;
+      const mx=(xs[i-1]+xs[i])/2;
+      svg.push(`<rect x="${mx-30}" y="${CY-13}" width="60" height="26" rx="13" fill="white" stroke="${lineC}" stroke-width="1.5"/>`);
+      svg.push(`<text x="${mx}" y="${CY+5}" text-anchor="middle" font-size="10" fill="#8C897F" font-family="DM Sans,sans-serif">${stop.travelMode||'🚗'} ${stop.travelFrom}</text>`);
+    });
+    // dots + labels
+    stops.forEach((stop,i)=>{
+      const x=xs[i];
+      const dotC=stop.type==='flight'?'#B5341E':stop.type==='hotel'?'#2D6A4F':acc;
+      const ly=labelY(i);
+      const tickEnd=ly>CY?CY+DOT:CY-DOT;
+      svg.push(`<line x1="${x}" y1="${tickEnd}" x2="${x}" y2="${ly+(ly<CY?16:0)}" stroke="${lineC}" stroke-width="1.5" stroke-dasharray="3 2"/>`);
+      svg.push(`<circle cx="${x}" cy="${CY}" r="${DOT}" fill="${dotC}" stroke="white" stroke-width="2.5"/>`);
+      svg.push(`<text x="${x}" y="${CY+4}" text-anchor="middle" font-size="9" font-weight="700" fill="white">${i+1}</text>`);
+      const raw=stop.mapLabel||stop.place.replace(/[\u{1F300}-\u{1FAFF}]/gu,'').trim();
+      const label=raw.length>13?raw.slice(0,12)+'…':raw;
+      const anc=labelAnchor(i);
+      const lx=anc==='start'?x:anc==='end'?x:x;
+      svg.push(`<text x="${lx}" y="${ly}" text-anchor="${anc}" font-size="11" font-weight="600" fill="#1A1814" font-family="DM Sans,sans-serif">${label}</text>`);
+      if(stop.time) svg.push(`<text x="${lx}" y="${ly+(ly<CY?13:-13)}" text-anchor="${anc}" font-size="9" fill="#8C897F" font-family="DM Sans,sans-serif">${stop.time}</text>`);
+    });
+    const totalMins=stops.reduce((s,st)=>{
+      if(!st.travelFrom) return s;
+      const m=st.travelFrom.match(/(\d+)\s*hr?\s*(\d*)/i);
+      if(m) return s+parseInt(m[1]||0)*60+parseInt(m[2]||0);
+      const m2=st.travelFrom.match(/(\d+)\s*min/i);
+      return m2?s+parseInt(m2[1]):s;
+    },0);
+    const totalStr=totalMins>0?`รวม ~${Math.floor(totalMins/60)?Math.floor(totalMins/60)+'h':''}${totalMins%60?totalMins%60+'m':''}`:'' ;
+    routeMapHtml=`<div class="route-map-box" style="background:${bgC};border-color:${lineC}">
+      <div class="route-map-header">
+        <span class="route-map-label">เส้นทางวันนี้</span>
+        ${totalStr?`<span class="route-map-total">🕐 ${totalStr}</span>`:''}
+      </div>
+      <div class="route-map-svg-wrap">
+        <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${svg.join('')}</svg>
+      </div>
+    </div>`;
+  }
+
+  // Google Maps embed
+  const gmapHtml = buildGoogleMapsEmbed(day.items, day.title);
+
+  // Timeline items with click-to-expand + place stories
   const items=day.items.map((item,i)=>{
     const isLast=i===day.items.length-1;
     const dotCls='tl-dot'+(item.type==='flight'?' flight':item.type==='hotel'?' hotel':'');
+    const story = PLACE_STORIES[item.place]||PLACE_STORIES[item.mapLabel]||null;
     let card='';
     if(item.photos||item.mapUrl||item.rating){
       const ph=item.photos?item.photos.map(u=>`<div class="place-photo" style="background-image:url('${u}')"></div>`).join(''):'';
-      // show travel time badge in timeline
-      const travelBadge=item.travelFrom?`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:var(--cream);border:1px solid var(--border);padding:3px 9px;border-radius:20px;margin-bottom:8px;">${item.travelMode||'🚗'} จากจุดก่อนหน้า ${item.travelFrom}</span><br>`:'';
+      const travelBadge=item.travelFrom?`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:var(--cream);border:1px solid var(--border);padding:3px 9px;border-radius:20px;margin-bottom:8px;">${item.travelMode||'🚗'} ${item.travelFrom}</span><br>`:'';
       card=`<div class="place-card">
         ${ph?`<div class="place-photos">${ph}</div>`:''}
         <div class="place-info">
@@ -804,32 +915,43 @@ function openDay(key){
         </div>
       </div>`;
     } else if(item.travelFrom){
-      card=`<div style="margin-top:6px;display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:var(--cream);border:1px solid var(--border);padding:3px 9px;border-radius:20px;">${item.travelMode||'🚗'} จากจุดก่อนหน้า ${item.travelFrom}</div>`;
+      card=`<div style="margin-top:6px;display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:var(--cream);border:1px solid var(--border);padding:3px 9px;border-radius:20px;">${item.travelMode||'🚗'} ${item.travelFrom}</div>`;
     }
-    return `<div class="tl-item">
+    const storyHtml = story?`<div class="place-story"><div class="place-story-title">${story.title}</div>${story.story}</div>`:'';
+    const expandHint = story?`<span style="font-size:10px;color:var(--muted);margin-left:6px;letter-spacing:1px">▸ กดอ่านเพิ่มเติม</span>`:'';
+    return `<div class="tl-item" onclick="toggleExpand(this)">
       <div class="tl-time">${item.time||''}</div>
       <div class="tl-spine"><div class="${dotCls}"></div>${!isLast?'<div class="tl-connector"></div>':''}</div>
       <div class="tl-content">
-        <div class="tl-place">${item.place}</div>
+        <div class="tl-place">${item.place}${expandHint}</div>
         ${item.desc?`<div class="tl-desc">${item.desc}</div>`:''}
         ${card}
+        ${storyHtml}
       </div>
     </div>`;
   }).join('');
 
   detail.innerHTML=`
-    <div class="day-header">
-      <button class="day-back-btn" onclick="showSection('daily',null)">← กลับ</button>
-      <div class="day-title-block">
-        <div class="day-num" style="color:${accentColor}">${day.title}</div>
-        <div class="day-title">${day.subtitle}</div>
-        <div class="day-loc">📍 ${day.loc}</div>
-      </div>
+    ${navHtml}
+    <div class="day-title-block" style="margin-bottom:16px">
+      <div class="day-num" style="color:${accentColor}">${day.title}</div>
+      <div class="day-title">${day.subtitle}</div>
+      <div class="day-loc">📍 ${day.loc}</div>
     </div>
-    <img class="day-hero-img" src="${day.hero}" alt="${day.subtitle}" loading="lazy">
-    ${routeMap}
+    <img class="day-hero-img" src="${day.hero}" alt="${day.subtitle}" loading="lazy" onerror="this.style.display='none'">
+    <div id="weather-container"></div>
+    ${routeMapHtml}
+    ${gmapHtml}
     <div class="timeline">${items}</div>`;
   window.scrollTo({top:document.querySelector('.sticky-nav').offsetTop-10,behavior:'smooth'});
+  // Load weather async
+  loadWeather(key, document.getElementById('weather-container'));
+}
+
+function toggleExpand(el){
+  const wasExpanded = el.classList.contains('expanded');
+  document.querySelectorAll('.tl-item.expanded').forEach(e=>e.classList.remove('expanded'));
+  if(!wasExpanded) el.classList.add('expanded');
 }
 
 // Hero image preloader - graceful fallback to gradient if blocked
@@ -860,15 +982,23 @@ const CREW = {
   'Fern':  {img:'https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc'},
 };
 
+// ── Currency conversion ──────────────────────────────────────
+const FX = {THB:1, DKK:5, EUR:38};
+function toTHB(amt, cur){ return Math.round(amt * (FX[cur]||1)); }
+
+// ── Persistence ──────────────────────────────────────────────
+const STORAGE_KEY = 'trip2026_expenses_v2';
+function saveExpenses(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses)); }catch(e){} }
+function loadExpenses(){ try{ const d=localStorage.getItem(STORAGE_KEY); if(d) expenses=JSON.parse(d); }catch(e){} }
+
+// ── Expense helpers ──────────────────────────────────────────
 function toggleSplitPicker(){
   const d=document.getElementById('split-dropdown');
   d.style.display=d.style.display==='none'?'block':'none';
 }
 document.addEventListener('click',function(e){
   const picker=document.getElementById('split-dropdown');
-  if(picker&&!picker.contains(e.target)&&e.target.id!=='split-picker'){
-    picker.style.display='none';
-  }
+  if(picker&&!picker.contains(e.target)&&e.target.id!=='split-picker') picker.style.display='none';
 });
 function updateSplitLabel(){
   const checked=[...document.querySelectorAll('#split-dropdown input:checked')].map(c=>c.value);
@@ -888,61 +1018,292 @@ function addExpense(){
   const cat=document.getElementById('e-cat').value;
   const payer=document.getElementById('e-payer').value||'ไม่ระบุ';
   const people=getSelectedPeople();
-  const cur=document.getElementById('e-cur').value.trim()||'THB';
+  const cur=document.getElementById('e-cur').value||'THB';
   if(!desc||isNaN(amt)||amt<=0) return;
-  expenses.push({id:Date.now(),desc,amt,cat,payer,people,cur});
+  const thb=toTHB(amt,cur);
+  expenses.push({id:Date.now(),desc,amt,thb,cat,payer,people,cur});
   document.getElementById('e-desc').value='';
   document.getElementById('e-amt').value='';
+  saveExpenses();
   renderExpenses();
 }
 
 function deleteExpense(id){
   expenses=expenses.filter(e=>e.id!==id);
+  saveExpenses();
   renderExpenses();
+}
+
+function resetExpenses(){
+  if(!confirm('ล้างข้อมูลค่าใช้จ่ายทั้งหมด?')) return;
+  expenses=[];
+  saveExpenses();
+  renderExpenses();
+  document.getElementById('settlement-box').style.display='none';
 }
 
 const tMap={food:'t-food',transport:'t-transport',hotel:'t-hotel',activity:'t-activity',other:'t-other'};
 const lMap={food:'🍜 อาหาร',transport:'✈️ เดินทาง',hotel:'🏡 ที่พัก',activity:'🎭 กิจกรรม',other:'📦 อื่นๆ'};
 
 function renderExpenses(){
-  const total=expenses.reduce((s,e)=>s+e.amt,0);
-  document.getElementById('total-amt').textContent=total.toLocaleString('th-TH',{maximumFractionDigits:0});
+  const totalTHB=expenses.reduce((s,e)=>s+(e.thb||toTHB(e.amt,e.cur)),0);
+  document.getElementById('total-amt').textContent=totalTHB.toLocaleString('th-TH');
   document.getElementById('item-count').textContent=expenses.length;
-  const personTotals={};
-  expenses.forEach(e=>{if(e.people.length>0){const sh=e.amt/e.people.length;e.people.forEach(p=>{personTotals[p]=(personTotals[p]||0)+sh;})}});
-  const persons=Object.keys(personTotals);
-  document.getElementById('per-person').textContent=persons.length>0?Math.round(total/persons.length).toLocaleString('th-TH'):'0';
+
+  // compute per-person in THB
+  const personTHB={};
+  expenses.forEach(e=>{
+    const t=e.thb||toTHB(e.amt,e.cur);
+    if(e.people&&e.people.length>0){
+      const sh=t/e.people.length;
+      e.people.forEach(p=>{ personTHB[p]=(personTHB[p]||0)+sh; });
+    }
+  });
+  const persons=Object.keys(personTHB);
+  document.getElementById('per-person').textContent=persons.length>0?Math.round(totalTHB/persons.length).toLocaleString('th-TH'):'0';
+
   const listEl=document.getElementById('expense-list');
-  if(expenses.length===0){listEl.innerHTML='<div class="empty">ยังไม่มีรายการ</div>';return;}
-  const rows=expenses.map(e=>`<tr>
-    <td title="${e.desc}">${e.desc}</td>
-    <td><span class="tag ${tMap[e.cat]}">${lMap[e.cat]}</span></td>
-    <td style="text-align:right;font-weight:500">${e.amt.toLocaleString('th-TH',{maximumFractionDigits:0})} ${e.cur}</td>
-    <td>${e.payer}</td>
-    <td style="color:#8C897F">${e.people.join(', ')||'—'}</td>
-    <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
-  </tr>`).join('');
-  listEl.innerHTML=`<table><thead><tr>
-    <th style="width:28%">รายการ</th><th style="width:16%">หมวด</th>
-    <th style="width:20%;text-align:right">จำนวน</th><th style="width:13%">จ่ายโดย</th>
-    <th style="width:15%">หารกัน</th><th style="width:8%"></th>
-  </tr></thead><tbody>${rows}</tbody></table>`;
+  if(expenses.length===0){
+    listEl.innerHTML='<div class="empty">ยังไม่มีรายการ — ข้อมูลจะบันทึกอัตโนมัติ</div>';
+  } else {
+    const rows=expenses.map(e=>{
+      const t=e.thb||toTHB(e.amt,e.cur);
+      const curLabel=e.cur==='THB'?'฿':e.cur==='DKK'?'DKK':'€';
+      return `<tr>
+        <td title="${e.desc}">${e.desc}</td>
+        <td><span class="tag ${tMap[e.cat]}">${lMap[e.cat]}</span></td>
+        <td style="text-align:right;font-weight:500">${e.amt.toLocaleString('th-TH',{maximumFractionDigits:1})} ${curLabel}</td>
+        <td style="text-align:right;color:var(--accent);font-weight:500">${t.toLocaleString('th-TH')} ฿</td>
+        <td>${e.payer}</td>
+        <td style="color:#8C897F;font-size:12px">${e.people&&e.people.length?e.people.join(', '):'—'}</td>
+        <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
+      </tr>`;
+    }).join('');
+    listEl.innerHTML=`<table><thead><tr>
+      <th style="width:22%">รายการ</th>
+      <th style="width:13%">หมวด</th>
+      <th style="width:14%;text-align:right">จำนวน</th>
+      <th style="width:12%;text-align:right">THB</th>
+      <th style="width:11%">จ่ายโดย</th>
+      <th style="width:18%">หารกัน</th>
+      <th style="width:6%"></th>
+    </tr></thead><tbody>${rows}</tbody></table>`;
+  }
+
+  // split summary with avatar
   const splitEl=document.getElementById('split-summary');
-  if(persons.length===0){splitEl.innerHTML='<div class="empty">เพิ่มรายการที่ระบุชื่อคนเพื่อดูยอด</div>';return;}
+  if(persons.length===0){
+    splitEl.innerHTML='<div class="empty">เพิ่มรายการที่ระบุชื่อคนเพื่อดูยอด</div>';
+    return;
+  }
   splitEl.innerHTML=persons.map(p=>{
-    const paid=expenses.filter(e=>e.payer===p).reduce((s,e)=>s+e.amt,0);
-    const owe=personTotals[p]||0;
-    const diff=paid-owe;
-    const av=CREW[p]?`<img src="${CREW[p].img}" style="width:36px;height:36px;border-radius:50%;flex-shrink:0" alt="${p}">`:`<div style="width:36px;height:36px;border-radius:50%;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;font-weight:500;font-size:13px;flex-shrink:0">${p[0]}</div>`;
+    const paidTHB=expenses.filter(e=>e.payer===p).reduce((s,e)=>s+(e.thb||toTHB(e.amt,e.cur)),0);
+    const owe=personTHB[p]||0;
+    const diff=paidTHB-owe;
+    const av=CREW[p]?`<img src="${CREW[p].img}" style="width:36px;height:36px;border-radius:50%;flex-shrink:0" alt="${p}">`
+      :`<div style="width:36px;height:36px;border-radius:50%;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;flex-shrink:0">${p[0]}</div>`;
     return `<div class="split-row">
       <div style="display:flex;align-items:center;gap:10px">${av}<span class="split-name">${p}</span></div>
       <div style="text-align:right">
-        <div class="split-amt">${Math.round(owe).toLocaleString('th-TH')}</div>
-        <div class="split-sub ${diff>=0?'badge-ok':'badge-owe'}">${diff>=0?'✅ จ่ายเกิน':'⚠️ ค้างจ่าย'} ${Math.abs(Math.round(diff)).toLocaleString('th-TH')}</div>
+        <div class="split-amt">${Math.round(owe).toLocaleString('th-TH')} ฿</div>
+        <div class="split-sub ${diff>=0?'badge-ok':'badge-owe'}">${diff>=0?'✅ จ่ายเกิน':'⚠️ ค้างจ่าย'} ${Math.abs(Math.round(diff)).toLocaleString('th-TH')} ฿</div>
       </div>
     </div>`;
   }).join('');
 }
+
+// ── Settlement: minimum transactions algorithm ────────────────
+function showSettlement(){
+  const personTHB={};
+  expenses.forEach(e=>{
+    const t=e.thb||toTHB(e.amt,e.cur);
+    if(e.people&&e.people.length>0){
+      const sh=t/e.people.length;
+      e.people.forEach(p=>{ personTHB[p]=(personTHB[p]||0)+sh; });
+    }
+    if(e.payer&&e.payer!=='ไม่ระบุ'){
+      personTHB[e.payer]=(personTHB[e.payer]||0); // ensure exists
+    }
+  });
+
+  // net balance: paid - owed  (positive = others owe you, negative = you owe others)
+  const balance={};
+  const allPeople=new Set([...Object.keys(personTHB),...expenses.filter(e=>e.payer&&e.payer!=='ไม่ระบุ').map(e=>e.payer)]);
+  allPeople.forEach(p=>{ balance[p]=0; });
+  expenses.forEach(e=>{
+    const t=e.thb||toTHB(e.amt,e.cur);
+    if(e.payer&&e.payer!=='ไม่ระบุ') balance[e.payer]=(balance[e.payer]||0)+t;
+    if(e.people&&e.people.length>0){
+      const sh=t/e.people.length;
+      e.people.forEach(p=>{ balance[p]=(balance[p]||0)-sh; });
+    }
+  });
+
+  // greedy min-transfers
+  const creditors=[], debtors=[];
+  Object.entries(balance).forEach(([p,b])=>{
+    if(b>1) creditors.push({p,b});
+    else if(b<-1) debtors.push({p,b:-b});
+  });
+  creditors.sort((a,b)=>b.b-a.b);
+  debtors.sort((a,b)=>b.b-a.b);
+
+  const txns=[];
+  let ci=0, di=0;
+  while(ci<creditors.length && di<debtors.length){
+    const c=creditors[ci], d=debtors[di];
+    const amt=Math.min(c.b, d.b);
+    txns.push({from:d.p, to:c.p, amt:Math.round(amt)});
+    c.b-=amt; d.b-=amt;
+    if(c.b<1) ci++;
+    if(d.b<1) di++;
+  }
+
+  const box=document.getElementById('settlement-box');
+  const listEl=document.getElementById('settlement-list');
+  if(txns.length===0){
+    listEl.innerHTML='<div class="empty" style="color:var(--dk-green)">✅ ทุกคนจ่ายเท่ากันแล้ว ไม่ต้องโอนเพิ่ม!</div>';
+  } else {
+    listEl.innerHTML=txns.map((t,i)=>{
+      const fromAv=CREW[t.from]?`<img src="${CREW[t.from].img}" style="width:32px;height:32px;border-radius:50%">`:`<span style="font-weight:500">${t.from}</span>`;
+      const toAv=CREW[t.to]?`<img src="${CREW[t.to].img}" style="width:32px;height:32px;border-radius:50%">`:`<span style="font-weight:500">${t.to}</span>`;
+      return `<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);${i===txns.length-1?'border-bottom:none':''}">
+        <div style="display:flex;align-items:center;gap:8px;flex:1">${fromAv}<span style="font-size:14px;font-weight:500">${t.from}</span></div>
+        <div style="text-align:center;flex-shrink:0">
+          <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--accent)">${t.amt.toLocaleString('th-TH')} ฿</div>
+          <div style="font-size:11px;color:var(--muted)">โอนให้ →</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex:1;justify-content:flex-end">${toAv}<span style="font-size:14px;font-weight:500">${t.to}</span></div>
+      </div>`;
+    }).join('');
+  }
+  box.style.display='block';
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── Weather widget ─────────────────────────────────────────────
+const DAY_WEATHER_CONFIG = {
+  dk28:{city:'Bangkok',       lat:13.76,  lon:100.50, tripDate:'2026-05-28', refDate:'2025-05-28'},
+  dk29:{city:'Copenhagen',    lat:55.68,  lon:12.57,  tripDate:'2026-05-29', refDate:'2025-05-29'},
+  dk30:{city:'Copenhagen',    lat:55.68,  lon:12.57,  tripDate:'2026-05-30', refDate:'2025-05-30'},
+  dk31:{city:'Copenhagen',    lat:55.68,  lon:12.57,  tripDate:'2026-05-31', refDate:'2025-05-31'},
+  dk01:{city:'Copenhagen',    lat:55.68,  lon:12.57,  tripDate:'2026-06-01', refDate:'2025-06-01'},
+  it01:{city:'Lake Como',     lat:46.01,  lon:9.28,   tripDate:'2026-06-01', refDate:'2025-06-01'},
+  it02:{city:'Bellagio',      lat:45.98,  lon:9.26,   tripDate:'2026-06-02', refDate:'2025-06-02'},
+  it03:{city:'Monterosso',    lat:44.15,  lon:9.65,   tripDate:'2026-06-03', refDate:'2025-06-03'},
+  it04:{city:'Cinque Terre',  lat:44.12,  lon:9.73,   tripDate:'2026-06-04', refDate:'2025-06-04'},
+  it05:{city:'Ortisei',       lat:46.57,  lon:11.67,  tripDate:'2026-06-05', refDate:'2025-06-05'},
+  it06:{city:'Ortisei',       lat:46.57,  lon:11.67,  tripDate:'2026-06-06', refDate:'2025-06-06'},
+  it07:{city:'Misurina',      lat:46.58,  lon:12.25,  tripDate:'2026-06-07', refDate:'2025-06-07'},
+  it08:{city:'Lago di Braies',lat:46.69,  lon:12.09,  tripDate:'2026-06-08', refDate:'2025-06-08'},
+  it09:{city:'Milan',         lat:45.46,  lon:9.19,   tripDate:'2026-06-09', refDate:'2025-06-09'},
+  it10:{city:'Milan',         lat:45.46,  lon:9.19,   tripDate:'2026-06-10', refDate:'2025-06-10'},
+  it11:{city:'Milan',         lat:45.46,  lon:9.19,   tripDate:'2026-06-11', refDate:'2025-06-11'},
+};
+
+// Hardcoded climate averages as last-resort fallback
+const CLIMATE_FALLBACK = {
+  'Bangkok':        [{h:6,t:29,i:'🌤'},{h:8,t:31,i:'☀️'},{h:10,t:33,i:'☀️'},{h:12,t:34,i:'☀️'},{h:14,t:35,i:'⛅'},{h:16,t:33,i:'🌦'},{h:18,t:30,i:'🌦'},{h:20,t:29,i:'🌤'}],
+  'Copenhagen':     [{h:6,t:12,i:'🌤'},{h:8,t:13,i:'🌤'},{h:10,t:15,i:'☀️'},{h:12,t:17,i:'☀️'},{h:14,t:18,i:'⛅'},{h:16,t:17,i:'⛅'},{h:18,t:16,i:'🌤'},{h:20,t:14,i:'🌙'}],
+  'Lake Como':      [{h:6,t:17,i:'🌤'},{h:8,t:19,i:'☀️'},{h:10,t:22,i:'☀️'},{h:12,t:24,i:'☀️'},{h:14,t:25,i:'⛅'},{h:16,t:23,i:'⛅'},{h:18,t:21,i:'🌤'},{h:20,t:18,i:'🌙'}],
+  'Bellagio':       [{h:6,t:17,i:'🌤'},{h:8,t:19,i:'☀️'},{h:10,t:22,i:'☀️'},{h:12,t:24,i:'☀️'},{h:14,t:25,i:'⛅'},{h:16,t:23,i:'⛅'},{h:18,t:21,i:'🌤'},{h:20,t:18,i:'🌙'}],
+  'Monterosso':     [{h:6,t:18,i:'🌤'},{h:8,t:20,i:'☀️'},{h:10,t:23,i:'☀️'},{h:12,t:25,i:'☀️'},{h:14,t:26,i:'☀️'},{h:16,t:24,i:'⛅'},{h:18,t:22,i:'🌤'},{h:20,t:20,i:'🌙'}],
+  'Cinque Terre':   [{h:6,t:18,i:'🌤'},{h:8,t:20,i:'☀️'},{h:10,t:23,i:'☀️'},{h:12,t:25,i:'☀️'},{h:14,t:26,i:'☀️'},{h:16,t:24,i:'⛅'},{h:18,t:22,i:'🌤'},{h:20,t:20,i:'🌙'}],
+  'Ortisei':        [{h:6,t:9,i:'🌤'},{h:8,t:12,i:'☀️'},{h:10,t:15,i:'☀️'},{h:12,t:18,i:'☀️'},{h:14,t:19,i:'⛅'},{h:16,t:17,i:'⛅'},{h:18,t:14,i:'🌤'},{h:20,t:11,i:'🌙'}],
+  'Misurina':       [{h:6,t:7,i:'🌤'},{h:8,t:10,i:'☀️'},{h:10,t:13,i:'☀️'},{h:12,t:15,i:'☀️'},{h:14,t:16,i:'⛅'},{h:16,t:14,i:'⛅'},{h:18,t:11,i:'🌤'},{h:20,t:9,i:'🌙'}],
+  'Lago di Braies': [{h:6,t:8,i:'🌤'},{h:8,t:11,i:'☀️'},{h:10,t:14,i:'☀️'},{h:12,t:16,i:'☀️'},{h:14,t:17,i:'⛅'},{h:16,t:15,i:'⛅'},{h:18,t:12,i:'🌤'},{h:20,t:9,i:'🌙'}],
+  'Milan':          [{h:6,t:18,i:'🌤'},{h:8,t:20,i:'☀️'},{h:10,t:23,i:'☀️'},{h:12,t:26,i:'☀️'},{h:14,t:27,i:'⛅'},{h:16,t:26,i:'⛅'},{h:18,t:23,i:'🌤'},{h:20,t:20,i:'🌙'}],
+};
+
+const WMO_ICONS={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'❄️',73:'❄️',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
+
+function renderWeatherSlots(slots, city, label, isReal){
+  const maxT=Math.max(...slots.map(s=>s.temp||s.t));
+  const minT=Math.min(...slots.map(s=>s.temp||s.t));
+  const badge = isReal==='forecast'
+    ? `<span style="background:#E1F5EE;color:#085041;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500">📡 พยากรณ์จริง</span>`
+    : isReal==='historical'
+    ? `<span style="background:#EEF3FB;color:#0C447C;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500">📊 ERA5 ปี 2025</span>`
+    : `<span style="background:#F1EFE8;color:#555;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500">📈 ค่าเฉลี่ยฤดูกาล</span>`;
+  return `<div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px">
+    <div style="padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500">🌤 ${city}</span>
+      ${badge}
+      <span style="margin-left:auto;font-size:13px;font-weight:500;color:var(--ink)">${minT.toFixed(0)}° – ${maxT.toFixed(0)}°C</span>
+    </div>
+    <div style="overflow-x:auto;padding:14px 18px 16px">
+      <div style="display:flex;gap:6px;min-width:max-content">
+        ${slots.map(s=>{
+          const h=s.h; const t=s.temp!=null?s.temp:s.t; const p=s.precip||0; const icon=s.code!=null?(WMO_ICONS[s.code]||'🌡'):(s.i||'🌡');
+          return `<div style="text-align:center;min-width:50px;padding:6px 4px;border-radius:10px;background:${h>=10&&h<=18?'var(--cream)':'transparent'}">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:3px">${h}:00</div>
+            <div style="font-size:20px;line-height:1;margin-bottom:3px">${icon}</div>
+            <div style="font-size:13px;font-weight:500;color:var(--ink)">${Number(t).toFixed(0)}°</div>
+            <div style="font-size:10px;margin-top:2px;height:14px">${p>15?`<span style="color:#1a6cbf">💧${p}%</span>`:''}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+async function loadWeather(dayKey, containerEl){
+  const cfg=DAY_WEATHER_CONFIG[dayKey];
+  if(!cfg){ containerEl.innerHTML=''; return; }
+  containerEl.innerHTML=`<div style="padding:16px;text-align:center;color:var(--muted);font-size:13px">⏳ กำลังโหลดสภาพอากาศ...</div>`;
+
+  // ตรวจสอบว่าวันนี้ห่างจากวันทริปกี่วัน
+  const today = new Date(); today.setHours(0,0,0,0);
+  const tripDay = new Date(cfg.tripDate); tripDay.setHours(0,0,0,0);
+  const diffDays = Math.round((tripDay-today)/(1000*60*60*24));
+
+  try {
+    let url, isReal, dateToUse;
+
+    if(diffDays<=16 && diffDays>=0){
+      // ใช้ Forecast API — ข้อมูลพยากรณ์จริง
+      url=`https://api.open-meteo.com/v1/forecast?latitude=${cfg.lat}&longitude=${cfg.lon}&hourly=temperature_2m,precipitation_probability,weathercode&start_date=${cfg.tripDate}&end_date=${cfg.tripDate}&timezone=auto&forecast_days=16`;
+      isReal='forecast';
+    } else if(diffDays<0){
+      // วันที่ผ่านมาแล้ว — ใช้ archive ของวันจริง
+      url=`https://archive-api.open-meteo.com/v1/archive?latitude=${cfg.lat}&longitude=${cfg.lon}&hourly=temperature_2m,precipitation_probability,weathercode&start_date=${cfg.tripDate}&end_date=${cfg.tripDate}&timezone=auto`;
+      isReal='forecast'; // ข้อมูลจริงในอดีต
+    } else {
+      // ยังไกลเกิน 16 วัน — ใช้ ERA5 ปีที่แล้ว
+      url=`https://archive-api.open-meteo.com/v1/archive?latitude=${cfg.lat}&longitude=${cfg.lon}&hourly=temperature_2m,precipitation_probability,weathercode&start_date=${cfg.refDate}&end_date=${cfg.refDate}&timezone=auto`;
+      isReal='historical';
+    }
+
+    const res=await fetch(url);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    if(data.error) throw new Error(data.reason||'API error');
+
+    const hours=data.hourly.time;
+    const temps=data.hourly.temperature_2m;
+    const precip=data.hourly.precipitation_probability||new Array(24).fill(0);
+    const codes=data.hourly.weathercode;
+
+    const slots=hours.map((t,i)=>({
+      h: parseInt(t.slice(11,13)),
+      temp: temps[i]!=null ? Math.round(temps[i]*10)/10 : null,
+      precip: precip[i]||0,
+      code: codes[i]||0
+    })).filter(s=>s.h>=6&&s.h<=21&&s.temp!=null);
+
+    if(!slots.length) throw new Error('no slots');
+    containerEl.innerHTML = renderWeatherSlots(slots, cfg.city, '', isReal);
+
+  } catch(err) {
+    // fallback hardcoded climate
+    const slots = CLIMATE_FALLBACK[cfg.city] || CLIMATE_FALLBACK['Milan'];
+    containerEl.innerHTML = renderWeatherSlots(slots, cfg.city, '', 'climate');
+  }
+}
+
+// Load expenses on page load
+loadExpenses();
+if(expenses.length>0) setTimeout(renderExpenses,100);
 </script>
 </body>
 </html>
