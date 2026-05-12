@@ -1416,7 +1416,9 @@ const RESTAURANT_MENUS = {
 
 // Load expenses on page load
 loadExpenses();
-if(expenses.length>0) setTimeout(renderExpenses,100);(q){
+if(expenses.length>0) setTimeout(renderExpenses,100);
+
+function quickSearch(q){
   document.getElementById('search-input').value = q;
   doSearch();
   showSection('search', document.querySelectorAll('.nav-tab')[4]);
@@ -1432,99 +1434,104 @@ async function doSearch(){
   loading.style.display='block';
   result.innerHTML='';
 
-  const regionHint = region==='dk'?' Copenhagen Denmark': region==='it'?' Italy':'';
-  const searchQuery = q + regionHint;
+  // ── Hardcoded data for trip places (ไม่ต้อง API) ──────────
+  const PLACE_DB = {
+    'nyhavn':          {name:'Nyhavn',loc:'Copenhagen, Denmark',cat:'landmark',hours:'ตลอด 24 ชม.',price:'ฟรี',summary:'Nyhavn แปลว่า "ท่าเรือใหม่" สร้างปี 1671 โดย King Christian V บ้านสีสดใสริมคลองเป็น icon ที่ถูกถ่ายมากที่สุดในสแกนดิเนเวีย Hans Christian Andersen เคยอาศัยอยู่ที่นี่ถึง 3 ช่วงชีวิต ปัจจุบันเป็นย่านร้านอาหารและ canal tour',hi:['Canal boat tour 30–60 นาที น่าลอง','บ้านเลขที่ 20 เป็นที่อยู่เก่าของ H.C. Andersen','ถ่ายรูปสวยสุดช่วง golden hour เย็นๆ'],tip:'หลีกเลี่ยงร้านด้านหน้าริมคลองที่แพงมาก เดินไปข้างหลังมีร้านอาหารถูกกว่า',photos:['https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1534430480872-3498386e7856?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1541336032412-2048a678540d?fm=jpg&q=80&w=400'],map:'Nyhavn Copenhagen Denmark',emoji:'🌈'},
+    'louisiana':       {name:'Louisiana Museum of Modern Art',loc:'Humlebæk, Denmark',cat:'museum',hours:'อังคาร–ศุกร์ 11:00–22:00 · เสาร์–อาทิตย์ 11:00–18:00',price:'145 DKK (~725฿)',summary:'พิพิธภัณฑ์ศิลปะสมัยใหม่ที่ดีที่สุดในสแกนดิเนเวีย ตั้งอยู่ริมช่องแคบ Øresund มองเห็นชายฝั่งสวีเดน ชื่อ Louisiana มาจากภรรยา 3 คนของเจ้าของเดิมชื่อ Louise ทั้งหมด สวนประติมากรรมริมทะเลงดงามมาก',hi:['สวนประติมากรรม outdoor ชม Calder และ Henry Moore','คอลเลกชัน Giacometti ใหญ่ที่สุดในโลก','วิวทะเล Øresund จากห้องกระจก'],tip:'นั่ง S-train สาย C จาก Copenhagen Central ถึง Humlebæk แล้วเดิน 10 นาที',photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1580136579312-94651dfd596d?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1565626424178-c699f9be9946?fm=jpg&q=80&w=400'],map:'Louisiana Museum Modern Art Humlebaek Denmark',emoji:'🖼️'},
+    'rosenborg':       {name:'Rosenborg Castle',loc:'Copenhagen, Denmark',cat:'castle',hours:'10:00–17:00 ทุกวัน',price:'130 DKK (~650฿)',summary:'ปราสาท Renaissance สร้างปี 1606–1633 โดย King Christian IV เดิมเป็นบ้านพักฤดูร้อน ปัจจุบันเก็บ Crown Jewels ของเดนมาร์ก รวมถึงเพชร Dagmar Cross และ Ruby Set อายุกว่า 400 ปี สวน King\'s Garden รอบข้างเป็นสวนสาธารณะเก่าแก่ที่สุดใน Copenhagen',hi:['ห้อง Winter Room มีงาช้างและทองแกะสลัก','Crown Jewels ชั้นใต้ดิน มีมงกุฎเพชร','สวน King\'s Garden เปิดฟรี ออกกำลังกายได้'],tip:'ซื้อตั๋วออนไลน์ล่วงหน้า ลดแถวยาว',photos:['https://images.unsplash.com/photo-1570789210967-2cac24afeb00?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1518005068251-37900150dfca?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?fm=jpg&q=80&w=400'],map:'Rosenborg Castle Copenhagen',emoji:'🏰'},
+    'amalienborg':     {name:'Amalienborg Palace',loc:'Copenhagen, Denmark',cat:'landmark',hours:'เปิดตลอด (exterior) · Museum 10:00–16:00',price:'ฟรี (ข้างนอก) · 95 DKK (museum)',summary:'พระราชวัง Rococo 4 หลังล้อมรอบจัตุรัสแปดเหลี่ยม เป็นที่ประทับของราชวงศ์เดนมาร์กตั้งแต่ปี 1784 พิธีเปลี่ยนยามทุกวันเที่ยงเป็น highlight ที่ต้องดู มีทหารแต่งชุดดูหล่อมาก',hi:['พิธีเปลี่ยนยาม 12:00 น. ทุกวัน','The Kissing Stairs บันไดหินหน้าพระราชวัง','Museum Amalienborg ชม Royal apartments'],tip:'ถ่ายรูปพิธีเปลี่ยนยามได้ยืนแถวหน้าสุด ไปก่อน 11:45',photos:['https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1518005068251-37900150dfca?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1570789210967-2cac24afeb00?fm=jpg&q=80&w=400'],map:'Amalienborg Palace Copenhagen',emoji:'🏛️'},
+    'varenna':         {name:'Varenna',loc:'Lake Como, Italy',cat:'village',hours:'ตลอด 24 ชม.',price:'ฟรี (เดิน)',summary:'หมู่บ้านสีพาสเทลอายุกว่า 1,400 ปีบนหน้าผาทางฝั่งตะวันออกของ Lake Como เป็นหมู่บ้านที่งดงามและสงบที่สุดใน Lake Como เส้นทาง Passeggiata degli Innamorati หรือ Lovers\' Walk แคบเพียงคนเดียวริมทะเลสาบ ขึ้นชื่อว่าโรแมนติกที่สุดในอิตาลี',hi:['Passeggiata degli Innamorati — Lovers Walk','Villa Monastero สวนพฤกษศาสตร์ริมน้ำ','Castello di Vezio วิว panoramic'],tip:'นั่งเรือ ferry จาก Como หรือ Menaggio ถูกและสวยกว่าขับรถ',photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=80&w=400'],map:'Varenna Lake Como Italy',emoji:'💙'},
+    'bellagio':        {name:'Bellagio',loc:'Lake Como, Italy',cat:'village',hours:'ตลอด 24 ชม.',price:'ฟรี (เดิน)',summary:'เมืองที่สวยที่สุดใน Lake Como ตั้งอยู่บน peninsula กลางทะเลสาบ มีฉายาว่า "Pearl of the Lake" บันไดหิน Salita Serbelloni ขึ้นชื่อเรื่องความสวยงาม Villa Melzi มีสวนริมน้ำที่ถ่ายรูปสวยมาก',hi:['Salita Serbelloni บันไดหินแคบสีสัน','Villa Melzi สวนพฤกษศาสตร์ €10','มอง Lake Como 3 แฉกจาก Punto Spartivento'],tip:'มาเช้าก่อน 10:00 นักท่องเที่ยวยังน้อย ถ่ายรูปสวยกว่า',photos:['https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=400'],map:'Bellagio Lake Como Italy',emoji:'⛵'},
+    'manarola':        {name:'Manarola',loc:'Cinque Terre, Italy',cat:'village',hours:'ตลอด 24 ชม.',price:'ฟรี · Cinque Terre Card 7.5€/วัน (เดิน trail)',summary:'Manarola เป็นหมู่บ้านที่เก่าแก่ที่สุดใน Cinque Terre ก่อตั้งปี 1338 Viewpoint มองเห็นบ้านสีสดเรียงซ้อนบนหน้าผาริมทะเล เป็นภาพที่ถูกถ่ายมากที่สุดในอิตาลี ชื่อมาจากภาษา Latin ว่า "Manium Arula" แปลว่า "แท่นบูชาเล็กน้อย"',hi:['Viewpoint หมู่บ้านจากฝั่งตรงข้ามสวยที่สุด','ดำน้ำที่ Manarola Beach ใต้หมู่บ้าน','ชิม pesto สดและ focaccia ท้องถิ่น'],tip:'ไปตอนเย็น sunset แสงตกกำแพงบ้านสีส้มสวยมาก ช่วง 17:30–19:00',photos:['https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1499678329028-101435549a4e?fm=jpg&q=80&w=400'],map:'Manarola Cinque Terre Italy',emoji:'🏘️'},
+    'vernazza':        {name:'Vernazza',loc:'Cinque Terre, Italy',cat:'village',hours:'ตลอด 24 ชม.',price:'ฟรี',summary:'หนึ่งในห้าหมู่บ้าน Cinque Terre ที่มี natural harbor เดียวเท่านั้น เป็นหมู่บ้านที่ยังมีชุมชนชาวประมงจริงๆ อาศัยอยู่ ท่าเรือเล็กๆ ล้อมรอบด้วยร้านกาแฟและร้านอาหาร Castello Doria บนยอดเขาให้วิว 360°',hi:['Piazza Marconi จัตุรัสริมท่าเรือน่ารัก','Castello Doria ขึ้นบันได 200 ขั้นได้วิวดี','ว่ายน้ำที่ท่าเรือได้ฟรี'],tip:'ลอง Vernazza seafood ที่ Ristorante Belforte มุมมองทะเลดีมาก',photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1499678329028-101435549a4e?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=80&w=400'],map:'Vernazza Cinque Terre Italy',emoji:'🐟'},
+    'seceda':          {name:'Seceda',loc:'Ortisei, Dolomites, Italy',cat:'nature',hours:'กระเช้า 8:30–17:30',price:'~€30 ไป-กลับ',summary:'จุดชมวิว Dolomites ที่สวยที่สุดแห่งหนึ่ง สูง 2,519 เมตร สันเขาหินปูนรูประยะ Geisler Peaks เรียงตัวเหมือน saw blade ขนาดยักษ์ เป็น backdrop ที่ถ่ายรูปแล้วดูเหมือนภาพวาด',hi:['Sunrise เหนือยอดเขา Geisler ก่อน 7:00','เดินสันเขา Seceda Ridge Trail 2 ชม.','วิว Sassolungo และ Sella Group 360°'],tip:'กระเช้ารอบแรก 8:30 นักท่องเที่ยวน้อยที่สุด ถ่ายรูปสวยกว่า',photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=80&w=400'],map:'Seceda Ortisei Dolomites Italy',emoji:'⛰️'},
+    'alpe di siusi':   {name:'Alpe di Siusi (Seiser Alm)',loc:'South Tyrol, Dolomites, Italy',cat:'nature',hours:'รถยนต์ห้ามเข้า 9:00–17:00',price:'กระเช้า ~€20',summary:'"Alpe" แปลว่าทุ่งหญ้าสูง ใหญ่ที่สุดในยุโรป 56 ตร.กม. UNESCO World Heritage เต็มไปด้วยดอกไม้ป่าหลากสีในฤดูร้อน มีแดด 300+ วัน/ปี ฉายา "ทุ่งหญ้าสวรรค์แห่ง Dolomites"',hi:['Sunrise กับ backdrop Sassolungo 05:30–06:30','450 กม. hiking trails ระดับ easy–hard','56 mountain huts เสิร์ฟ Tyrolean cuisine'],tip:'ไปก่อน 9:00 หรือหลัง 17:00 ถึงขับรถเองขึ้นไปได้ ประหยัดค่ากระเช้า',photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=80&w=400'],map:'Alpe di Siusi Seiser Alm South Tyrol Italy',emoji:'🌸'},
+    'tre cime':        {name:'Tre Cime di Lavaredo',loc:'Dolomites, Italy',cat:'nature',hours:'ตลอด 24 ชม. · ที่จอดรถเปิด 06:00',price:'ที่จอดรถ €30 · เดินเท้าฟรี',summary:'3 ยอดเขาหินปูนสูง 2,999 เมตร สัญลักษณ์ของ Dolomites และ UNESCO World Heritage ในสงครามโลก 1 พื้นที่นี้เป็นสมรภูมิรบ ยังมีสนามเพลาะในภูเขา Loop Trail 10 กม. เดินรอบ 4–5 ชม.',hi:['Loop Trail รอบ 10 กม. วิวครบทุกมุม','Viewpoint Cadini 1.5 กม. จากที่จอดรถ','Rifugio Locatelli กลางทางมี lunch ดี'],tip:'จอดรถก่อน 7:00 ที่จอดเต็มเร็วมาก หรือใช้ shuttle bus จาก Misurina',photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=80&w=400'],map:'Tre Cime di Lavaredo Dolomites Italy',emoji:'🏔️'},
+    'lago di braies':  {name:'Lago di Braies',loc:'Dolomites, Italy',cat:'lake',hours:'ตลอด 24 ชม.',price:'ที่จอดรถ €15 · เรือ €15/30 นาที',summary:'ทะเลสาบมรกตที่สวยที่สุดใน Dolomites น้ำสีเขียวมาจาก copper sulfate และตะกอนธารน้ำแข็ง สะท้อนภาพ Croda del Becco mountain ในเยอรมันเรียก "Pragser Wildsee" เคยใช้เป็น background series Netflix',hi:['เช่าเรือไม้ paddle รอบทะเลสาบ 30 นาที','เดิน loop trail รอบทะเลสาบ 3.5 กม.','Sunrise สะท้อนน้ำสวยมากช่วง 06:00'],tip:'จองที่จอดรถล่วงหน้าออนไลน์ หรือไปก่อน 7:00 ไม่เช่นนั้นเดินไกล',photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=80&w=400'],map:'Lago di Braies Pragser Wildsee Italy',emoji:'💧'},
+    'duomo':           {name:'Duomo di Milano',loc:'Milan, Italy',cat:'landmark',hours:'09:00–19:00 ทุกวัน',price:'Rooftop €13 · ภายใน €5',summary:'มหาวิหาร Gothic ที่ใหญ่ที่สุดในอิตาลี เริ่มสร้างปี 1386 เสร็จปี 1965 ใช้เวลา 579 ปี มี spire 135 ยอด รูปปั้น 3,400 ชิ้น ยอดสูงสุดมี Madonnina ทองคำ 4.2 เมตร Rooftop เดินระหว่างยอดแหลมได้ วิว Alps ในวันอากาศดี',hi:['Rooftop walk ระหว่าง Gothic spires','Crypt ใต้ดิน อายุ 2,000 ปี','ตั้งใจดู Stained Glass หน้าต่างกระจก medieval'],tip:'ซื้อตั๋ว Rooftop Fast Track ออนไลน์ ประหยัดเวลา 1-2 ชม.',photos:['https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1534430480872-3498386e7856?fm=jpg&q=80&w=400'],map:'Duomo di Milano Italy',emoji:'🕌'},
+    'navigli':         {name:'Navigli District',loc:'Milan, Italy',cat:'neighborhood',hours:'บาร์เปิดถึงตี 2',price:'Aperol Spritz ~€8',summary:'ย่านคลองเก่าแก่ ระบบคลอง Navigli สร้างปี 12 ศตวรรษ เคยขนหินอ่อนมาสร้าง Duomo Leonardo da Vinci ช่วยออกแบบระบบประตูน้ำ ปัจจุบันฉายา "Brooklyn ของมิลาน" เต็มไปด้วย bar, gallery, vintage shop',hi:['Aperitivo ริมคลอง ช่วง 18:00–21:00 ดีที่สุด','Mercatone dell\'Antiquariato ตลาดของเก่าวันอาทิตย์','Street art และ graffiti ทุกมุม'],tip:'Happy hour Aperitivo ช่วง 18–20 ที่นี่ได้ทั้ง drink + buffet snacks ฟรี',photos:['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=400'],map:'Navigli District Milan Italy',emoji:'🌃'},
+    'lake como':       {name:'Lake Como',loc:'Lombardy, Italy',cat:'lake',hours:'ตลอด 24 ชม.',price:'Ferry ราว €5–15 ต่อเที่ยว',summary:'ทะเลสาบรูปตัว Y ยาว 46 กม. ล้อมรอบด้วยเทือกเขา Alps เป็น resort ที่ชาว Roman โบราณนิยมมาพักผ่อน George Clooney มีบ้านที่นี่ หมู่บ้าน Varenna, Bellagio, Menaggio ริมทะเลสาบเป็น highlight หลัก',hi:['Ferry เชื่อม Varenna–Bellagio–Menaggio ตลอดวัน','Villa del Balbianello ฉากหนัง James Bond','Passeggiata degli Innamorati Lovers Walk Varenna'],tip:'ซื้อ Ferry pass รายวัน คุ้มกว่าซื้อทีละเที่ยวมาก',photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=80&w=400','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=80&w=400'],map:'Lake Como Italy',emoji:'⛵'},
+  };
 
-  try {
-    // Call Claude API to get place info
-    const prompt = `Give detailed travel information about "${q}"${regionHint ? ' in'+regionHint : ''} for Thai tourists. Reply ONLY with valid JSON (no markdown, no backticks):
-{
-  "name": "Full place name",
-  "nameLocal": "Local language name if different",
-  "category": "museum/restaurant/nature/landmark/etc",
-  "location": "City, Country",
-  "hours": "Opening hours",
-  "price": "Entry fee or price range",
-  "summary": "2-3 engaging sentences about what makes this place special, in Thai language",
-  "highlights": ["highlight1","highlight2","highlight3"],
-  "tips": "1 practical tip for visitors, in Thai",
-  "lat": 0.0,
-  "lon": 0.0,
-  "mustTry": "If restaurant: signature dish to order. If attraction: best photo spot or activity"
-}`;
+  // ── Normalize query to find in DB ──────────────────────────
+  const qLow = q.toLowerCase().replace(/[^a-z0-9\s]/g,'').trim();
+  let info = null;
+  for(const [key, val] of Object.entries(PLACE_DB)){
+    if(qLow.includes(key) || key.includes(qLow) || val.name.toLowerCase().includes(qLow)){
+      info = val; break;
+    }
+  }
 
-    const apiRes = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:prompt}]
-      })
-    });
-    const apiData = await apiRes.json();
-    const raw = apiData.content?.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
-    const info = JSON.parse(raw);
-
-    // Unsplash search photos based on place name
-    const photoKeywords = encodeURIComponent(info.name||q);
-    const photos = [
-      `https://images.unsplash.com/featured/?${photoKeywords}&w=400&q=80&auto=format&fit=crop`,
-      `https://images.unsplash.com/featured/?${photoKeywords}+travel&w=400&q=80&auto=format&fit=crop`,
-      `https://images.unsplash.com/featured/?${photoKeywords}+landscape&w=400&q=80&auto=format&fit=crop`,
-    ];
-
-    // Build map embed
-    const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(info.name||q)}&output=embed&hl=th&z=14`;
-    const mapLink = `https://www.google.com/maps/search/${encodeURIComponent(info.name||q)}`;
-
-    const catIcon = {museum:'🏛️',restaurant:'🍽️',nature:'🌿',landmark:'📍',beach:'🏖️',church:'⛪',castle:'🏰',market:'🛍️',park:'🌳',lake:'💧',mountain:'⛰️'}[info.category?.toLowerCase()]||'📍';
-
-    result.innerHTML = `
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden">
-        <div class="sr-photos">
-          ${photos.map(p=>`<div class="sr-photo" style="background-image:url('${p}')"></div>`).join('')}
-        </div>
-        <div style="padding:20px 24px">
-          <div style="margin-bottom:8px">
-            <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500">${catIcon} ${info.category||'สถานที่'}</div>
-          </div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin-bottom:4px">${info.name}</h2>
-          ${info.nameLocal?`<div style="font-size:13px;color:var(--muted);margin-bottom:12px">${info.nameLocal}</div>`:''}
-          <div class="sr-meta">
-            <span class="sr-badge">📍 ${info.location||''}</span>
-            ${info.hours?`<span class="sr-badge">🕐 ${info.hours}</span>`:''}
-            ${info.price?`<span class="sr-badge">💰 ${info.price}</span>`:''}
-          </div>
-          <p style="font-size:14px;line-height:1.8;color:var(--ink2);margin-bottom:16px">${info.summary||''}</p>
-          ${info.highlights?.length?`<div style="margin-bottom:14px">
-            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">ไฮไลท์</div>
-            ${info.highlights.map(h=>`<div style="display:flex;gap:8px;margin-bottom:6px;font-size:13px"><span style="color:var(--accent);flex-shrink:0">✦</span>${h}</div>`).join('')}
-          </div>`:''}
-          ${info.mustTry?`<div style="background:var(--cream);border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px">
-            <span style="font-weight:500">⭐ ต้องลอง:</span> ${info.mustTry}
-          </div>`:''}
-          ${info.tips?`<div style="background:#EAF4EE;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
-            <span style="font-weight:500;color:var(--dk-green)">💡 เคล็ดลับ:</span> ${info.tips}
-          </div>`:''}
-          <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:12px">
-            <div style="padding:10px 14px;background:var(--cream);display:flex;align-items:center;justify-content:space-between">
-              <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">แผนที่</span>
-              <a href="${mapLink}" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none;font-weight:500">เปิดใน Google Maps →</a>
-            </div>
-            <iframe style="width:100%;height:240px;border:none;display:block" loading="lazy" src="${mapSrc}" allowfullscreen></iframe>
-          </div>
+  if(info){
+    // Found in local DB — show immediately
+    renderSearchResult(info, q, result);
+  } else {
+    // Fallback: Wikipedia API (ฟรี ไม่ต้อง key, CORS ได้)
+    try {
+      const wikiQ = encodeURIComponent(q + (region==='dk'?' Copenhagen':region==='it'?' Italy':''));
+      const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(q.replace(/ /g,'_'))}?redirect=true`);
+      if(!wikiRes.ok) throw new Error('not found');
+      const wiki = await wikiRes.json();
+      if(wiki.type==='disambiguation'||!wiki.extract) throw new Error('ambiguous');
+      const fallbackInfo = {
+        name: wiki.title,
+        loc: wiki.description||'',
+        cat: 'landmark',
+        hours: 'ดูข้อมูลเพิ่มเติมใน Google Maps',
+        price: '-',
+        summary: wiki.extract?.slice(0,300)+(wiki.extract?.length>300?'…':''),
+        hi: [],
+        tip: 'ค้นหาข้อมูลเพิ่มเติมได้จาก Google Maps หรือ Tripadvisor',
+        photos: wiki.thumbnail?.source ? [wiki.thumbnail.source, wiki.thumbnail.source, wiki.thumbnail.source] : [],
+        map: q,
+        emoji: '📍'
+      };
+      renderSearchResult(fallbackInfo, q, result);
+    } catch(e) {
+      result.innerHTML=`<div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:32px 24px;text-align:center">
+        <div style="font-size:40px;margin-bottom:12px">🔍</div>
+        <div style="font-size:16px;font-weight:500;margin-bottom:8px">ไม่พบ "${q}"</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:20px">ลองค้นด้วยชื่อสถานที่ในทริป เช่น Nyhavn, Seceda, Manarola</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+          ${['Nyhavn','Louisiana Museum','Seceda','Alpe di Siusi','Tre Cime','Manarola','Lago di Braies','Duomo','Navigli'].map(p=>`<button onclick="quickSearch('${p}')" class="search-suggest">${p}</button>`).join('')}
         </div>
       </div>`;
-  } catch(err) {
-    result.innerHTML=`<div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;color:var(--muted)">
-      <div style="font-size:32px;margin-bottom:8px">🔍</div>
-      <div style="font-size:14px">ไม่พบข้อมูลสำหรับ "${q}"</div>
-      <div style="font-size:12px;margin-top:4px">ลองค้นหาด้วยชื่อภาษาอังกฤษครับ</div>
-    </div>`;
-    console.error('Search error:',err);
+    }
   }
   loading.style.display='none';
+}
+
+function renderSearchResult(info, q, result){
+  const catIcon = {museum:'🏛️',restaurant:'🍽️',nature:'🌿',landmark:'📍',beach:'🏖️',church:'⛪',castle:'🏰',market:'🛍️',park:'🌳',lake:'💧',mountain:'⛰️',village:'🏘️',neighborhood:'🌆'}[info.cat]||info.emoji||'📍';
+  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(info.map||info.name)}&output=embed&hl=th&z=14`;
+  const mapLink = `https://www.google.com/maps/search/${encodeURIComponent(info.map||info.name)}`;
+  const photosHtml = info.photos?.filter(Boolean).slice(0,3).map(p=>`<div class="sr-photo" style="background-image:url('${p}')"></div>`).join('')||'';
+  result.innerHTML=`
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+      ${photosHtml?`<div class="sr-photos">${photosHtml}</div>`:''}
+      <div style="padding:20px 24px">
+        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px">${catIcon} ${info.cat}</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin-bottom:8px">${info.name}</h2>
+        <div class="sr-meta">
+          <span class="sr-badge">📍 ${info.loc}</span>
+          ${info.hours&&info.hours!=='-'?`<span class="sr-badge">🕐 ${info.hours}</span>`:''}
+          ${info.price&&info.price!=='-'?`<span class="sr-badge">💰 ${info.price}</span>`:''}
+        </div>
+        <p style="font-size:14px;line-height:1.8;color:var(--ink2);margin-bottom:16px">${info.summary}</p>
+        ${info.hi?.length?`<div style="margin-bottom:14px">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">ไฮไลท์</div>
+          ${info.hi.map(h=>`<div style="display:flex;gap:8px;margin-bottom:6px;font-size:13px"><span style="color:var(--accent);flex-shrink:0">✦</span>${h}</div>`).join('')}
+        </div>`:''}
+        ${info.tip?`<div style="background:#EAF4EE;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px"><span style="font-weight:500;color:var(--dk-green)">💡 เคล็ดลับ:</span> ${info.tip}</div>`:''}
+        <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+          <div style="padding:10px 14px;background:var(--cream);display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">แผนที่</span>
+            <a href="${mapLink}" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none;font-weight:500">เปิดใน Google Maps →</a>
+          </div>
+          <iframe style="width:100%;height:240px;border:none;display:block" loading="lazy" src="${mapSrc}" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>`;
 }
 </script>
 </body>
