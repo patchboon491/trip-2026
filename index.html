@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denmark & Italy 2026 ✈️</title>
+<meta name="description" content="Content Creator Trip · 28 May – 11 June 2026 · Copenhagen → Lake Como → Cinque Terre → Dolomites → Milan">
+<meta property="og:title" content="Denmark & Italy 2026 ✈️">
+<meta property="og:description" content="15 วัน · Content Creator Trip">
+<meta property="og:image" content="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=1200&q=80">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF7F2;
+  --ink: #1A1814;
+  --ink2: #3D3A35;
+  --muted: #8C897F;
+  --border: rgba(26,24,20,0.1);
+  --dk-green: #2D6A4F;
+  --dk-bg: #EAF4EE;
+  --it-red: #B5341E;
+  --it-bg: #FBF0ED;
+  --accent: #C4914A;
+  --white: #FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:flex-end;padding:60px}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=1600&q=85') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,5,0.85) 0%,rgba(10,8,5,0.3) 50%,transparent 100%)}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,88px);line-height:1.0;color:#fff;margin-bottom:20px}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap}
+.hero-pill{background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:8px 18px;border-radius:40px;font-size:13px;font-weight:300;letter-spacing:0.5px}
+.scroll-hint{position:absolute;bottom:32px;right:60px;color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:3px;text-transform:uppercase;writing-mode:vertical-rl;display:flex;align-items:center;gap:8px}
+.scroll-hint::before{content:'';display:block;width:1px;height:40px;background:rgba(255,255,255,0.3);animation:scrollPulse 2s ease infinite}
+@keyframes scrollPulse{0%,100%{opacity:0.3}50%{opacity:1}}
+
+/* NAV */
+.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 40px;display:flex;gap:0;overflow-x:auto}
+.nav-tab{padding:18px 24px;font-size:13px;font-weight:500;letter-spacing:0.5px;color:var(--muted);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.nav-tab.active{color:var(--ink);border-bottom-color:var(--ink)}
+.nav-tab:hover:not(.active){color:var(--ink2)}
+
+/* LAYOUT */
+.page{max-width:900px;margin:0 auto;padding:0 40px}
+.section{padding:80px 0;display:none}
+.section.active{display:block}
+.section-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:500}
+.section-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:400;margin-bottom:48px;line-height:1.2}
+
+/* OVERVIEW STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:60px}
+.stat{background:var(--white);padding:28px 20px;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:400;line-height:1}
+.stat-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* REGION CARDS */
+.regions{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:60px}
+.region-card{border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .25s}
+.region-card:hover{transform:translateY(-3px)}
+.region-img{height:200px;background-size:cover;background-position:center;position:relative}
+.region-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent)}
+.region-flag{position:absolute;top:14px;left:14px;font-size:22px}
+.region-body{padding:20px;background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 16px 16px}
+.region-name{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:4px}
+.region-sub{font-size:12px;color:var(--muted)}
+.region-days{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.day-chip{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:none;transition:all .15s}
+.chip-dk{background:var(--dk-bg);color:var(--dk-green)}
+.chip-dk:hover{background:var(--dk-green);color:#fff}
+.chip-it{background:var(--it-bg);color:var(--it-red)}
+.chip-it:hover{background:var(--it-red);color:#fff}
+
+/* ROUTE STRIP */
+.route-strip{display:flex;align-items:center;gap:0;overflow-x:auto;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:60px}
+.route-stop{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.route-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.route-name{font-size:11px;color:var(--muted);margin-top:6px;white-space:nowrap;text-align:center}
+.route-date{font-size:10px;color:var(--border);margin-top:2px;text-align:center}
+.route-line{flex:1;min-width:20px;height:1px;background:var(--border);margin:0 4px;margin-bottom:24px}
+.plane-icon{font-size:12px;margin-bottom:24px;color:var(--muted)}
+
+/* DAY VIEW */
+.day-view{display:none}
+.day-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:40px}
+.day-back-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;cursor:pointer;font-size:13px;color:var(--muted);font-family:'DM Sans',sans-serif;flex-shrink:0;transition:all .15s}
+.day-back-btn:hover{border-color:var(--ink);color:var(--ink)}
+.day-hero-img{width:100%;height:320px;object-fit:cover;border-radius:16px;margin-bottom:40px}
+.day-title-block{}
+.day-num{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.day-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400}
+.day-loc{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* TIMELINE */
+.timeline{position:relative}
+.tl-item{display:grid;grid-template-columns:64px 1px 1fr;gap:0 20px;margin-bottom:0}
+.tl-time{text-align:right;padding-top:2px;font-size:12px;color:var(--muted);font-weight:500;padding-bottom:32px}
+.tl-spine{display:flex;flex-direction:column;align-items:center}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--ink);flex-shrink:0;margin-top:4px}
+.tl-dot.flight{background:var(--it-red)}
+.tl-dot.hotel{background:var(--dk-green)}
+.tl-connector{flex:1;width:1px;background:var(--border);min-height:24px}
+.tl-content{padding-bottom:32px}
+.tl-place{font-size:15px;font-weight:500;margin-bottom:3px}
+.tl-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+
+/* PLACE CARD */
+.place-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:10px}
+.place-photos{display:flex;height:140px;gap:2px}
+.place-photo{flex:1;background-size:cover;background-position:center;min-width:0}
+.place-info{padding:12px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--white)}
+.place-map-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--ink);background:var(--cream);border:1px solid var(--border);padding:6px 12px;border-radius:6px;text-decoration:none;transition:all .15s}
+.place-map-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.place-rating{font-size:12px;color:var(--accent);font-weight:500}
+.place-hours{font-size:11px;color:var(--muted)}
+
+/* EXPENSE */
+.expense-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.e-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.e-num{font-family:'Playfair Display',serif;font-size:32px}
+.e-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.add-form{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px}
+.add-form h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;margin-bottom:20px}
+.form-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.form-grid2{display:grid;grid-template-columns:1fr 1fr 1fr 120px;gap:10px}
+.form-input{padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);color:var(--ink);width:100%}
+.form-input:focus{outline:none;border-color:var(--ink)}
+.form-select{padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);color:var(--ink);width:100%}
+.btn-add{padding:10px 20px;background:var(--ink);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:opacity .15s;width:100%}
+.btn-add:hover{opacity:0.8}
+.expense-table-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th{text-align:left;padding:12px 16px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);font-weight:500}
+td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500;letter-spacing:0.5px}
+.t-food{background:#EAF4EE;color:var(--dk-green)}
+.t-transport{background:#EEF3FB;color:#1A4F8C}
+.t-hotel{background:#FEF3E5;color:#7A4F00}
+.t-activity{background:#F3F0FE;color:#4A3A9A}
+.t-other{background:#F5F5F3;color:var(--ink2)}
+.btn-del{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 8px;cursor:pointer;font-size:12px;color:var(--muted);transition:all .15s}
+.btn-del:hover{background:var(--it-bg);color:var(--it-red);border-color:var(--it-red)}
+.split-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px}
+.split-box h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;margin-bottom:20px}
+.split-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+.split-row:last-child{border-bottom:none}
+.split-name{font-size:14px;font-weight:500}
+.split-amt{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink)}
+.split-sub{font-size:11px;color:var(--muted);text-align:right;margin-top:2px}
+.badge-ok{color:var(--dk-green)}
+.badge-owe{color:var(--it-red)}
+
+/* PHOTO HIGHLIGHTS section */
+.highlights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;border-radius:16px;overflow:hidden;margin-bottom:60px}
+.hl-img{height:180px;background-size:cover;background-position:center;position:relative;overflow:hidden;cursor:pointer}
+.hl-img:first-child{grid-column:span 2;height:360px}
+.hl-label{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);color:#fff;font-size:12px;font-weight:500;opacity:0;transition:opacity .2s}
+.hl-img:hover .hl-label{opacity:1}
+
+/* EMPTY */
+.empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+
+@media(max-width:640px){
+  .hero{padding:32px 24px}
+  .page{padding:0 20px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .regions{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr 1fr}
+  .form-grid2{grid-template-columns:1fr 1fr}
+  .highlights-grid{grid-template-columns:1fr 1fr}
+  .hl-img:first-child{grid-column:span 2}
+  .expense-stats{grid-template-columns:repeat(3,1fr)}
+  .nav-inner{padding:0 20px}
+  .scroll-hint{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Content Creator Trip · 2026</div>
+    <h1 class="hero-title">Denmark<br>&amp; <em>Italy</em></h1>
+    <div class="hero-meta">
+      <span class="hero-pill">28 May – 11 June</span>
+      <span class="hero-pill">15 วัน</span>
+      <span class="hero-pill">Copenhagen · Lake Como · Cinque Terre · Dolomites · Milan</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</div>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-tab active" onclick="showSection('overview',this)">ภาพรวม</button>
+    <button class="nav-tab" onclick="showSection('daily',this)">รายวัน</button>
+    <button class="nav-tab" onclick="showSection('highlights',this)">ไฮไลท์รูป</button>
+    <button class="nav-tab" onclick="showSection('expense',this)">ค่าใช้จ่าย</button>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- OVERVIEW -->
+<div id="overview" class="section active">
+  <div class="section-label">The Journey</div>
+  <h2 class="section-title">15 วัน · 2 ประเทศ · 7 จุดหมาย</h2>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">15</div><div class="stat-label">วัน</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">ประเทศ</div></div>
+    <div class="stat"><div class="stat-num">30+</div><div class="stat-label">สถานที่</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">ความทรงจำ</div></div>
+  </div>
+
+  <!-- Route -->
+  <div class="route-strip">
+    <div class="route-stop"><div class="route-dot" style="background:#C4914A"></div><div class="route-name">BKK</div><div class="route-date">28 May</div></div>
+    <div class="route-line"></div><div class="plane-icon">✈</div><div class="route-line"></div>
+    <div class="route-stop"><div class="route-dot" style="background:#2D6A4F"></div><div class="route-name">Copenhagen</div><div class="route-date">28 May</div></div>
+    <div class="route-line"></div><div class="plane-icon">✈</div><div class="route-line"></div>
+    <div class="route-stop"><div class="route-dot" style="background:#B5341E"></div><div class="route-name">Lake Como</div><div class="route-date">1 Jun</div></div>
+    <div class="route-line"></div><div class="plane-icon">🚂</div><div class="route-line"></div>
+    <div class="route-stop"><div class="route-dot" style="background:#B5341E"></div><div class="route-name">Cinque Terre</div><div class="route-date">3 Jun</div></div>
+    <div class="route-line"></div><div class="plane-icon">🚗</div><div class="route-line"></div>
+    <div class="route-stop"><div class="route-dot" style="background:#B5341E"></div><div class="route-name">Dolomites</div><div class="route-date">5 Jun</div></div>
+    <div class="route-line"></div><div class="plane-icon">🚗</div><div class="route-line"></div>
+    <div class="route-stop"><div class="route-dot" style="background:#B5341E"></div><div class="route-name">Milan</div><div class="route-date">9 Jun</div></div>
+    <div class="route-line"></div><div class="plane-icon">✈</div><div class="route-line"></div>
+    <div class="route-stop"><div class="route-dot" style="background:#C4914A"></div><div class="route-name">BKK</div><div class="route-date">11 Jun</div></div>
+  </div>
+
+  <div class="regions">
+    <div class="region-card">
+      <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&q=80')">
+        <div class="region-img-overlay"></div>
+        <div class="region-flag">🇩🇰</div>
+      </div>
+      <div class="region-body">
+        <div class="region-name">Denmark</div>
+        <div class="region-sub">Copenhagen · 28 May – 1 June · 5 วัน</div>
+        <div class="region-days">
+          <button class="day-chip chip-dk" onclick="openDay('dk28')">28 May</button>
+          <button class="day-chip chip-dk" onclick="openDay('dk29')">29 May</button>
+          <button class="day-chip chip-dk" onclick="openDay('dk30')">30 May</button>
+          <button class="day-chip chip-dk" onclick="openDay('dk31')">31 May</button>
+          <button class="day-chip chip-dk" onclick="openDay('dk01')">1 Jun</button>
+        </div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80')">
+        <div class="region-img-overlay"></div>
+        <div class="region-flag">🇮🇹</div>
+      </div>
+      <div class="region-body">
+        <div class="region-name">Italy</div>
+        <div class="region-sub">Como · Cinque Terre · Dolomites · Milan · 1–11 June · 11 วัน</div>
+        <div class="region-days">
+          <button class="day-chip chip-it" onclick="openDay('it01')">1 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it02')">2 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it03')">3 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it04')">4 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it05')">5 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it06')">6 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it07')">7 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it08')">8 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it09')">9 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it10')">10 Jun</button>
+          <button class="day-chip chip-it" onclick="openDay('it11')">11 Jun</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY -->
+<div id="daily" class="section">
+  <div id="overview-daily">
+    <div class="section-label">Timeline</div>
+    <h2 class="section-title">เลือกวันที่ต้องการดู</h2>
+    <div class="regions">
+      <div class="region-card">
+        <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&q=80')">
+          <div class="region-img-overlay"></div><div class="region-flag">🇩🇰</div>
+        </div>
+        <div class="region-body">
+          <div class="region-name">Denmark</div>
+          <div class="region-sub">28 May – 1 June</div>
+          <div class="region-days">
+            <button class="day-chip chip-dk" onclick="openDay('dk28')">28 May</button>
+            <button class="day-chip chip-dk" onclick="openDay('dk29')">29 May</button>
+            <button class="day-chip chip-dk" onclick="openDay('dk30')">30 May</button>
+            <button class="day-chip chip-dk" onclick="openDay('dk31')">31 May</button>
+            <button class="day-chip chip-dk" onclick="openDay('dk01')">1 Jun</button>
+          </div>
+        </div>
+      </div>
+      <div class="region-card">
+        <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80')">
+          <div class="region-img-overlay"></div><div class="region-flag">🇮🇹</div>
+        </div>
+        <div class="region-body">
+          <div class="region-name">Italy</div>
+          <div class="region-sub">1 – 11 June</div>
+          <div class="region-days">
+            <button class="day-chip chip-it" onclick="openDay('it01')">1 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it02')">2 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it03')">3 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it04')">4 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it05')">5 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it06')">6 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it07')">7 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it08')">8 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it09')">9 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it10')">10 Jun</button>
+            <button class="day-chip chip-it" onclick="openDay('it11')">11 Jun</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="day-detail-view" class="day-view"></div>
+</div>
+
+<!-- HIGHLIGHTS -->
+<div id="highlights" class="section">
+  <div class="section-label">Visual Journey</div>
+  <h2 class="section-title">ไฮไลท์ภาพสวยๆ ตลอดทริป</h2>
+  <div class="highlights-grid">
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=900&q=85')"><div class="hl-label">Manarola · Cinque Terre</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=500&q=85')"><div class="hl-label">Nyhavn · Copenhagen</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=85')"><div class="hl-label">Tre Cime · Dolomites</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=500&q=85')"><div class="hl-label">Varenna · Lake Como</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=500&q=85')"><div class="hl-label">Milan · Duomo</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85')"><div class="hl-label">Louisiana Museum · Denmark</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=500&q=85')"><div class="hl-label">Seceda · Dolomites</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=85')"><div class="hl-label">Alpe di Siusi · Dolomites</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=500&q=85')"><div class="hl-label">Bellagio · Lake Como</div></div>
+  </div>
+</div>
+
+<!-- EXPENSE -->
+<div id="expense" class="section">
+  <div class="section-label">Trip Budget</div>
+  <h2 class="section-title">ค่าใช้จ่าย & หารบิล</h2>
+  <div class="expense-stats">
+    <div class="e-card"><div class="e-num" id="total-amt">0</div><div class="e-label">รวมทั้งหมด</div></div>
+    <div class="e-card"><div class="e-num" id="per-person">0</div><div class="e-label">ต่อคน (เฉลี่ย)</div></div>
+    <div class="e-card"><div class="e-num" id="item-count">0</div><div class="e-label">รายการ</div></div>
+  </div>
+  <div class="add-form">
+    <h3>เพิ่มรายการ</h3>
+    <div class="form-grid">
+      <input class="form-input" id="e-desc" type="text" placeholder="รายการ เช่น ค่าโรงแรม Como">
+      <input class="form-input" id="e-amt" type="number" placeholder="จำนวนเงิน" min="0">
+      <select class="form-select" id="e-cat">
+        <option value="food">🍜 อาหาร</option>
+        <option value="transport">✈️ เดินทาง</option>
+        <option value="hotel">🏡 ที่พัก</option>
+        <option value="activity">🎭 กิจกรรม</option>
+        <option value="other">📦 อื่นๆ</option>
+      </select>
+    </div>
+    <div class="form-grid2">
+      <input class="form-input" id="e-payer" type="text" placeholder="ใครจ่าย?">
+      <input class="form-input" id="e-people" type="text" placeholder="หารกัน เช่น ต้า,โบ,นุ่น">
+      <input class="form-input" id="e-cur" type="text" placeholder="สกุลเงิน เช่น DKK">
+      <button class="btn-add" onclick="addExpense()">+ เพิ่ม</button>
+    </div>
+  </div>
+  <div class="expense-table-wrap">
+    <div id="expense-list"><div class="empty">ยังไม่มีรายการ</div></div>
+  </div>
+  <div class="split-box">
+    <h3>สรุปยอดต่อคน</h3>
+    <div id="split-summary"><div class="empty">เพิ่มรายการเพื่อดูยอดหาร</div></div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+const DAYS = {
+dk28:{title:'28 May',subtitle:'เดินทาง BKK → Copenhagen',loc:'Bangkok → Copenhagen',isDk:true,
+  hero:'https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=900&q=80',
+  items:[
+    {time:'05:05',type:'flight',place:'✈️ MU8654 BKK → PVG',desc:'China Eastern · Shanghai Pudong · ถึง 10:50'},
+    {time:'13:15',type:'flight',place:'✈️ MU707 PVG → CPH',desc:'China Eastern · ถึง Copenhagen 19:00'},
+    {time:'20:30',type:'hotel',place:'🏡 Copenhagen Go Hotel',desc:'Check-in · พักถึง 1 June',mapUrl:'https://maps.google.com/?q=Copenhagen+Go+Hotel'},
+]},
+dk29:{title:'29 May',subtitle:'สำรวจ Copenhagen',loc:'Copenhagen, Denmark',isDk:true,
+  hero:'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=900&q=80',
+  items:[
+    {time:'10:00',type:'place',place:'Torvehallerne KBH',desc:'ตลาดสด Nordic 60+ ร้านค้า',mapUrl:'https://maps.google.com/?place_id=ChIJGzGFEgVTUkYRO2LpXOPtdHM',rating:'4.5 ⭐',hours:'10:00–19:00',
+     photos:['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=75','https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75']},
+    {time:'12:00',type:'place',place:'Nyhavn',desc:'Canal tour · บ้านสีสด · Lunch ริมคลอง',mapUrl:'https://maps.google.com/?place_id=ChIJr21nqiJTUkYR6-rlKAmgwpk',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',
+     photos:['https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75','https://images.unsplash.com/photo-1541336032412-2048a678540d?w=400&q=75']},
+    {time:'14:30',type:'place',place:'Amalienborg Palace',desc:'พระราชวัง · เปลี่ยนยาม 12:00 น. · ถ่ายรูป The Kissing Stairs',mapUrl:'https://maps.google.com/?place_id=ChIJcwY-NiJTUkYRP1UVnat_8Vw',rating:'4.5 ⭐',hours:'เปิดตลอด',
+     photos:['https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&q=75','https://images.unsplash.com/photo-1518005068251-37900150dfca?w=400&q=75','https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=400&q=75']},
+    {time:'16:00',type:'place',place:'Helle Mardahl Studio',desc:'แกลลอรีแก้วศิลปะสีสวย · Bredgade 17',mapUrl:'https://maps.google.com/?place_id=ChIJ2d3Po-5TUkYR0VohcYmPV_g',rating:'3.8 ⭐',hours:'11:00–17:30 (ปิดอาทิตย์)',
+     photos:['https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&q=75','https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&q=75','https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400&q=75']},
+    {time:'19:00',type:'place',place:'🍜 Slurp Ramen',desc:'Dinner',mapUrl:'https://maps.google.com/?q=Slurp+Ramen+Copenhagen'},
+]},
+dk30:{title:'30 May',subtitle:'Louisiana Museum + Charlottenlund',loc:'Copenhagen → Humlebæk, Denmark',isDk:true,
+  hero:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+  items:[
+    {time:'10:00',type:'place',place:'Apollo Bar',desc:'Coffee / lunch',mapUrl:'https://maps.google.com/?q=Apollo+Bar+Copenhagen'},
+    {time:'12:00',type:'place',place:'Louisiana Museum of Modern Art',desc:'พิพิธภัณฑ์ริมทะเล · สวนประติมากรรม · ใช้เวลา 3–4 ชม.',mapUrl:'https://maps.google.com/?place_id=ChIJq5pUwwc3UkYRTpARr0S5L2o',rating:'4.6 ⭐',hours:'อังคาร–อาทิตย์ 11:00–22:00',
+     photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75','https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=400&q=75','https://images.unsplash.com/photo-1565626424178-c699f9be9946?w=400&q=75']},
+    {time:'17:00',type:'place',place:'Charlottenlund Fort',desc:'ป้อมปราการริมทะเล · วิวสวย',mapUrl:'https://maps.google.com/?place_id=ChIJ0wKCYHhNUkYRe7KxbwZpkY8',rating:'4.3 ⭐',hours:'12:00–21:00',
+     photos:['https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75','https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=400&q=75']},
+]},
+dk31:{title:'31 May',subtitle:'ช้อปปิ้ง + Rosenborg Castle',loc:'Copenhagen, Denmark',isDk:true,
+  hero:'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=900&q=80',
+  items:[
+    {time:'10:00',type:'place',place:'La Caba Cafe + Shopping',desc:'Boii · Tekla · Hey House',mapUrl:'https://maps.google.com/?q=La+Caba+Copenhagen'},
+    {time:'12:00',type:'place',place:'Strøget',desc:'ถนน pedestrian ยาวที่สุดในยุโรป · ช้อปปิ้งครบ',mapUrl:'https://maps.google.com/?place_id=ChIJCYzUJhFTUkYRFnbcNamdu-c',rating:'4.6 ⭐',hours:'ตลอด 24 ชม.',
+     photos:['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&q=75','https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=75']},
+    {time:'14:00',type:'place',place:'Rosenborg Castle + King Garden',desc:'Crown Jewels · ปราสาทสวยกลางสวน',mapUrl:'https://maps.google.com/?place_id=ChIJHVOeQhtTUkYRPBsoRTOcNVI',rating:'4.6 ⭐',hours:'10:00–17:00 ทุกวัน',
+     photos:['https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=400&q=75','https://images.unsplash.com/photo-1518005068251-37900150dfca?w=400&q=75','https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&q=75']},
+    {time:'17:00',type:'place',place:'La Banchina',desc:'ริมน้ำ · Sauna · Oysters · Natural wine',mapUrl:'https://maps.google.com/?place_id=ChIJe2R04ddSUkYRPspah4LjBEs',rating:'4.6 ⭐',hours:'8:00–22:00',
+     photos:['https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=75','https://images.unsplash.com/photo-1536782376769-c3e9ba30f00c?w=400&q=75','https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=400&q=75']},
+    {time:'19:00',type:'place',place:'Reffen Street Food',desc:'ตลาดริมน้ำ · อาหารนานาชาติ · บรรยากาศดี',mapUrl:'https://maps.google.com/?place_id=ChIJJ9EDaddSUkYRoJpUuE6-59w',rating:'4.6 ⭐',hours:'11:00–22:00 (ศ–ส ถึงตี 1)',
+     photos:['https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75','https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=75']},
+]},
+dk01:{title:'1 Jun',subtitle:'Copenhagen → Lake Como',loc:'CPH → Milan → Bellano',isDk:true,
+  hero:'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&q=80',
+  items:[
+    {time:'06:20',type:'flight',place:'✈️ SK683 CPH → MXP',desc:'Scandinavian Airlines · ถึง Milan 08:30'},
+    {time:'10:11',type:'flight',place:'🚂 Malpensa → Bellano',desc:'Train · ถึง 12:39'},
+    {time:'13:00',type:'hotel',place:'🏡 Apartment Lavinia by Interhome',desc:'Check-in Bellano · พักถึง 3 June',mapUrl:'https://maps.google.com/?q=Bellano+Lake+Como'},
+    {time:'15:00',type:'place',place:'Varenna',desc:'Villa Monastero · Castello di Vezio · Passeggiata degli Innamorati',mapUrl:'https://maps.google.com/?q=Varenna+Lake+Como',
+     photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75']},
+]},
+it01:{title:'1 Jun',subtitle:'Varenna, Lake Como',loc:'Varenna / Bellano, Italy',isDk:false,
+  hero:'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=900&q=80',
+  items:[
+    {time:'15:00',type:'place',place:'Villa Monastero Garden',desc:'สวนพฤกษศาสตร์ริมทะเลสาบ · €10',mapUrl:'https://maps.google.com/?place_id=ChIJGe2VLikdhEcR87_XMhQv31E',rating:'4.6 ⭐',hours:'9:30–19:30',
+     photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75']},
+    {time:'16:30',type:'place',place:'Castello di Vezio',desc:'ปราสาทยุคกลาง · วิว Lake Como · €7',mapUrl:'https://maps.google.com/?place_id=ChIJn-XbdMcXhEcRaVY95-wyBOk',rating:'4.6 ⭐',hours:'10:00–18:00',
+     photos:['https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1562832135-14a35d25edef?w=400&q=75']},
+    {time:'18:00',type:'place',place:'Passeggiata degli Innamorati',desc:'"Lovers Walk" · ริมทะเลสาบ · วิว Bellagio',mapUrl:'https://maps.google.com/?place_id=ChIJ6wySGwAXhEcRaiLmbXhfSRU',rating:'4.6 ⭐',hours:'ตลอด 24 ชม.',
+     photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75']},
+]},
+it02:{title:'2 Jun',subtitle:'Bellagio, Lake Como',loc:'Bellagio, Italy',isDk:false,
+  hero:'https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=900&q=80',
+  items:[
+    {time:'09:00',type:'place',place:'⛴️ Ferry to Bellagio',desc:'จาก Bellano · ข้ามทะเลสาบ'},
+    {time:'10:00',type:'place',place:'Salita Serbelloni + Borgo di Pescallo',desc:'บันไดหินสวย · หมู่บ้านชาวประมง',mapUrl:'https://maps.google.com/?q=Salita+Serbelloni+Bellagio',
+     photos:['https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75']},
+    {time:'14:00',type:'place',place:'I Giardini di Villa Melzi',desc:'สวนริมทะเลสาบ · ถ่ายรูป sunset สวยมาก · €10',mapUrl:'https://maps.google.com/?place_id=ChIJUxJBkqgihEcRT-N1SFtIA2g',rating:'4.7 ⭐',hours:'10:00–18:30',
+     photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75']},
+    {time:'18:00',type:'place',place:'Dinner / Bar Bellagio',desc:'Aperitivo ริมทะเลสาบ'},
+]},
+it03:{title:'3 Jun',subtitle:'Lake Como → Cinque Terre',loc:'Bellano → Monterosso al Mare',isDk:false,
+  hero:'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=900&q=80',
+  items:[
+    {time:'11:30',type:'flight',place:'🚂 Bellano → Milan Central',desc:'ถึง 12:40'},
+    {time:'13:55',type:'flight',place:'🚂 Milan → Monterosso',desc:'ถึง 17:05'},
+    {time:'17:30',type:'hotel',place:'🏡 La Casa Di Christine',desc:'Check-in Monterosso · พักถึง 5 June'},
+    {time:'18:30',type:'place',place:'Fegina Beach',desc:'ชายหาด Monterosso · พระอาทิตย์ตก',mapUrl:'https://maps.google.com/?q=Fegina+Beach+Monterosso',
+     photos:['https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75','https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75']},
+]},
+it04:{title:'4 Jun',subtitle:'Cinque Terre ทั้งวัน',loc:'Vernazza · Manarola · Riomaggiore',isDk:false,
+  hero:'https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=900&q=80',
+  items:[
+    {time:'09:00',type:'place',place:'Vernazza',desc:'Castello di Vernazza · San Francesco · Vernazza Beach',mapUrl:'https://maps.google.com/?place_id=ChIJc7qF5Cvw1BIRBy0vB7GldeA',rating:'4.3 ⭐',hours:'9:30–19:30',
+     photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75']},
+    {time:'12:00',type:'place',place:'Manarola Viewpoint',desc:'จุดถ่ายรูปไอคอนิกที่สุดใน Cinque Terre · Lunch',mapUrl:'https://maps.google.com/?place_id=ChIJfyPRQG771BIRUu7RcYCEdK8',rating:'4.9 ⭐',hours:'ตลอด 24 ชม.',
+     photos:['https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75','https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75']},
+    {time:'16:00',type:'place',place:'Riomaggiore',desc:'Riomaggiore Beach · Sunset viewpoint',mapUrl:'https://maps.google.com/?place_id=ChIJB4uscYn61BIRgGX4h7QPnhE',
+     photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75']},
+]},
+it05:{title:'5 Jun',subtitle:'Cinque Terre → Dolomites',loc:'Monterosso → Ortisei',isDk:false,
+  hero:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',
+  items:[
+    {time:'06:54',type:'flight',place:'🚂 Monterosso → Milan Central',desc:'ถึง 10:00'},
+    {time:'10:30',type:'place',place:'🚗 รับรถเช่า Milan',desc:'ใช้ถึง 9 June'},
+    {time:'13:00',type:'place',place:'Lake Garda — Sirmione',desc:'แวะพัก · Lunch ริมทะเลสาบ Garda',mapUrl:'https://maps.google.com/?q=Sirmione+Lake+Garda',
+     photos:['https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=75','https://images.unsplash.com/photo-1562832135-14a35d25edef?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75']},
+    {time:'14:30',type:'place',place:'Lago di Carezza',desc:'ทะเลสาบสีมรกต · Dolomites · ถ่ายรูปสวยมาก',mapUrl:'https://maps.google.com/?place_id=ChIJt2KB4uhveEcRYrRP2P0sM9s',rating:'4.7 ⭐',
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+    {time:'16:30',type:'hotel',place:'🏡 Residence Granvara',desc:'Check-in Ortisei · พักถึง 7 June'},
+    {time:'19:00',type:'place',place:'Passo Sella',desc:'ดูพระอาทิตย์ตก · เส้นทาง iconic Dolomites',mapUrl:'https://maps.google.com/?place_id=ChIJRQw4NOhqeEcRkOuDLogJBx0',rating:'4.9 ⭐',
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+]},
+it06:{title:'6 Jun',subtitle:'Seceda + Alpe di Siusi',loc:'Ortisei, Dolomites',isDk:false,
+  hero:'https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=900&q=80',
+  items:[
+    {time:'08:00',type:'place',place:'🍩 Passo Sella Donut',desc:'25 นาทีจาก Ortisei · ห้ามพลาด!'},
+    {time:'08:30',type:'place',place:'Seceda กระเช้า',desc:'วิว Dolomites 360° · เดิน ~2 ชม.',mapUrl:'https://maps.google.com/?place_id=ChIJk3dRF_ATeEcRturRh6kSf0c',rating:'4.8 ⭐',
+     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75']},
+    {time:'13:30',type:'place',place:'Alpe di Siusi',desc:'ทุ่งหญ้าอัลไพน์ใหญ่ที่สุดในยุโรป',mapUrl:'https://maps.google.com/?place_id=ChIJryhkuM4UeEcRO8LvfWPzGJQ',rating:'4.7 ⭐',
+     photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75']},
+    {time:'17:00',type:'place',place:'Val di Funes — St. Johann Ranui',desc:'โบสถ์สวยท่ามกลางภูเขา (optional)',mapUrl:'https://maps.google.com/?q=Santa+Maddalena+Church+Val+di+Funes'},
+]},
+it07:{title:'7 Jun',subtitle:'Tre Cime di Lavaredo',loc:'Auronzo · Misurina, Dolomites',isDk:false,
+  hero:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',
+  items:[
+    {time:'08:30',type:'place',place:'Rifugio Auronzo',desc:'จุดจอดรถ · เริ่ม Loop Trail Tre Cime'},
+    {time:'11:00',type:'place',place:'Tre Cime di Lavaredo',desc:'Loop Trail 10km · UNESCO Site · วิวยอดเขา 3 แฉก',mapUrl:'https://maps.google.com/?place_id=ChIJv9cthasyeEcRnn62kB3dxgE',rating:'4.8 ⭐',
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+    {time:'15:00',type:'place',place:'Viewpoint Cadini di Misurina',desc:'1.5km · 30 นาที · วิวพิเศษ',mapUrl:'https://maps.google.com/?q=Cadini+di+Misurina'},
+    {time:'17:00',type:'hotel',place:'🏡 Grand Hotel Misurina',desc:'Check-in · ริมทะเลสาบ Misurina',mapUrl:'https://maps.google.com/?place_id=ChIJMXhxgc_MeUcR2Si0RsRooC4',rating:'3.9 ⭐',hours:'ตลอด 24 ชม.',
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+]},
+it08:{title:'8 Jun',subtitle:'Lago di Braies',loc:'Braies · Val di Funes, Dolomites',isDk:false,
+  hero:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80',
+  items:[
+    {time:'09:00',type:'place',place:'Lago di Braies',desc:'ทะเลสาบสวยที่สุดใน Dolomites · เช่าเรือ',mapUrl:'https://maps.google.com/?place_id=ChIJacfvIIoleEcRNN7cMwaXwrg',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',
+     photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+    {time:'14:00',type:'place',place:'Val di Funes (Glastsch alm) หรือ Lago di Sorapis',desc:'optional',mapUrl:'https://maps.google.com/?q=Val+di+Funes+Dolomites'},
+    {time:'16:00',type:'hotel',place:'🏡 Waldrast — Forestside Living',desc:'Check-in · พักถึง 9 June'},
+]},
+it09:{title:'9 Jun',subtitle:'Dolomites → Milan',loc:'Ortisei → Verona → Milan',isDk:false,
+  hero:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80',
+  items:[
+    {time:'08:00',type:'place',place:'🍩 Passo Sella Donut รอบสอง',desc:'50 นาที · ซื้ออีกรอบก่อนกลับ!'},
+    {time:'13:00',type:'place',place:'Verona',desc:'แวะพัก Lunch · เมืองโรมิโอกับจูเลียต',mapUrl:'https://maps.google.com/?q=Verona+Italy',
+     photos:['https://images.unsplash.com/photo-1564594736166-b19c4e4ab5e7?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1562832135-14a35d25edef?w=400&q=75']},
+    {time:'16:00',type:'place',place:'Milano Centrale',desc:'คืนรถเช่า'},
+    {time:'17:00',type:'hotel',place:'🏡 Italianway Easy — Spontini 10',desc:'Check-in Milan · พักถึง 11 June'},
+    {time:'17:30',type:'place',place:'Brera District',desc:'ย่านศิลปะ · Shopping · Dinner: Osteria da Fortunata',mapUrl:'https://maps.google.com/?place_id=ChIJCYiuC7PGhkcRz09nwZLNenU',
+     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75']},
+]},
+it10:{title:'10 Jun',subtitle:'Milan ทั้งวัน',loc:'Milan, Italy',isDk:false,
+  hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=900&q=80',
+  items:[
+    {time:'10:00',type:'place',place:'Duomo di Milano + Rooftop',desc:'Rooftop view · ซื้อตั๋วล่วงหน้า',mapUrl:'https://maps.google.com/?place_id=ChIJ1Tpt7K7GhkcRZbKfL7oet3E',rating:'4.7 ⭐',hours:'9:00–19:00',
+     photos:['https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75']},
+    {time:'13:00',type:'place',place:'Galleria Vittorio Emanuele II',desc:'เพดานกระจก · Mosaic Floor · ช้อปปิ้ง luxury',mapUrl:'https://maps.google.com/?place_id=ChIJw7aG_QY1eUcRFtQJWKmcCyc',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',
+     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75']},
+    {time:'15:00',type:'place',place:'Fondazione Prada',desc:'พิพิธภัณฑ์ศิลปะ · Industrial chic',mapUrl:'https://maps.google.com/?place_id=ChIJ16AE-J7GhkcRnxchwJ_WRRU',rating:'4.2 ⭐',hours:'10:00–19:00 (ปิดอังคาร)',
+     photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75']},
+    {time:'18:00',type:'place',place:'Navigli District',desc:'ย่านคลอง · Aperitivo · บาร์ริมน้ำ · บรรยากาศดีมาก',mapUrl:'https://maps.google.com/?q=Navigli+District+Milan',
+     photos:['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75']},
+]},
+it11:{title:'11 Jun',subtitle:'กลับบ้าน 🏠',loc:'Milan → Bangkok',isDk:false,
+  hero:'https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=900&q=80',
+  items:[
+    {time:'09:00',type:'place',place:'Cafe / Brunch',desc:'มื้อสุดท้ายในอิตาลี 🥲'},
+    {time:'14:05',type:'flight',place:'✈️ TG941 MXP → BKK',desc:'Thai Airways · ถึง BKK 05:55 (+1)'},
+]},
+};
+
+let expenses=[];
+
+function showSection(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  if(id==='daily'){
+    document.getElementById('overview-daily').style.display='block';
+    document.getElementById('day-detail-view').style.display='none';
+    document.getElementById('day-detail-view').innerHTML='';
+  }
+  window.scrollTo({top:document.querySelector('.sticky-nav').offsetTop-10,behavior:'smooth'});
+}
+
+function openDay(key){
+  const day=DAYS[key];
+  if(!day) return;
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('daily').classList.add('active');
+  document.querySelectorAll('.nav-tab')[1].classList.add('active');
+  document.getElementById('overview-daily').style.display='none';
+  const detail=document.getElementById('day-detail-view');
+  detail.style.display='block';
+  const accentColor=day.isDk?'var(--dk-green)':'var(--it-red)';
+  const items=day.items.map((item,i)=>{
+    const isLast=i===day.items.length-1;
+    const dotCls='tl-dot'+(item.type==='flight'?' flight':item.type==='hotel'?' hotel':'');
+    let card='';
+    if(item.photos||item.mapUrl||item.rating){
+      const ph=item.photos?item.photos.map(u=>`<div class="place-photo" style="background-image:url('${u}')"></div>`).join(''):'';
+      card=`<div class="place-card">
+        ${ph?`<div class="place-photos">${ph}</div>`:''}
+        <div class="place-info">
+          ${item.mapUrl?`<a class="place-map-btn" href="${item.mapUrl}" target="_blank">📍 Google Maps</a>`:''}
+          ${item.rating?`<span class="place-rating">${item.rating}</span>`:''}
+          ${item.hours?`<span class="place-hours">🕐 ${item.hours}</span>`:''}
+        </div>
+      </div>`;
+    }
+    return `<div class="tl-item">
+      <div class="tl-time">${item.time||''}</div>
+      <div class="tl-spine"><div class="${dotCls}"></div>${!isLast?'<div class="tl-connector"></div>':''}</div>
+      <div class="tl-content">
+        <div class="tl-place">${item.place}</div>
+        ${item.desc?`<div class="tl-desc">${item.desc}</div>`:''}
+        ${card}
+      </div>
+    </div>`;
+  }).join('');
+  detail.innerHTML=`
+    <div class="day-header">
+      <button class="day-back-btn" onclick="showSection('daily',null)">← กลับ</button>
+      <div class="day-title-block">
+        <div class="day-num" style="color:${accentColor}">${day.title}</div>
+        <div class="day-title">${day.subtitle}</div>
+        <div class="day-loc">📍 ${day.loc}</div>
+      </div>
+    </div>
+    <img class="day-hero-img" src="${day.hero}" alt="${day.subtitle}" loading="lazy">
+    <div class="timeline">${items}</div>`;
+  window.scrollTo({top:document.querySelector('.sticky-nav').offsetTop-10,behavior:'smooth'});
+}
+
+function addExpense(){
+  const desc=document.getElementById('e-desc').value.trim();
+  const amt=parseFloat(document.getElementById('e-amt').value);
+  const cat=document.getElementById('e-cat').value;
+  const payer=document.getElementById('e-payer').value.trim()||'ไม่ระบุ';
+  const peopleRaw=document.getElementById('e-people').value.trim();
+  const cur=document.getElementById('e-cur').value.trim()||'THB';
+  if(!desc||isNaN(amt)||amt<=0) return;
+  const people=peopleRaw?peopleRaw.split(',').map(p=>p.trim()).filter(Boolean):[];
+  expenses.push({id:Date.now(),desc,amt,cat,payer,people,cur});
+  document.getElementById('e-desc').value='';
+  document.getElementById('e-amt').value='';
+  renderExpenses();
+}
+
+function deleteExpense(id){
+  expenses=expenses.filter(e=>e.id!==id);
+  renderExpenses();
+}
+
+const tMap={food:'t-food',transport:'t-transport',hotel:'t-hotel',activity:'t-activity',other:'t-other'};
+const lMap={food:'🍜 อาหาร',transport:'✈️ เดินทาง',hotel:'🏡 ที่พัก',activity:'🎭 กิจกรรม',other:'📦 อื่นๆ'};
+
+function renderExpenses(){
+  const total=expenses.reduce((s,e)=>s+e.amt,0);
+  document.getElementById('total-amt').textContent=total.toLocaleString('th-TH',{maximumFractionDigits:0});
+  document.getElementById('item-count').textContent=expenses.length;
+  const personTotals={};
+  expenses.forEach(e=>{if(e.people.length>0){const sh=e.amt/e.people.length;e.people.forEach(p=>{personTotals[p]=(personTotals[p]||0)+sh;})}});
+  const persons=Object.keys(personTotals);
+  document.getElementById('per-person').textContent=persons.length>0?Math.round(total/persons.length).toLocaleString('th-TH'):'0';
+  const listEl=document.getElementById('expense-list');
+  if(expenses.length===0){listEl.innerHTML='<div class="empty">ยังไม่มีรายการ</div>';return;}
+  const rows=expenses.map(e=>`<tr>
+    <td title="${e.desc}">${e.desc}</td>
+    <td><span class="tag ${tMap[e.cat]}">${lMap[e.cat]}</span></td>
+    <td style="text-align:right;font-weight:500">${e.amt.toLocaleString('th-TH',{maximumFractionDigits:0})} ${e.cur}</td>
+    <td>${e.payer}</td>
+    <td style="color:#8C897F">${e.people.join(', ')||'—'}</td>
+    <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
+  </tr>`).join('');
+  listEl.innerHTML=`<table><thead><tr>
+    <th style="width:28%">รายการ</th><th style="width:16%">หมวด</th>
+    <th style="width:20%;text-align:right">จำนวน</th><th style="width:13%">จ่ายโดย</th>
+    <th style="width:15%">หารกัน</th><th style="width:8%"></th>
+  </tr></thead><tbody>${rows}</tbody></table>`;
+  const splitEl=document.getElementById('split-summary');
+  if(persons.length===0){splitEl.innerHTML='<div class="empty">เพิ่มรายการที่ระบุชื่อคนเพื่อดูยอด</div>';return;}
+  splitEl.innerHTML=persons.map(p=>{
+    const paid=expenses.filter(e=>e.payer===p).reduce((s,e)=>s+e.amt,0);
+    const owe=personTotals[p]||0;
+    const diff=paid-owe;
+    return `<div class="split-row">
+      <span class="split-name">${p}</span>
+      <div>
+        <div class="split-amt">${Math.round(owe).toLocaleString('th-TH')}</div>
+        <div class="split-sub ${diff>=0?'badge-ok':'badge-owe'}">${diff>=0?'✅ จ่ายเกิน':'⚠️ ค้างจ่าย'} ${Math.abs(Math.round(diff)).toLocaleString('th-TH')}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>
