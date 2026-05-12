@@ -7,7 +7,7 @@
 <meta name="description" content="Content Creator Trip · 28 May – 11 June 2026 · Copenhagen → Lake Como → Cinque Terre → Dolomites → Milan">
 <meta property="og:title" content="Denmark & Italy 2026 ✈️">
 <meta property="og:description" content="15 วัน · Content Creator Trip">
-<meta property="og:image" content="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=1200&q=80">
+<meta property="og:image" content="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -30,7 +30,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);o
 
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:flex-end;padding:60px}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=1800&q=90') center 40%/cover no-repeat}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#1a3a2a 0%,#2d5a3d 30%,#4a7c59 55%,#8BA888 75%,#c4a882 90%,#e8c99a 100%)}
+.hero-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1651578852608-0200168d48f6?fm=jpg&q=90&w=1800&auto=format&fit=crop&ixlib=rb-4.1.0');background-size:cover;background-position:center 40%;opacity:1}
+.hero-bg-img.loaded{opacity:1}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,5,0.85) 0%,rgba(10,8,5,0.3) 50%,transparent 100%)}
 .hero-content{position:relative;z-index:2;max-width:800px}
 .hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500}
@@ -204,6 +206,7 @@ tr:last-child td{border-bottom:none}
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-bg-img" id="hero-bg-img"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Content Creator Trip · 2026</div>
@@ -260,7 +263,7 @@ tr:last-child td{border-bottom:none}
 
   <div class="regions">
     <div class="region-card">
-      <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&q=80')">
+      <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')">
         <div class="region-img-overlay"></div>
         <div class="region-flag">🇩🇰</div>
       </div>
@@ -269,15 +272,15 @@ tr:last-child td{border-bottom:none}
         <div class="region-sub">Copenhagen · 28 May – 1 June · 5 วัน</div>
         <div class="crew-row">
           <div class="crew-member">
-            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Ploy&backgroundColor=b6e3f4" alt="Ploy" onerror="this.style.display='none'">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" alt="Ploy" onerror="this.style.display='none'">
             <span class="crew-name">Ploy</span>
           </div>
           <div class="crew-member">
-            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=P&backgroundColor=ffd5dc" alt="P" onerror="this.style.display='none'">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" alt="P" onerror="this.style.display='none'">
             <span class="crew-name">P</span>
           </div>
           <div class="crew-member">
-            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Peachy&backgroundColor=c0aede" alt="Peachy" onerror="this.style.display='none'">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede" alt="Peachy" onerror="this.style.display='none'">
             <span class="crew-name">Peachy</span>
           </div>
         </div>
@@ -291,7 +294,7 @@ tr:last-child td{border-bottom:none}
       </div>
     </div>
     <div class="region-card">
-      <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80')">
+      <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')">
         <div class="region-img-overlay"></div>
         <div class="region-flag">🇮🇹</div>
       </div>
@@ -300,19 +303,19 @@ tr:last-child td{border-bottom:none}
         <div class="region-sub">Como · Cinque Terre · Dolomites · Milan · 1–11 June · 11 วัน</div>
         <div class="crew-row">
           <div class="crew-member">
-            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Ploy&backgroundColor=b6e3f4" alt="Ploy" onerror="this.style.display='none'">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" alt="Ploy" onerror="this.style.display='none'">
             <span class="crew-name">Ploy</span>
           </div>
           <div class="crew-member">
-            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=P&backgroundColor=ffd5dc" alt="P" onerror="this.style.display='none'">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" alt="P" onerror="this.style.display='none'">
             <span class="crew-name">P</span>
           </div>
           <div class="crew-member">
-            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Name&backgroundColor=d1f7c4" alt="Name" onerror="this.style.display='none'">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4" alt="Name" onerror="this.style.display='none'">
             <span class="crew-name">Name</span>
           </div>
           <div class="crew-member">
-            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Fern&backgroundColor=ffeacc" alt="Fern" onerror="this.style.display='none'">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc" alt="Fern" onerror="this.style.display='none'">
             <span class="crew-name">Fern</span>
           </div>
         </div>
@@ -341,7 +344,7 @@ tr:last-child td{border-bottom:none}
     <h2 class="section-title">เลือกวันที่ต้องการดู</h2>
     <div class="regions">
       <div class="region-card">
-        <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&q=80')">
+        <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')">
           <div class="region-img-overlay"></div><div class="region-flag">🇩🇰</div>
         </div>
         <div class="region-body">
@@ -357,7 +360,7 @@ tr:last-child td{border-bottom:none}
         </div>
       </div>
       <div class="region-card">
-        <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80')">
+        <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')">
           <div class="region-img-overlay"></div><div class="region-flag">🇮🇹</div>
         </div>
         <div class="region-body">
@@ -388,15 +391,15 @@ tr:last-child td{border-bottom:none}
   <div class="section-label">Visual Journey</div>
   <h2 class="section-title">ไฮไลท์ภาพสวยๆ ตลอดทริป</h2>
   <div class="highlights-grid">
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=900&q=85')"><div class="hl-label">Manarola · Cinque Terre</div></div>
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=500&q=85')"><div class="hl-label">Nyhavn · Copenhagen</div></div>
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=85')"><div class="hl-label">Tre Cime · Dolomites</div></div>
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=500&q=85')"><div class="hl-label">Varenna · Lake Como</div></div>
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=500&q=85')"><div class="hl-label">Milan · Duomo</div></div>
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85')"><div class="hl-label">Louisiana Museum · Denmark</div></div>
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=500&q=85')"><div class="hl-label">Seceda · Dolomites</div></div>
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=85')"><div class="hl-label">Alpe di Siusi · Dolomites</div></div>
-    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=500&q=85')"><div class="hl-label">Bellagio · Lake Como</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=85&w=900&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Manarola · Cinque Terre</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=85&w=500&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Nyhavn · Copenhagen</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=85&w=500&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Tre Cime · Dolomites</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=85&w=500&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Varenna · Lake Como</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=85&w=500&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Milan · Duomo</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=jpg&q=85&w=500&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Louisiana Museum · Denmark</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=85&w=500&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Seceda · Dolomites</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=85&w=500&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Alpe di Siusi · Dolomites</div></div>
+    <div class="hl-img" style="background-image:url('https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=85&w=500&auto=format&fit=crop&ixlib=rb-4.1.0')"><div class="hl-label">Bellagio · Lake Como</div></div>
   </div>
 </div>
 
@@ -404,6 +407,38 @@ tr:last-child td{border-bottom:none}
 <div id="expense" class="section">
   <div class="section-label">Trip Budget</div>
   <h2 class="section-title">ค่าใช้จ่าย & หารบิล</h2>
+
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:24px">
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:500">The Crew</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <div class="crew-member">
+        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" alt="Ploy">
+        <span class="crew-name" style="font-size:12px">Ploy</span>
+        <span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span>
+      </div>
+      <div class="crew-member">
+        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" alt="P">
+        <span class="crew-name" style="font-size:12px">P</span>
+        <span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span>
+      </div>
+      <div class="crew-member">
+        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede" alt="Peachy">
+        <span class="crew-name" style="font-size:12px">Peachy</span>
+        <span style="font-size:10px;color:var(--muted)">🇩🇰</span>
+      </div>
+      <div class="crew-member">
+        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4" alt="Name">
+        <span class="crew-name" style="font-size:12px">Name</span>
+        <span style="font-size:10px;color:var(--muted)">🇮🇹</span>
+      </div>
+      <div class="crew-member">
+        <img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc" alt="Fern">
+        <span class="crew-name" style="font-size:12px">Fern</span>
+        <span style="font-size:10px;color:var(--muted)">🇮🇹</span>
+      </div>
+    </div>
+  </div>
+
   <div class="expense-stats">
     <div class="e-card"><div class="e-num" id="total-amt">0</div><div class="e-label">รวมทั้งหมด</div></div>
     <div class="e-card"><div class="e-num" id="per-person">0</div><div class="e-label">ต่อคน (เฉลี่ย)</div></div>
@@ -422,9 +457,27 @@ tr:last-child td{border-bottom:none}
         <option value="other">📦 อื่นๆ</option>
       </select>
     </div>
-    <div class="form-grid2">
-      <input class="form-input" id="e-payer" type="text" placeholder="ใครจ่าย?">
-      <input class="form-input" id="e-people" type="text" placeholder="หารกัน เช่น ต้า,โบ,นุ่น">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 120px;gap:10px;margin-bottom:0">
+      <select class="form-select" id="e-payer">
+        <option value="">ใครจ่าย?</option>
+        <option value="Ploy">Ploy</option>
+        <option value="P">P</option>
+        <option value="Peachy">Peachy</option>
+        <option value="Name">Name</option>
+        <option value="Fern">Fern</option>
+      </select>
+      <div style="position:relative">
+        <div id="split-picker" style="display:flex;gap:6px;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--cream);cursor:pointer;font-size:13px;color:var(--muted)" onclick="toggleSplitPicker()">หารกับใคร?</div>
+        <div id="split-dropdown" style="display:none;position:absolute;top:44px;left:0;z-index:50;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,0.08);min-width:160px">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">เลือกคนที่หารด้วย</div>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Ploy" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" style="width:20px;height:20px;border-radius:50%"> Ploy</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="P" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" style="width:20px;height:20px;border-radius:50%"> P</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Peachy" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede" style="width:20px;height:20px;border-radius:50%"> Peachy</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Name" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4" style="width:20px;height:20px;border-radius:50%"> Name</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Fern" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc" style="width:20px;height:20px;border-radius:50%"> Fern</label>
+          <button onclick="selectAllCrew()" style="margin-top:8px;width:100%;padding:5px;background:var(--cream);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px">ทุกคน</button>
+        </div>
+      </div>
       <input class="form-input" id="e-cur" type="text" placeholder="สกุลเงิน เช่น DKK">
       <button class="btn-add" onclick="addExpense()">+ เพิ่ม</button>
     </div>
@@ -443,175 +496,175 @@ tr:last-child td{border-bottom:none}
 <script>
 const DAYS = {
 dk28:{title:'28 May',subtitle:'เดินทาง BKK → Copenhagen',loc:'Bangkok → Copenhagen',isDk:true,
-  hero:'https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'05:05',type:'flight',place:'✈️ MU8654 BKK → PVG',desc:'China Eastern · Shanghai Pudong · ถึง 10:50'},
     {time:'13:15',type:'flight',place:'✈️ MU707 PVG → CPH',desc:'China Eastern · ถึง Copenhagen 19:00'},
     {time:'20:30',type:'hotel',place:'🏡 Copenhagen Go Hotel',desc:'Check-in · พักถึง 1 June',mapUrl:'https://maps.google.com/?q=Copenhagen+Go+Hotel'},
 ]},
 dk29:{title:'29 May',subtitle:'สำรวจ Copenhagen',loc:'Copenhagen, Denmark',isDk:true,
-  hero:'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'10:00',type:'place',place:'Torvehallerne KBH',mapLabel:'Torvehallerne',desc:'ตลาดสด Nordic 60+ ร้านค้า',mapUrl:'https://maps.google.com/?place_id=ChIJGzGFEgVTUkYRO2LpXOPtdHM',rating:'4.5 ⭐',hours:'10:00–19:00',
-     photos:['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=75','https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1567521464027-f127ff144326?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1504674900247-0877df9cc836?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'12:00',type:'place',place:'Nyhavn',mapLabel:'Nyhavn',desc:'Canal tour · บ้านสีสด · Lunch ริมคลอง',mapUrl:'https://maps.google.com/?place_id=ChIJr21nqiJTUkYR6-rlKAmgwpk',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'15 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75','https://images.unsplash.com/photo-1541336032412-2048a678540d?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1534430480872-3498386e7856?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1541336032412-2048a678540d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'14:30',type:'place',place:'Amalienborg Palace',mapLabel:'Amalienborg',desc:'พระราชวัง · เปลี่ยนยาม 12:00 น. · ถ่ายรูป The Kissing Stairs',mapUrl:'https://maps.google.com/?place_id=ChIJcwY-NiJTUkYRP1UVnat_8Vw',rating:'4.5 ⭐',hours:'เปิดตลอด',travelFrom:'10 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&q=75','https://images.unsplash.com/photo-1518005068251-37900150dfca?w=400&q=75','https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1518005068251-37900150dfca?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1570789210967-2cac24afeb00?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'16:00',type:'place',place:'Helle Mardahl Studio',mapLabel:'Helle Mardahl',desc:'แกลลอรีแก้วศิลปะสีสวย · Bredgade 17',mapUrl:'https://maps.google.com/?place_id=ChIJ2d3Po-5TUkYR0VohcYmPV_g',rating:'3.8 ⭐',hours:'11:00–17:30 (ปิดอาทิตย์)',travelFrom:'5 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&q=75','https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&q=75','https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1578926375605-eaf7559b1458?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1549490349-8643362247b5?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1513519245088-0e12902e5a38?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'19:00',type:'place',place:'🍜 Slurp Ramen',mapLabel:'Slurp Ramen',desc:'Dinner',mapUrl:'https://maps.google.com/?q=Slurp+Ramen+Copenhagen',travelFrom:'20 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=75','https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=400&q=75','https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1557872943-16a5ac26437e?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1617196034183-421b4040ed20?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 dk30:{title:'30 May',subtitle:'Louisiana Museum + Charlottenlund',loc:'Copenhagen → Humlebæk, Denmark',isDk:true,
-  hero:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'10:00',type:'place',place:'Apollo Bar',mapLabel:'Apollo Bar',desc:'Coffee / lunch',mapUrl:'https://maps.google.com/?q=Apollo+Bar+Copenhagen',
-     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&q=75','https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&q=75','https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1493857671505-72967e2e2760?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1445116572660-236099ec97a0?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'12:00',type:'place',place:'Louisiana Museum',mapLabel:'Louisiana Museum',desc:'พิพิธภัณฑ์ริมทะเล · สวนประติมากรรม · ใช้เวลา 3–4 ชม.',mapUrl:'https://maps.google.com/?place_id=ChIJq5pUwwc3UkYRTpARr0S5L2o',rating:'4.6 ⭐',hours:'อังคาร–อาทิตย์ 11:00–22:00',travelFrom:'40 min',travelMode:'🚂',
-     photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75','https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=400&q=75','https://images.unsplash.com/photo-1565626424178-c699f9be9946?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1580136579312-94651dfd596d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1565626424178-c699f9be9946?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'17:00',type:'place',place:'Charlottenlund Fort',mapLabel:'Charlottenlund',desc:'ป้อมปราการริมทะเล · วิวสวย',mapUrl:'https://maps.google.com/?place_id=ChIJ0wKCYHhNUkYRe7KxbwZpkY8',rating:'4.3 ⭐',hours:'12:00–21:00',travelFrom:'20 min',travelMode:'🚂',
-     photos:['https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75','https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1531572753322-ad063cecc140?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1534430480872-3498386e7856?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 dk31:{title:'31 May',subtitle:'ช้อปปิ้ง + Rosenborg Castle',loc:'Copenhagen, Denmark',isDk:true,
-  hero:'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'10:00',type:'place',place:'La Caba Cafe + Shopping',mapLabel:'La Caba',desc:'Boii · Tekla · Hey House',mapUrl:'https://maps.google.com/?q=La+Caba+Copenhagen',
-     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&q=75','https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=75','https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1441986300917-64674bd600d8?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1472851294608-062f824d29cc?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'12:00',type:'place',place:'Strøget',mapLabel:'Strøget',desc:'ถนน pedestrian ยาวที่สุดในยุโรป · ช้อปปิ้งครบ',mapUrl:'https://maps.google.com/?place_id=ChIJCYzUJhFTUkYRFnbcNamdu-c',rating:'4.6 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'10 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&q=75','https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1472851294608-062f824d29cc?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1441986300917-64674bd600d8?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'14:00',type:'place',place:'Rosenborg Castle',mapLabel:'Rosenborg',desc:'Crown Jewels · ปราสาทสวยกลางสวน',mapUrl:'https://maps.google.com/?place_id=ChIJHVOeQhtTUkYRPBsoRTOcNVI',rating:'4.6 ⭐',hours:'10:00–17:00 ทุกวัน',travelFrom:'15 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=400&q=75','https://images.unsplash.com/photo-1518005068251-37900150dfca?w=400&q=75','https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1570789210967-2cac24afeb00?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1518005068251-37900150dfca?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'17:00',type:'place',place:'La Banchina',mapLabel:'La Banchina',desc:'ริมน้ำ · Sauna · Oysters · Natural wine',mapUrl:'https://maps.google.com/?place_id=ChIJe2R04ddSUkYRPspah4LjBEs',rating:'4.6 ⭐',hours:'8:00–22:00',travelFrom:'25 min',travelMode:'🚲',
-     photos:['https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=75','https://images.unsplash.com/photo-1536782376769-c3e9ba30f00c?w=400&q=75','https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1559339352-11d035aa65de?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1536782376769-c3e9ba30f00c?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'19:00',type:'place',place:'Reffen Street Food',mapLabel:'Reffen',desc:'ตลาดริมน้ำ · อาหารนานาชาติ · บรรยากาศดี',mapUrl:'https://maps.google.com/?place_id=ChIJJ9EDaddSUkYRoJpUuE6-59w',rating:'4.6 ⭐',hours:'11:00–22:00 (ศ–ส ถึงตี 1)',travelFrom:'5 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75','https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1504674900247-0877df9cc836?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1555396273-367ea4eb4db5?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 dk01:{title:'1 Jun',subtitle:'Copenhagen → Lake Como',loc:'CPH → Milan → Bellano',isDk:true,
-  hero:'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1534430480872-3498386e7856?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'06:20',type:'flight',place:'✈️ SK683 CPH → MXP',desc:'Scandinavian Airlines · ถึง Milan 08:30'},
     {time:'10:11',type:'flight',place:'🚂 Malpensa → Bellano',desc:'Train · ถึง 12:39'},
     {time:'13:00',type:'hotel',place:'🏡 Apartment Lavinia by Interhome',desc:'Check-in Bellano · พักถึง 3 June',mapUrl:'https://maps.google.com/?q=Bellano+Lake+Como'},
     {time:'15:00',type:'place',place:'Varenna',desc:'Villa Monastero · Castello di Vezio · Passeggiata degli Innamorati',mapUrl:'https://maps.google.com/?q=Varenna+Lake+Como',
-     photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it01:{title:'1 Jun',subtitle:'Varenna, Lake Como',loc:'Varenna / Bellano, Italy',isDk:false,
-  hero:'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'15:00',type:'place',place:'Villa Monastero Garden',mapLabel:'Villa Monastero',desc:'สวนพฤกษศาสตร์ริมทะเลสาบ · €10',mapUrl:'https://maps.google.com/?place_id=ChIJGe2VLikdhEcR87_XMhQv31E',rating:'4.6 ⭐',hours:'9:30–19:30',
-     photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'16:30',type:'place',place:'Castello di Vezio',mapLabel:'Castello Vezio',desc:'ปราสาทยุคกลาง · วิว Lake Como · €7',mapUrl:'https://maps.google.com/?place_id=ChIJn-XbdMcXhEcRaVY95-wyBOk',rating:'4.6 ⭐',hours:'10:00–18:00',travelFrom:'30 min',travelMode:'🥾',
-     photos:['https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1562832135-14a35d25edef?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1528360983277-13d401cdc186?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1562832135-14a35d25edef?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'18:00',type:'place',place:'Passeggiata Innamorati',mapLabel:"Lovers' Walk",desc:'"Lovers Walk" · ริมทะเลสาบ · วิว Bellagio',mapUrl:'https://maps.google.com/?place_id=ChIJ6wySGwAXhEcRaiLmbXhfSRU',rating:'4.6 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'15 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it02:{title:'2 Jun',subtitle:'Bellagio, Lake Como',loc:'Bellagio, Italy',isDk:false,
-  hero:'https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'09:00',type:'place',place:'⛴️ Ferry to Bellagio',mapLabel:'Ferry Bellano→Bellagio',desc:'จาก Bellano · ข้ามทะเลสาบ'},
     {time:'10:00',type:'place',place:'Salita Serbelloni',mapLabel:'Salita Serbelloni',desc:'บันไดหินสวย · หมู่บ้านชาวประมง',mapUrl:'https://maps.google.com/?q=Salita+Serbelloni+Bellagio',travelFrom:'30 min',travelMode:'⛴️',
-     photos:['https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'14:00',type:'place',place:'Villa Melzi Garden',mapLabel:'Villa Melzi',desc:'สวนริมทะเลสาบ · ถ่ายรูป sunset สวยมาก · €10',mapUrl:'https://maps.google.com/?place_id=ChIJUxJBkqgihEcRT-N1SFtIA2g',rating:'4.7 ⭐',hours:'10:00–18:30',travelFrom:'10 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'18:00',type:'place',place:'Dinner / Bar Bellagio',mapLabel:'Bar Bellagio',desc:'Aperitivo ริมทะเลสาบ',travelFrom:'5 min',travelMode:'🚶'},
 ]},
 it03:{title:'3 Jun',subtitle:'Lake Como → Cinque Terre',loc:'Bellano → Monterosso al Mare',isDk:false,
-  hero:'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1499678329028-101435549a4e?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'11:30',type:'flight',place:'🚂 Bellano → Milan Central',desc:'ถึง 12:40'},
     {time:'13:55',type:'flight',place:'🚂 Milan → Monterosso',desc:'ถึง 17:05'},
     {time:'17:30',type:'hotel',place:'🏡 La Casa Di Christine',desc:'Check-in Monterosso · พักถึง 5 June'},
     {time:'18:30',type:'place',place:'Fegina Beach',desc:'ชายหาด Monterosso · พระอาทิตย์ตก',mapUrl:'https://maps.google.com/?q=Fegina+Beach+Monterosso',
-     photos:['https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75','https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1499678329028-101435549a4e?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it04:{title:'4 Jun',subtitle:'Cinque Terre ทั้งวัน',loc:'Vernazza · Manarola · Riomaggiore',isDk:false,
-  hero:'https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'09:00',type:'place',place:'Vernazza',mapLabel:'Vernazza',desc:'Castello di Vernazza · San Francesco · Vernazza Beach',mapUrl:'https://maps.google.com/?place_id=ChIJc7qF5Cvw1BIRBy0vB7GldeA',rating:'4.3 ⭐',hours:'9:30–19:30',
-     photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1499678329028-101435549a4e?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'12:00',type:'place',place:'Manarola Viewpoint',mapLabel:'Manarola',desc:'จุดถ่ายรูปไอคอนิกที่สุดใน Cinque Terre · Lunch',mapUrl:'https://maps.google.com/?place_id=ChIJfyPRQG771BIRUu7RcYCEdK8',rating:'4.9 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'20 min',travelMode:'🚂',
-     photos:['https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75','https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1499678329028-101435549a4e?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'16:00',type:'place',place:'Riomaggiore',mapLabel:'Riomaggiore',desc:'Riomaggiore Beach · Sunset viewpoint',mapUrl:'https://maps.google.com/?place_id=ChIJB4uscYn61BIRgGX4h7QPnhE',travelFrom:'15 min',travelMode:'🚂',
-     photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1499678329028-101435549a4e?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it05:{title:'5 Jun',subtitle:'Cinque Terre → Dolomites',loc:'Monterosso → Ortisei',isDk:false,
-  hero:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'06:54',type:'flight',place:'🚂 Monterosso → Milan Central',desc:'ถึง 10:00'},
     {time:'10:30',type:'place',place:'🚗 รับรถเช่า Milan',desc:'ใช้ถึง 9 June'},
     {time:'13:00',type:'place',place:'Lake Garda — Sirmione',desc:'แวะพัก · Lunch ริมทะเลสาบ Garda',mapUrl:'https://maps.google.com/?q=Sirmione+Lake+Garda',
-     photos:['https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=75','https://images.unsplash.com/photo-1562832135-14a35d25edef?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1528360983277-13d401cdc186?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1562832135-14a35d25edef?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'14:30',type:'place',place:'Lago di Carezza',desc:'ทะเลสาบสีมรกต · Dolomites · ถ่ายรูปสวยมาก',mapUrl:'https://maps.google.com/?place_id=ChIJt2KB4uhveEcRYrRP2P0sM9s',rating:'4.7 ⭐',
-     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'16:30',type:'hotel',place:'🏡 Residence Granvara',desc:'Check-in Ortisei · พักถึง 7 June'},
     {time:'19:00',type:'place',place:'Passo Sella',desc:'ดูพระอาทิตย์ตก · เส้นทาง iconic Dolomites',mapUrl:'https://maps.google.com/?place_id=ChIJRQw4NOhqeEcRkOuDLogJBx0',rating:'4.9 ⭐',
-     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it06:{title:'6 Jun',subtitle:'Seceda + Alpe di Siusi',loc:'Ortisei, Dolomites',isDk:false,
-  hero:'https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'08:00',type:'place',place:'🍩 Passo Sella Donut',mapLabel:'Passo Sella',desc:'25 นาทีจาก Ortisei · ห้ามพลาด!',mapUrl:'https://maps.google.com/?place_id=ChIJRQw4NOhqeEcRkOuDLogJBx0',
-     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'08:30',type:'place',place:'Seceda กระเช้า',mapLabel:'Seceda',desc:'วิว Dolomites 360° · เดิน ~2 ชม.',mapUrl:'https://maps.google.com/?place_id=ChIJk3dRF_ATeEcRturRh6kSf0c',rating:'4.8 ⭐',travelFrom:'25 min',travelMode:'🚗',
-     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'13:30',type:'place',place:'Alpe di Siusi',mapLabel:'Alpe di Siusi',desc:'ทุ่งหญ้าอัลไพน์ใหญ่ที่สุดในยุโรป',mapUrl:'https://maps.google.com/?place_id=ChIJryhkuM4UeEcRO8LvfWPzGJQ',rating:'4.7 ⭐',travelFrom:'20 min',travelMode:'🚗',
-     photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'17:00',type:'place',place:'Val di Funes — St. Johann Ranui',mapLabel:'Val di Funes',desc:'โบสถ์สวยท่ามกลางภูเขา (optional)',mapUrl:'https://maps.google.com/?q=Santa+Maddalena+Church+Val+di+Funes',travelFrom:'35 min',travelMode:'🚗',
-     photos:['https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it07:{title:'7 Jun',subtitle:'Tre Cime di Lavaredo',loc:'Auronzo · Misurina, Dolomites',isDk:false,
-  hero:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'08:30',type:'place',place:'Rifugio Auronzo',mapLabel:'Rifugio Auronzo',desc:'จุดจอดรถ · เริ่ม Loop Trail Tre Cime',mapUrl:'https://maps.google.com/?q=Rifugio+Auronzo+Tre+Cime',
-     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'11:00',type:'place',place:'Tre Cime di Lavaredo',mapLabel:'Tre Cime',desc:'Loop Trail 10km · UNESCO Site · วิวยอดเขา 3 แฉก',mapUrl:'https://maps.google.com/?place_id=ChIJv9cthasyeEcRnn62kB3dxgE',rating:'4.8 ⭐',travelFrom:'45 min',travelMode:'🥾',
-     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'15:00',type:'place',place:'Viewpoint Cadini',mapLabel:'Cadini Viewpoint',desc:'1.5km · 30 นาที · วิวพิเศษ',mapUrl:'https://maps.google.com/?q=Cadini+di+Misurina',travelFrom:'30 min',travelMode:'🥾',
-     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'17:00',type:'hotel',place:'🏡 Grand Hotel Misurina',mapLabel:'Hotel Misurina',desc:'Check-in · ริมทะเลสาบ Misurina',mapUrl:'https://maps.google.com/?place_id=ChIJMXhxgc_MeUcR2Si0RsRooC4',rating:'3.9 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'15 min',travelMode:'🚗',
-     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it08:{title:'8 Jun',subtitle:'Lago di Braies',loc:'Braies · Val di Funes, Dolomites',isDk:false,
-  hero:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'09:00',type:'place',place:'Lago di Braies',mapLabel:'Lago di Braies',desc:'ทะเลสาบสวยที่สุดใน Dolomites · เช่าเรือ',mapUrl:'https://maps.google.com/?place_id=ChIJacfvIIoleEcRNN7cMwaXwrg',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',
-     photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'14:00',type:'place',place:'Val di Funes / Lago di Sorapis',mapLabel:'Val di Funes',desc:'optional',mapUrl:'https://maps.google.com/?q=Val+di+Funes+Dolomites',travelFrom:'1hr 10min',travelMode:'🚗',
-     photos:['https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'16:00',type:'hotel',place:'🏡 Waldrast Forestside',mapLabel:'Waldrast',desc:'Check-in · พักถึง 9 June',mapUrl:'https://maps.google.com/?q=Waldrast+Forestside+Living+Dolomites',travelFrom:'40 min',travelMode:'🚗',
-     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it09:{title:'9 Jun',subtitle:'Dolomites → Milan',loc:'Ortisei → Verona → Milan',isDk:false,
-  hero:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'08:00',type:'place',place:'🍩 Passo Sella Donut รอบสอง',desc:'50 นาที · ซื้ออีกรอบก่อนกลับ!',mapUrl:'https://maps.google.com/?place_id=ChIJRQw4NOhqeEcRkOuDLogJBx0',
-     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'13:00',type:'place',place:'Verona',desc:'แวะพัก Lunch · เมืองโรมิโอกับจูเลียต',mapUrl:'https://maps.google.com/?q=Verona+Italy',
-     photos:['https://images.unsplash.com/photo-1564594736166-b19c4e4ab5e7?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1562832135-14a35d25edef?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1564594736166-b19c4e4ab5e7?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1562832135-14a35d25edef?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'16:00',type:'place',place:'Milano Centrale',desc:'คืนรถเช่า',mapUrl:'https://maps.google.com/?q=Milano+Centrale',
-     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'17:00',type:'hotel',place:'🏡 Italianway Easy — Spontini 10',desc:'Check-in Milan · พักถึง 11 June'},
     {time:'17:30',type:'place',place:'Brera District',desc:'ย่านศิลปะ · Shopping · Dinner: Osteria da Fortunata',mapUrl:'https://maps.google.com/?place_id=ChIJCYiuC7PGhkcRz09nwZLNenU',
-     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it10:{title:'10 Jun',subtitle:'Milan ทั้งวัน',loc:'Milan, Italy',isDk:false,
-  hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'10:00',type:'place',place:'Duomo di Milano + Rooftop',mapLabel:'Duomo',desc:'Rooftop view · ซื้อตั๋วล่วงหน้า',mapUrl:'https://maps.google.com/?place_id=ChIJ1Tpt7K7GhkcRZbKfL7oet3E',rating:'4.7 ⭐',hours:'9:00–19:00',
-     photos:['https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1534430480872-3498386e7856?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'13:00',type:'place',place:'Galleria Vittorio Emanuele II',mapLabel:'Galleria V.E.',desc:'เพดานกระจก · Mosaic Floor · ช้อปปิ้ง luxury',mapUrl:'https://maps.google.com/?place_id=ChIJw7aG_QY1eUcRFtQJWKmcCyc',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'5 min',travelMode:'🚶',
-     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'15:00',type:'place',place:'Fondazione Prada',mapLabel:'Fondazione Prada',desc:'พิพิธภัณฑ์ศิลปะ · Industrial chic',mapUrl:'https://maps.google.com/?place_id=ChIJ16AE-J7GhkcRnxchwJ_WRRU',rating:'4.2 ⭐',hours:'10:00–19:00 (ปิดอังคาร)',travelFrom:'20 min',travelMode:'🚇',
-     photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'18:00',type:'place',place:'Navigli District',mapLabel:'Navigli',desc:'ย่านคลอง · Aperitivo · บาร์ริมน้ำ · บรรยากาศดีมาก',mapUrl:'https://maps.google.com/?q=Navigli+District+Milan',travelFrom:'15 min',travelMode:'🚇',
-     photos:['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it11:{title:'11 Jun',subtitle:'กลับบ้าน 🏠',loc:'Milan → Bangkok',isDk:false,
-  hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'09:00',type:'place',place:'Cafe / Brunch',desc:'มื้อสุดท้ายในอิตาลี 🥲',mapUrl:'https://maps.google.com/?q=cafe+Milan',
-     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&q=75','https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&q=75','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=75']},
+     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1493857671505-72967e2e2760?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
     {time:'14:05',type:'flight',place:'✈️ TG941 MXP → BKK',desc:'Thai Airways · ถึง BKK 05:55 (+1)'},
 ]},
 };
@@ -779,15 +832,64 @@ function openDay(key){
   window.scrollTo({top:document.querySelector('.sticky-nav').offsetTop-10,behavior:'smooth'});
 }
 
+// Hero image preloader - graceful fallback to gradient if blocked
+(function(){
+  const HERO_URLS = [
+    'https://images.unsplash.com/photo-1651578852608-0200168d48f6?fm=jpg&q=90&w=1800&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=90&w=1800&auto=format&fit=crop&ixlib=rb-4.1.0',
+  ];
+  const el = document.getElementById('hero-bg-img');
+  if(!el) return;
+  let tried = 0;
+  function tryNext(){
+    if(tried >= HERO_URLS.length) return; // fallback gradient shows
+    const img = new Image();
+    img.onload = function(){ el.style.backgroundImage = "url('"+HERO_URLS[tried]+"')"; };
+    img.onerror = function(){ tried++; tryNext(); };
+    img.src = HERO_URLS[tried];
+    tried++;
+  }
+  tryNext();
+})();
+
+const CREW = {
+  'Ploy':  {img:'https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc'},
+  'P':     {img:'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4'},
+  'Peachy':{img:'https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede'},
+  'Name':  {img:'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4'},
+  'Fern':  {img:'https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc'},
+};
+
+function toggleSplitPicker(){
+  const d=document.getElementById('split-dropdown');
+  d.style.display=d.style.display==='none'?'block':'none';
+}
+document.addEventListener('click',function(e){
+  const picker=document.getElementById('split-dropdown');
+  if(picker&&!picker.contains(e.target)&&e.target.id!=='split-picker'){
+    picker.style.display='none';
+  }
+});
+function updateSplitLabel(){
+  const checked=[...document.querySelectorAll('#split-dropdown input:checked')].map(c=>c.value);
+  document.getElementById('split-picker').textContent=checked.length?checked.join(', '):'หารกับใคร?';
+}
+function selectAllCrew(){
+  document.querySelectorAll('#split-dropdown input').forEach(c=>c.checked=true);
+  updateSplitLabel();
+}
+function getSelectedPeople(){
+  return [...document.querySelectorAll('#split-dropdown input:checked')].map(c=>c.value);
+}
+
 function addExpense(){
   const desc=document.getElementById('e-desc').value.trim();
   const amt=parseFloat(document.getElementById('e-amt').value);
   const cat=document.getElementById('e-cat').value;
-  const payer=document.getElementById('e-payer').value.trim()||'ไม่ระบุ';
-  const peopleRaw=document.getElementById('e-people').value.trim();
+  const payer=document.getElementById('e-payer').value||'ไม่ระบุ';
+  const people=getSelectedPeople();
   const cur=document.getElementById('e-cur').value.trim()||'THB';
   if(!desc||isNaN(amt)||amt<=0) return;
-  const people=peopleRaw?peopleRaw.split(',').map(p=>p.trim()).filter(Boolean):[];
   expenses.push({id:Date.now(),desc,amt,cat,payer,people,cur});
   document.getElementById('e-desc').value='';
   document.getElementById('e-amt').value='';
@@ -831,9 +933,10 @@ function renderExpenses(){
     const paid=expenses.filter(e=>e.payer===p).reduce((s,e)=>s+e.amt,0);
     const owe=personTotals[p]||0;
     const diff=paid-owe;
+    const av=CREW[p]?`<img src="${CREW[p].img}" style="width:36px;height:36px;border-radius:50%;flex-shrink:0" alt="${p}">`:`<div style="width:36px;height:36px;border-radius:50%;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;font-weight:500;font-size:13px;flex-shrink:0">${p[0]}</div>`;
     return `<div class="split-row">
-      <span class="split-name">${p}</span>
-      <div>
+      <div style="display:flex;align-items:center;gap:10px">${av}<span class="split-name">${p}</span></div>
+      <div style="text-align:right">
         <div class="split-amt">${Math.round(owe).toLocaleString('th-TH')}</div>
         <div class="split-sub ${diff>=0?'badge-ok':'badge-owe'}">${diff>=0?'✅ จ่ายเกิน':'⚠️ ค้างจ่าย'} ${Math.abs(Math.round(diff)).toLocaleString('th-TH')}</div>
       </div>
