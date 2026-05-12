@@ -30,7 +30,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);o
 
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:flex-end;padding:60px}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=1600&q=85') center/cover no-repeat}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=1800&q=90') center 40%/cover no-repeat}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,5,0.85) 0%,rgba(10,8,5,0.3) 50%,transparent 100%)}
 .hero-content{position:relative;z-index:2;max-width:800px}
 .hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500}
@@ -169,6 +169,21 @@ tr:last-child td{border-bottom:none}
 /* EMPTY */
 .empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
 
+/* ROUTE MAP */
+.route-map-box{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:32px}
+.route-map-header{padding:14px 18px 0;display:flex;align-items:center;gap:8px}
+.route-map-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500}
+.route-map-total{margin-left:auto;font-size:12px;color:var(--muted)}
+.route-map-svg-wrap{padding:12px 18px 18px;overflow-x:auto}
+.route-map-svg-wrap svg{min-width:320px;display:block}
+
+/* CREW AVATARS */
+.crew-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.crew-member{display:flex;flex-direction:column;align-items:center;gap:6px}
+.crew-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--white);box-shadow:0 0 0 2px var(--border)}
+.crew-avatar-init{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;border:2px solid var(--white);box-shadow:0 0 0 2px var(--border)}
+.crew-name{font-size:11px;color:var(--muted);text-align:center;white-space:nowrap}
+
 @media(max-width:640px){
   .hero{padding:32px 24px}
   .page{padding:0 20px}
@@ -252,7 +267,21 @@ tr:last-child td{border-bottom:none}
       <div class="region-body">
         <div class="region-name">Denmark</div>
         <div class="region-sub">Copenhagen · 28 May – 1 June · 5 วัน</div>
-        <div class="region-days">
+        <div class="crew-row">
+          <div class="crew-member">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Ploy&backgroundColor=b6e3f4" alt="Ploy" onerror="this.style.display='none'">
+            <span class="crew-name">Ploy</span>
+          </div>
+          <div class="crew-member">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=P&backgroundColor=ffd5dc" alt="P" onerror="this.style.display='none'">
+            <span class="crew-name">P</span>
+          </div>
+          <div class="crew-member">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Peachy&backgroundColor=c0aede" alt="Peachy" onerror="this.style.display='none'">
+            <span class="crew-name">Peachy</span>
+          </div>
+        </div>
+        <div class="region-days" style="margin-top:12px">
           <button class="day-chip chip-dk" onclick="openDay('dk28')">28 May</button>
           <button class="day-chip chip-dk" onclick="openDay('dk29')">29 May</button>
           <button class="day-chip chip-dk" onclick="openDay('dk30')">30 May</button>
@@ -269,7 +298,25 @@ tr:last-child td{border-bottom:none}
       <div class="region-body">
         <div class="region-name">Italy</div>
         <div class="region-sub">Como · Cinque Terre · Dolomites · Milan · 1–11 June · 11 วัน</div>
-        <div class="region-days">
+        <div class="crew-row">
+          <div class="crew-member">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Ploy&backgroundColor=b6e3f4" alt="Ploy" onerror="this.style.display='none'">
+            <span class="crew-name">Ploy</span>
+          </div>
+          <div class="crew-member">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=P&backgroundColor=ffd5dc" alt="P" onerror="this.style.display='none'">
+            <span class="crew-name">P</span>
+          </div>
+          <div class="crew-member">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Name&backgroundColor=d1f7c4" alt="Name" onerror="this.style.display='none'">
+            <span class="crew-name">Name</span>
+          </div>
+          <div class="crew-member">
+            <img class="crew-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Fern&backgroundColor=ffeacc" alt="Fern" onerror="this.style.display='none'">
+            <span class="crew-name">Fern</span>
+          </div>
+        </div>
+        <div class="region-days" style="margin-top:12px">
           <button class="day-chip chip-it" onclick="openDay('it01')">1 Jun</button>
           <button class="day-chip chip-it" onclick="openDay('it02')">2 Jun</button>
           <button class="day-chip chip-it" onclick="openDay('it03')">3 Jun</button>
@@ -405,36 +452,39 @@ dk28:{title:'28 May',subtitle:'เดินทาง BKK → Copenhagen',loc:'Ba
 dk29:{title:'29 May',subtitle:'สำรวจ Copenhagen',loc:'Copenhagen, Denmark',isDk:true,
   hero:'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=900&q=80',
   items:[
-    {time:'10:00',type:'place',place:'Torvehallerne KBH',desc:'ตลาดสด Nordic 60+ ร้านค้า',mapUrl:'https://maps.google.com/?place_id=ChIJGzGFEgVTUkYRO2LpXOPtdHM',rating:'4.5 ⭐',hours:'10:00–19:00',
+    {time:'10:00',type:'place',place:'Torvehallerne KBH',mapLabel:'Torvehallerne',desc:'ตลาดสด Nordic 60+ ร้านค้า',mapUrl:'https://maps.google.com/?place_id=ChIJGzGFEgVTUkYRO2LpXOPtdHM',rating:'4.5 ⭐',hours:'10:00–19:00',
      photos:['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=75','https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75']},
-    {time:'12:00',type:'place',place:'Nyhavn',desc:'Canal tour · บ้านสีสด · Lunch ริมคลอง',mapUrl:'https://maps.google.com/?place_id=ChIJr21nqiJTUkYR6-rlKAmgwpk',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',
+    {time:'12:00',type:'place',place:'Nyhavn',mapLabel:'Nyhavn',desc:'Canal tour · บ้านสีสด · Lunch ริมคลอง',mapUrl:'https://maps.google.com/?place_id=ChIJr21nqiJTUkYR6-rlKAmgwpk',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'15 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75','https://images.unsplash.com/photo-1541336032412-2048a678540d?w=400&q=75']},
-    {time:'14:30',type:'place',place:'Amalienborg Palace',desc:'พระราชวัง · เปลี่ยนยาม 12:00 น. · ถ่ายรูป The Kissing Stairs',mapUrl:'https://maps.google.com/?place_id=ChIJcwY-NiJTUkYRP1UVnat_8Vw',rating:'4.5 ⭐',hours:'เปิดตลอด',
+    {time:'14:30',type:'place',place:'Amalienborg Palace',mapLabel:'Amalienborg',desc:'พระราชวัง · เปลี่ยนยาม 12:00 น. · ถ่ายรูป The Kissing Stairs',mapUrl:'https://maps.google.com/?place_id=ChIJcwY-NiJTUkYRP1UVnat_8Vw',rating:'4.5 ⭐',hours:'เปิดตลอด',travelFrom:'10 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&q=75','https://images.unsplash.com/photo-1518005068251-37900150dfca?w=400&q=75','https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=400&q=75']},
-    {time:'16:00',type:'place',place:'Helle Mardahl Studio',desc:'แกลลอรีแก้วศิลปะสีสวย · Bredgade 17',mapUrl:'https://maps.google.com/?place_id=ChIJ2d3Po-5TUkYR0VohcYmPV_g',rating:'3.8 ⭐',hours:'11:00–17:30 (ปิดอาทิตย์)',
+    {time:'16:00',type:'place',place:'Helle Mardahl Studio',mapLabel:'Helle Mardahl',desc:'แกลลอรีแก้วศิลปะสีสวย · Bredgade 17',mapUrl:'https://maps.google.com/?place_id=ChIJ2d3Po-5TUkYR0VohcYmPV_g',rating:'3.8 ⭐',hours:'11:00–17:30 (ปิดอาทิตย์)',travelFrom:'5 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&q=75','https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&q=75','https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400&q=75']},
-    {time:'19:00',type:'place',place:'🍜 Slurp Ramen',desc:'Dinner',mapUrl:'https://maps.google.com/?q=Slurp+Ramen+Copenhagen'},
+    {time:'19:00',type:'place',place:'🍜 Slurp Ramen',mapLabel:'Slurp Ramen',desc:'Dinner',mapUrl:'https://maps.google.com/?q=Slurp+Ramen+Copenhagen',travelFrom:'20 min',travelMode:'🚶',
+     photos:['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=75','https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=400&q=75','https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=75']},
 ]},
 dk30:{title:'30 May',subtitle:'Louisiana Museum + Charlottenlund',loc:'Copenhagen → Humlebæk, Denmark',isDk:true,
   hero:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
   items:[
-    {time:'10:00',type:'place',place:'Apollo Bar',desc:'Coffee / lunch',mapUrl:'https://maps.google.com/?q=Apollo+Bar+Copenhagen'},
-    {time:'12:00',type:'place',place:'Louisiana Museum of Modern Art',desc:'พิพิธภัณฑ์ริมทะเล · สวนประติมากรรม · ใช้เวลา 3–4 ชม.',mapUrl:'https://maps.google.com/?place_id=ChIJq5pUwwc3UkYRTpARr0S5L2o',rating:'4.6 ⭐',hours:'อังคาร–อาทิตย์ 11:00–22:00',
+    {time:'10:00',type:'place',place:'Apollo Bar',mapLabel:'Apollo Bar',desc:'Coffee / lunch',mapUrl:'https://maps.google.com/?q=Apollo+Bar+Copenhagen',
+     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&q=75','https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&q=75','https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400&q=75']},
+    {time:'12:00',type:'place',place:'Louisiana Museum',mapLabel:'Louisiana Museum',desc:'พิพิธภัณฑ์ริมทะเล · สวนประติมากรรม · ใช้เวลา 3–4 ชม.',mapUrl:'https://maps.google.com/?place_id=ChIJq5pUwwc3UkYRTpARr0S5L2o',rating:'4.6 ⭐',hours:'อังคาร–อาทิตย์ 11:00–22:00',travelFrom:'40 min',travelMode:'🚂',
      photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75','https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=400&q=75','https://images.unsplash.com/photo-1565626424178-c699f9be9946?w=400&q=75']},
-    {time:'17:00',type:'place',place:'Charlottenlund Fort',desc:'ป้อมปราการริมทะเล · วิวสวย',mapUrl:'https://maps.google.com/?place_id=ChIJ0wKCYHhNUkYRe7KxbwZpkY8',rating:'4.3 ⭐',hours:'12:00–21:00',
+    {time:'17:00',type:'place',place:'Charlottenlund Fort',mapLabel:'Charlottenlund',desc:'ป้อมปราการริมทะเล · วิวสวย',mapUrl:'https://maps.google.com/?place_id=ChIJ0wKCYHhNUkYRe7KxbwZpkY8',rating:'4.3 ⭐',hours:'12:00–21:00',travelFrom:'20 min',travelMode:'🚂',
      photos:['https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75','https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=400&q=75']},
 ]},
 dk31:{title:'31 May',subtitle:'ช้อปปิ้ง + Rosenborg Castle',loc:'Copenhagen, Denmark',isDk:true,
   hero:'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=900&q=80',
   items:[
-    {time:'10:00',type:'place',place:'La Caba Cafe + Shopping',desc:'Boii · Tekla · Hey House',mapUrl:'https://maps.google.com/?q=La+Caba+Copenhagen'},
-    {time:'12:00',type:'place',place:'Strøget',desc:'ถนน pedestrian ยาวที่สุดในยุโรป · ช้อปปิ้งครบ',mapUrl:'https://maps.google.com/?place_id=ChIJCYzUJhFTUkYRFnbcNamdu-c',rating:'4.6 ⭐',hours:'ตลอด 24 ชม.',
+    {time:'10:00',type:'place',place:'La Caba Cafe + Shopping',mapLabel:'La Caba',desc:'Boii · Tekla · Hey House',mapUrl:'https://maps.google.com/?q=La+Caba+Copenhagen',
+     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&q=75','https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=75','https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&q=75']},
+    {time:'12:00',type:'place',place:'Strøget',mapLabel:'Strøget',desc:'ถนน pedestrian ยาวที่สุดในยุโรป · ช้อปปิ้งครบ',mapUrl:'https://maps.google.com/?place_id=ChIJCYzUJhFTUkYRFnbcNamdu-c',rating:'4.6 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'10 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&q=75','https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=75']},
-    {time:'14:00',type:'place',place:'Rosenborg Castle + King Garden',desc:'Crown Jewels · ปราสาทสวยกลางสวน',mapUrl:'https://maps.google.com/?place_id=ChIJHVOeQhtTUkYRPBsoRTOcNVI',rating:'4.6 ⭐',hours:'10:00–17:00 ทุกวัน',
+    {time:'14:00',type:'place',place:'Rosenborg Castle',mapLabel:'Rosenborg',desc:'Crown Jewels · ปราสาทสวยกลางสวน',mapUrl:'https://maps.google.com/?place_id=ChIJHVOeQhtTUkYRPBsoRTOcNVI',rating:'4.6 ⭐',hours:'10:00–17:00 ทุกวัน',travelFrom:'15 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=400&q=75','https://images.unsplash.com/photo-1518005068251-37900150dfca?w=400&q=75','https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&q=75']},
-    {time:'17:00',type:'place',place:'La Banchina',desc:'ริมน้ำ · Sauna · Oysters · Natural wine',mapUrl:'https://maps.google.com/?place_id=ChIJe2R04ddSUkYRPspah4LjBEs',rating:'4.6 ⭐',hours:'8:00–22:00',
+    {time:'17:00',type:'place',place:'La Banchina',mapLabel:'La Banchina',desc:'ริมน้ำ · Sauna · Oysters · Natural wine',mapUrl:'https://maps.google.com/?place_id=ChIJe2R04ddSUkYRPspah4LjBEs',rating:'4.6 ⭐',hours:'8:00–22:00',travelFrom:'25 min',travelMode:'🚲',
      photos:['https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=75','https://images.unsplash.com/photo-1536782376769-c3e9ba30f00c?w=400&q=75','https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=400&q=75']},
-    {time:'19:00',type:'place',place:'Reffen Street Food',desc:'ตลาดริมน้ำ · อาหารนานาชาติ · บรรยากาศดี',mapUrl:'https://maps.google.com/?place_id=ChIJJ9EDaddSUkYRoJpUuE6-59w',rating:'4.6 ⭐',hours:'11:00–22:00 (ศ–ส ถึงตี 1)',
+    {time:'19:00',type:'place',place:'Reffen Street Food',mapLabel:'Reffen',desc:'ตลาดริมน้ำ · อาหารนานาชาติ · บรรยากาศดี',mapUrl:'https://maps.google.com/?place_id=ChIJJ9EDaddSUkYRoJpUuE6-59w',rating:'4.6 ⭐',hours:'11:00–22:00 (ศ–ส ถึงตี 1)',travelFrom:'5 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75','https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=75']},
 ]},
 dk01:{title:'1 Jun',subtitle:'Copenhagen → Lake Como',loc:'CPH → Milan → Bellano',isDk:true,
@@ -449,22 +499,22 @@ dk01:{title:'1 Jun',subtitle:'Copenhagen → Lake Como',loc:'CPH → Milan → B
 it01:{title:'1 Jun',subtitle:'Varenna, Lake Como',loc:'Varenna / Bellano, Italy',isDk:false,
   hero:'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=900&q=80',
   items:[
-    {time:'15:00',type:'place',place:'Villa Monastero Garden',desc:'สวนพฤกษศาสตร์ริมทะเลสาบ · €10',mapUrl:'https://maps.google.com/?place_id=ChIJGe2VLikdhEcR87_XMhQv31E',rating:'4.6 ⭐',hours:'9:30–19:30',
+    {time:'15:00',type:'place',place:'Villa Monastero Garden',mapLabel:'Villa Monastero',desc:'สวนพฤกษศาสตร์ริมทะเลสาบ · €10',mapUrl:'https://maps.google.com/?place_id=ChIJGe2VLikdhEcR87_XMhQv31E',rating:'4.6 ⭐',hours:'9:30–19:30',
      photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75']},
-    {time:'16:30',type:'place',place:'Castello di Vezio',desc:'ปราสาทยุคกลาง · วิว Lake Como · €7',mapUrl:'https://maps.google.com/?place_id=ChIJn-XbdMcXhEcRaVY95-wyBOk',rating:'4.6 ⭐',hours:'10:00–18:00',
+    {time:'16:30',type:'place',place:'Castello di Vezio',mapLabel:'Castello Vezio',desc:'ปราสาทยุคกลาง · วิว Lake Como · €7',mapUrl:'https://maps.google.com/?place_id=ChIJn-XbdMcXhEcRaVY95-wyBOk',rating:'4.6 ⭐',hours:'10:00–18:00',travelFrom:'30 min',travelMode:'🥾',
      photos:['https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1562832135-14a35d25edef?w=400&q=75']},
-    {time:'18:00',type:'place',place:'Passeggiata degli Innamorati',desc:'"Lovers Walk" · ริมทะเลสาบ · วิว Bellagio',mapUrl:'https://maps.google.com/?place_id=ChIJ6wySGwAXhEcRaiLmbXhfSRU',rating:'4.6 ⭐',hours:'ตลอด 24 ชม.',
+    {time:'18:00',type:'place',place:'Passeggiata Innamorati',mapLabel:"Lovers' Walk",desc:'"Lovers Walk" · ริมทะเลสาบ · วิว Bellagio',mapUrl:'https://maps.google.com/?place_id=ChIJ6wySGwAXhEcRaiLmbXhfSRU',rating:'4.6 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'15 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75']},
 ]},
 it02:{title:'2 Jun',subtitle:'Bellagio, Lake Como',loc:'Bellagio, Italy',isDk:false,
   hero:'https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=900&q=80',
   items:[
-    {time:'09:00',type:'place',place:'⛴️ Ferry to Bellagio',desc:'จาก Bellano · ข้ามทะเลสาบ'},
-    {time:'10:00',type:'place',place:'Salita Serbelloni + Borgo di Pescallo',desc:'บันไดหินสวย · หมู่บ้านชาวประมง',mapUrl:'https://maps.google.com/?q=Salita+Serbelloni+Bellagio',
+    {time:'09:00',type:'place',place:'⛴️ Ferry to Bellagio',mapLabel:'Ferry Bellano→Bellagio',desc:'จาก Bellano · ข้ามทะเลสาบ'},
+    {time:'10:00',type:'place',place:'Salita Serbelloni',mapLabel:'Salita Serbelloni',desc:'บันไดหินสวย · หมู่บ้านชาวประมง',mapUrl:'https://maps.google.com/?q=Salita+Serbelloni+Bellagio',travelFrom:'30 min',travelMode:'⛴️',
      photos:['https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75']},
-    {time:'14:00',type:'place',place:'I Giardini di Villa Melzi',desc:'สวนริมทะเลสาบ · ถ่ายรูป sunset สวยมาก · €10',mapUrl:'https://maps.google.com/?place_id=ChIJUxJBkqgihEcRT-N1SFtIA2g',rating:'4.7 ⭐',hours:'10:00–18:30',
+    {time:'14:00',type:'place',place:'Villa Melzi Garden',mapLabel:'Villa Melzi',desc:'สวนริมทะเลสาบ · ถ่ายรูป sunset สวยมาก · €10',mapUrl:'https://maps.google.com/?place_id=ChIJUxJBkqgihEcRT-N1SFtIA2g',rating:'4.7 ⭐',hours:'10:00–18:30',travelFrom:'10 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?w=400&q=75','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=75']},
-    {time:'18:00',type:'place',place:'Dinner / Bar Bellagio',desc:'Aperitivo ริมทะเลสาบ'},
+    {time:'18:00',type:'place',place:'Dinner / Bar Bellagio',mapLabel:'Bar Bellagio',desc:'Aperitivo ริมทะเลสาบ',travelFrom:'5 min',travelMode:'🚶'},
 ]},
 it03:{title:'3 Jun',subtitle:'Lake Como → Cinque Terre',loc:'Bellano → Monterosso al Mare',isDk:false,
   hero:'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=900&q=80',
@@ -478,11 +528,11 @@ it03:{title:'3 Jun',subtitle:'Lake Como → Cinque Terre',loc:'Bellano → Monte
 it04:{title:'4 Jun',subtitle:'Cinque Terre ทั้งวัน',loc:'Vernazza · Manarola · Riomaggiore',isDk:false,
   hero:'https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=900&q=80',
   items:[
-    {time:'09:00',type:'place',place:'Vernazza',desc:'Castello di Vernazza · San Francesco · Vernazza Beach',mapUrl:'https://maps.google.com/?place_id=ChIJc7qF5Cvw1BIRBy0vB7GldeA',rating:'4.3 ⭐',hours:'9:30–19:30',
+    {time:'09:00',type:'place',place:'Vernazza',mapLabel:'Vernazza',desc:'Castello di Vernazza · San Francesco · Vernazza Beach',mapUrl:'https://maps.google.com/?place_id=ChIJc7qF5Cvw1BIRBy0vB7GldeA',rating:'4.3 ⭐',hours:'9:30–19:30',
      photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75']},
-    {time:'12:00',type:'place',place:'Manarola Viewpoint',desc:'จุดถ่ายรูปไอคอนิกที่สุดใน Cinque Terre · Lunch',mapUrl:'https://maps.google.com/?place_id=ChIJfyPRQG771BIRUu7RcYCEdK8',rating:'4.9 ⭐',hours:'ตลอด 24 ชม.',
+    {time:'12:00',type:'place',place:'Manarola Viewpoint',mapLabel:'Manarola',desc:'จุดถ่ายรูปไอคอนิกที่สุดใน Cinque Terre · Lunch',mapUrl:'https://maps.google.com/?place_id=ChIJfyPRQG771BIRUu7RcYCEdK8',rating:'4.9 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'20 min',travelMode:'🚂',
      photos:['https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75','https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75']},
-    {time:'16:00',type:'place',place:'Riomaggiore',desc:'Riomaggiore Beach · Sunset viewpoint',mapUrl:'https://maps.google.com/?place_id=ChIJB4uscYn61BIRgGX4h7QPnhE',
+    {time:'16:00',type:'place',place:'Riomaggiore',mapLabel:'Riomaggiore',desc:'Riomaggiore Beach · Sunset viewpoint',mapUrl:'https://maps.google.com/?place_id=ChIJB4uscYn61BIRgGX4h7QPnhE',travelFrom:'15 min',travelMode:'🚂',
      photos:['https://images.unsplash.com/photo-1570723781571-7f2eb6b4c93a?w=400&q=75','https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=75','https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=75']},
 ]},
 it05:{title:'5 Jun',subtitle:'Cinque Terre → Dolomites',loc:'Monterosso → Ortisei',isDk:false,
@@ -501,38 +551,46 @@ it05:{title:'5 Jun',subtitle:'Cinque Terre → Dolomites',loc:'Monterosso → Or
 it06:{title:'6 Jun',subtitle:'Seceda + Alpe di Siusi',loc:'Ortisei, Dolomites',isDk:false,
   hero:'https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=900&q=80',
   items:[
-    {time:'08:00',type:'place',place:'🍩 Passo Sella Donut',desc:'25 นาทีจาก Ortisei · ห้ามพลาด!'},
-    {time:'08:30',type:'place',place:'Seceda กระเช้า',desc:'วิว Dolomites 360° · เดิน ~2 ชม.',mapUrl:'https://maps.google.com/?place_id=ChIJk3dRF_ATeEcRturRh6kSf0c',rating:'4.8 ⭐',
+    {time:'08:00',type:'place',place:'🍩 Passo Sella Donut',mapLabel:'Passo Sella',desc:'25 นาทีจาก Ortisei · ห้ามพลาด!',mapUrl:'https://maps.google.com/?place_id=ChIJRQw4NOhqeEcRkOuDLogJBx0',
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+    {time:'08:30',type:'place',place:'Seceda กระเช้า',mapLabel:'Seceda',desc:'วิว Dolomites 360° · เดิน ~2 ชม.',mapUrl:'https://maps.google.com/?place_id=ChIJk3dRF_ATeEcRturRh6kSf0c',rating:'4.8 ⭐',travelFrom:'25 min',travelMode:'🚗',
      photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75']},
-    {time:'13:30',type:'place',place:'Alpe di Siusi',desc:'ทุ่งหญ้าอัลไพน์ใหญ่ที่สุดในยุโรป',mapUrl:'https://maps.google.com/?place_id=ChIJryhkuM4UeEcRO8LvfWPzGJQ',rating:'4.7 ⭐',
+    {time:'13:30',type:'place',place:'Alpe di Siusi',mapLabel:'Alpe di Siusi',desc:'ทุ่งหญ้าอัลไพน์ใหญ่ที่สุดในยุโรป',mapUrl:'https://maps.google.com/?place_id=ChIJryhkuM4UeEcRO8LvfWPzGJQ',rating:'4.7 ⭐',travelFrom:'20 min',travelMode:'🚗',
      photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75']},
-    {time:'17:00',type:'place',place:'Val di Funes — St. Johann Ranui',desc:'โบสถ์สวยท่ามกลางภูเขา (optional)',mapUrl:'https://maps.google.com/?q=Santa+Maddalena+Church+Val+di+Funes'},
+    {time:'17:00',type:'place',place:'Val di Funes — St. Johann Ranui',mapLabel:'Val di Funes',desc:'โบสถ์สวยท่ามกลางภูเขา (optional)',mapUrl:'https://maps.google.com/?q=Santa+Maddalena+Church+Val+di+Funes',travelFrom:'35 min',travelMode:'🚗',
+     photos:['https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
 ]},
 it07:{title:'7 Jun',subtitle:'Tre Cime di Lavaredo',loc:'Auronzo · Misurina, Dolomites',isDk:false,
   hero:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',
   items:[
-    {time:'08:30',type:'place',place:'Rifugio Auronzo',desc:'จุดจอดรถ · เริ่ม Loop Trail Tre Cime'},
-    {time:'11:00',type:'place',place:'Tre Cime di Lavaredo',desc:'Loop Trail 10km · UNESCO Site · วิวยอดเขา 3 แฉก',mapUrl:'https://maps.google.com/?place_id=ChIJv9cthasyeEcRnn62kB3dxgE',rating:'4.8 ⭐',
+    {time:'08:30',type:'place',place:'Rifugio Auronzo',mapLabel:'Rifugio Auronzo',desc:'จุดจอดรถ · เริ่ม Loop Trail Tre Cime',mapUrl:'https://maps.google.com/?q=Rifugio+Auronzo+Tre+Cime',
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
+    {time:'11:00',type:'place',place:'Tre Cime di Lavaredo',mapLabel:'Tre Cime',desc:'Loop Trail 10km · UNESCO Site · วิวยอดเขา 3 แฉก',mapUrl:'https://maps.google.com/?place_id=ChIJv9cthasyeEcRnn62kB3dxgE',rating:'4.8 ⭐',travelFrom:'45 min',travelMode:'🥾',
      photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
-    {time:'15:00',type:'place',place:'Viewpoint Cadini di Misurina',desc:'1.5km · 30 นาที · วิวพิเศษ',mapUrl:'https://maps.google.com/?q=Cadini+di+Misurina'},
-    {time:'17:00',type:'hotel',place:'🏡 Grand Hotel Misurina',desc:'Check-in · ริมทะเลสาบ Misurina',mapUrl:'https://maps.google.com/?place_id=ChIJMXhxgc_MeUcR2Si0RsRooC4',rating:'3.9 ⭐',hours:'ตลอด 24 ชม.',
+    {time:'15:00',type:'place',place:'Viewpoint Cadini',mapLabel:'Cadini Viewpoint',desc:'1.5km · 30 นาที · วิวพิเศษ',mapUrl:'https://maps.google.com/?q=Cadini+di+Misurina',travelFrom:'30 min',travelMode:'🥾',
+     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75']},
+    {time:'17:00',type:'hotel',place:'🏡 Grand Hotel Misurina',mapLabel:'Hotel Misurina',desc:'Check-in · ริมทะเลสาบ Misurina',mapUrl:'https://maps.google.com/?place_id=ChIJMXhxgc_MeUcR2Si0RsRooC4',rating:'3.9 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'15 min',travelMode:'🚗',
      photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
 ]},
 it08:{title:'8 Jun',subtitle:'Lago di Braies',loc:'Braies · Val di Funes, Dolomites',isDk:false,
   hero:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80',
   items:[
-    {time:'09:00',type:'place',place:'Lago di Braies',desc:'ทะเลสาบสวยที่สุดใน Dolomites · เช่าเรือ',mapUrl:'https://maps.google.com/?place_id=ChIJacfvIIoleEcRNN7cMwaXwrg',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',
+    {time:'09:00',type:'place',place:'Lago di Braies',mapLabel:'Lago di Braies',desc:'ทะเลสาบสวยที่สุดใน Dolomites · เช่าเรือ',mapUrl:'https://maps.google.com/?place_id=ChIJacfvIIoleEcRNN7cMwaXwrg',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',
      photos:['https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75']},
-    {time:'14:00',type:'place',place:'Val di Funes (Glastsch alm) หรือ Lago di Sorapis',desc:'optional',mapUrl:'https://maps.google.com/?q=Val+di+Funes+Dolomites'},
-    {time:'16:00',type:'hotel',place:'🏡 Waldrast — Forestside Living',desc:'Check-in · พักถึง 9 June'},
+    {time:'14:00',type:'place',place:'Val di Funes / Lago di Sorapis',mapLabel:'Val di Funes',desc:'optional',mapUrl:'https://maps.google.com/?q=Val+di+Funes+Dolomites',travelFrom:'1hr 10min',travelMode:'🚗',
+     photos:['https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75']},
+    {time:'16:00',type:'hotel',place:'🏡 Waldrast Forestside',mapLabel:'Waldrast',desc:'Check-in · พักถึง 9 June',mapUrl:'https://maps.google.com/?q=Waldrast+Forestside+Living+Dolomites',travelFrom:'40 min',travelMode:'🚗',
+     photos:['https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75']},
 ]},
 it09:{title:'9 Jun',subtitle:'Dolomites → Milan',loc:'Ortisei → Verona → Milan',isDk:false,
   hero:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80',
   items:[
-    {time:'08:00',type:'place',place:'🍩 Passo Sella Donut รอบสอง',desc:'50 นาที · ซื้ออีกรอบก่อนกลับ!'},
+    {time:'08:00',type:'place',place:'🍩 Passo Sella Donut รอบสอง',desc:'50 นาที · ซื้ออีกรอบก่อนกลับ!',mapUrl:'https://maps.google.com/?place_id=ChIJRQw4NOhqeEcRkOuDLogJBx0',
+     photos:['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=75','https://images.unsplash.com/photo-1531794508530-eed77e3b6b4d?w=400&q=75','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75']},
     {time:'13:00',type:'place',place:'Verona',desc:'แวะพัก Lunch · เมืองโรมิโอกับจูเลียต',mapUrl:'https://maps.google.com/?q=Verona+Italy',
      photos:['https://images.unsplash.com/photo-1564594736166-b19c4e4ab5e7?w=400&q=75','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=75','https://images.unsplash.com/photo-1562832135-14a35d25edef?w=400&q=75']},
-    {time:'16:00',type:'place',place:'Milano Centrale',desc:'คืนรถเช่า'},
+    {time:'16:00',type:'place',place:'Milano Centrale',desc:'คืนรถเช่า',mapUrl:'https://maps.google.com/?q=Milano+Centrale',
+     photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75']},
     {time:'17:00',type:'hotel',place:'🏡 Italianway Easy — Spontini 10',desc:'Check-in Milan · พักถึง 11 June'},
     {time:'17:30',type:'place',place:'Brera District',desc:'ย่านศิลปะ · Shopping · Dinner: Osteria da Fortunata',mapUrl:'https://maps.google.com/?place_id=ChIJCYiuC7PGhkcRz09nwZLNenU',
      photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75']},
@@ -540,19 +598,20 @@ it09:{title:'9 Jun',subtitle:'Dolomites → Milan',loc:'Ortisei → Verona → M
 it10:{title:'10 Jun',subtitle:'Milan ทั้งวัน',loc:'Milan, Italy',isDk:false,
   hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=900&q=80',
   items:[
-    {time:'10:00',type:'place',place:'Duomo di Milano + Rooftop',desc:'Rooftop view · ซื้อตั๋วล่วงหน้า',mapUrl:'https://maps.google.com/?place_id=ChIJ1Tpt7K7GhkcRZbKfL7oet3E',rating:'4.7 ⭐',hours:'9:00–19:00',
+    {time:'10:00',type:'place',place:'Duomo di Milano + Rooftop',mapLabel:'Duomo',desc:'Rooftop view · ซื้อตั๋วล่วงหน้า',mapUrl:'https://maps.google.com/?place_id=ChIJ1Tpt7K7GhkcRZbKfL7oet3E',rating:'4.7 ⭐',hours:'9:00–19:00',
      photos:['https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75']},
-    {time:'13:00',type:'place',place:'Galleria Vittorio Emanuele II',desc:'เพดานกระจก · Mosaic Floor · ช้อปปิ้ง luxury',mapUrl:'https://maps.google.com/?place_id=ChIJw7aG_QY1eUcRFtQJWKmcCyc',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',
+    {time:'13:00',type:'place',place:'Galleria Vittorio Emanuele II',mapLabel:'Galleria V.E.',desc:'เพดานกระจก · Mosaic Floor · ช้อปปิ้ง luxury',mapUrl:'https://maps.google.com/?place_id=ChIJw7aG_QY1eUcRFtQJWKmcCyc',rating:'4.7 ⭐',hours:'ตลอด 24 ชม.',travelFrom:'5 min',travelMode:'🚶',
      photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75']},
-    {time:'15:00',type:'place',place:'Fondazione Prada',desc:'พิพิธภัณฑ์ศิลปะ · Industrial chic',mapUrl:'https://maps.google.com/?place_id=ChIJ16AE-J7GhkcRnxchwJ_WRRU',rating:'4.2 ⭐',hours:'10:00–19:00 (ปิดอังคาร)',
+    {time:'15:00',type:'place',place:'Fondazione Prada',mapLabel:'Fondazione Prada',desc:'พิพิธภัณฑ์ศิลปะ · Industrial chic',mapUrl:'https://maps.google.com/?place_id=ChIJ16AE-J7GhkcRnxchwJ_WRRU',rating:'4.2 ⭐',hours:'10:00–19:00 (ปิดอังคาร)',travelFrom:'20 min',travelMode:'🚇',
      photos:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75']},
-    {time:'18:00',type:'place',place:'Navigli District',desc:'ย่านคลอง · Aperitivo · บาร์ริมน้ำ · บรรยากาศดีมาก',mapUrl:'https://maps.google.com/?q=Navigli+District+Milan',
+    {time:'18:00',type:'place',place:'Navigli District',mapLabel:'Navigli',desc:'ย่านคลอง · Aperitivo · บาร์ริมน้ำ · บรรยากาศดีมาก',mapUrl:'https://maps.google.com/?q=Navigli+District+Milan',travelFrom:'15 min',travelMode:'🚇',
      photos:['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=75','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=400&q=75']},
 ]},
 it11:{title:'11 Jun',subtitle:'กลับบ้าน 🏠',loc:'Milan → Bangkok',isDk:false,
-  hero:'https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=900&q=80',
+  hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?w=900&q=80',
   items:[
-    {time:'09:00',type:'place',place:'Cafe / Brunch',desc:'มื้อสุดท้ายในอิตาลี 🥲'},
+    {time:'09:00',type:'place',place:'Cafe / Brunch',desc:'มื้อสุดท้ายในอิตาลี 🥲',mapUrl:'https://maps.google.com/?q=cafe+Milan',
+     photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&q=75','https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&q=75','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=75']},
     {time:'14:05',type:'flight',place:'✈️ TG941 MXP → BKK',desc:'Thai Airways · ถึง BKK 05:55 (+1)'},
 ]},
 };
@@ -572,6 +631,94 @@ function showSection(id,btn){
   window.scrollTo({top:document.querySelector('.sticky-nav').offsetTop-10,behavior:'smooth'});
 }
 
+function buildRouteMap(items, isDk){
+  const stops = items.filter(it=>it.type==='place'||it.type==='hotel'||it.type==='flight');
+  if(stops.length<2) return '';
+  const acc = isDk?'#2D6A4F':'#B5341E';
+  const lineC = isDk?'#9FE1CB':'#F5C4B3';
+
+  const PAD=18, DOT=9, LABEL_H=36, ROW_H=72;
+  const cols = stops.length;
+  const W = Math.max(360, cols*110 + PAD*2);
+  const H = 130;
+  const xs = stops.map((_,i)=> PAD + i*(W - PAD*2)/(cols-1));
+  const CY = 52;
+
+  // zig-zag y so labels don't collide: even=top, odd=bottom
+  const labelY = (i)=> i%2===0 ? CY-28 : CY+24;
+  const labelAnchor=(i)=> i===0?'start': i===cols-1?'end':'middle';
+
+  let svgParts=[];
+
+  // path line
+  const pathD = xs.map((x,i)=>(i===0?`M${x},${CY}`:`L${x},${CY}`)).join(' ');
+  svgParts.push(`<path d="${pathD}" fill="none" stroke="${lineC}" stroke-width="3" stroke-dasharray="6 4"/>`);
+
+  // travel time badges between stops
+  stops.forEach((stop,i)=>{
+    if(i===0) return;
+    const x1=xs[i-1], x2=xs[i], mx=(x1+x2)/2;
+    const travel=stop.travelFrom||'';
+    const mode=stop.travelMode||'🚗';
+    if(travel){
+      svgParts.push(`<rect x="${mx-26}" y="${CY-11}" width="52" height="22" rx="11" fill="white" stroke="${lineC}" stroke-width="1.5"/>`);
+      svgParts.push(`<text x="${mx}" y="${CY+4}" text-anchor="middle" font-size="10" fill="#8C897F" font-family="DM Sans,sans-serif">${mode} ${travel}</text>`);
+    }
+  });
+
+  // dots + labels
+  stops.forEach((stop,i)=>{
+    const x=xs[i];
+    const isHotel=stop.type==='hotel';
+    const isFlight=stop.type==='flight';
+    const dotColor = isFlight?'#B5341E': isHotel?'#2D6A4F': acc;
+    // tick line to label
+    const ly=labelY(i);
+    const tickEnd=ly>CY?CY+DOT:CY-DOT;
+    svgParts.push(`<line x1="${x}" y1="${tickEnd}" x2="${x}" y2="${ly+(ly<CY?14:-2)}" stroke="${lineC}" stroke-width="1" stroke-dasharray="2 2"/>`);
+    // dot
+    svgParts.push(`<circle cx="${x}" cy="${CY}" r="${DOT}" fill="${dotColor}" stroke="white" stroke-width="2"/>`);
+    if(isFlight) svgParts.push(`<text x="${x}" y="${CY+4}" text-anchor="middle" font-size="8" fill="white">✈</text>`);
+    else if(isHotel) svgParts.push(`<text x="${x}" y="${CY+4}" text-anchor="middle" font-size="8" fill="white">🏡</text>`);
+    else svgParts.push(`<text x="${x}" y="${CY+4}" text-anchor="middle" font-size="9" font-weight="600" fill="white">${i+1}</text>`);
+    // name label — truncate
+    const raw = stop.mapLabel||stop.place.replace(/[✈️🏡🚂🚗🍩⛴️]/gu,'').trim();
+    const label = raw.length>14? raw.slice(0,13)+'…': raw;
+    const anchor=labelAnchor(i);
+    const lx = anchor==='start'?x-2: anchor==='end'?x+2:x;
+    svgParts.push(`<text x="${lx}" y="${ly}" text-anchor="${anchor}" font-size="10.5" font-weight="500" fill="#1A1814" font-family="DM Sans,sans-serif">${label}</text>`);
+    // time sub-label
+    if(stop.time){
+      const ty = ly>CY? ly+13: ly-1;
+      // only show if space
+      svgParts.push(`<text x="${lx}" y="${ty+(ly<CY?13:0)}" text-anchor="${anchor}" font-size="9" fill="#8C897F" font-family="DM Sans,sans-serif">${stop.time}</text>`);
+    }
+  });
+
+  // total travel time
+  const totalMins = stops.reduce((s,st)=>{
+    if(!st.travelFrom) return s;
+    const m=st.travelFrom.match(/(\d+)\s*hr?\s*(\d*)/i);
+    if(m) return s+parseInt(m[1]||0)*60+parseInt(m[2]||0);
+    const m2=st.travelFrom.match(/(\d+)\s*min/i);
+    if(m2) return s+parseInt(m2[1]);
+    return s;
+  },0);
+  const totalStr = totalMins>0?`รวมเวลาเดินทาง ~${Math.floor(totalMins/60)?Math.floor(totalMins/60)+'h ':''} ${totalMins%60?totalMins%60+'m':''}`:'';
+
+  return `<div class="route-map-box">
+    <div class="route-map-header">
+      <span class="route-map-label">เส้นทางวันนี้</span>
+      ${totalStr?`<span class="route-map-total">🕐 ${totalStr.trim()}</span>`:''}
+    </div>
+    <div class="route-map-svg-wrap">
+      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+        ${svgParts.join('\n')}
+      </svg>
+    </div>
+  </div>`;
+}
+
 function openDay(key){
   const day=DAYS[key];
   if(!day) return;
@@ -583,20 +730,28 @@ function openDay(key){
   const detail=document.getElementById('day-detail-view');
   detail.style.display='block';
   const accentColor=day.isDk?'var(--dk-green)':'var(--it-red)';
+
+  const routeMap = buildRouteMap(day.items, day.isDk);
+
   const items=day.items.map((item,i)=>{
     const isLast=i===day.items.length-1;
     const dotCls='tl-dot'+(item.type==='flight'?' flight':item.type==='hotel'?' hotel':'');
     let card='';
     if(item.photos||item.mapUrl||item.rating){
       const ph=item.photos?item.photos.map(u=>`<div class="place-photo" style="background-image:url('${u}')"></div>`).join(''):'';
+      // show travel time badge in timeline
+      const travelBadge=item.travelFrom?`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:var(--cream);border:1px solid var(--border);padding:3px 9px;border-radius:20px;margin-bottom:8px;">${item.travelMode||'🚗'} จากจุดก่อนหน้า ${item.travelFrom}</span><br>`:'';
       card=`<div class="place-card">
         ${ph?`<div class="place-photos">${ph}</div>`:''}
         <div class="place-info">
+          ${travelBadge}
           ${item.mapUrl?`<a class="place-map-btn" href="${item.mapUrl}" target="_blank">📍 Google Maps</a>`:''}
           ${item.rating?`<span class="place-rating">${item.rating}</span>`:''}
           ${item.hours?`<span class="place-hours">🕐 ${item.hours}</span>`:''}
         </div>
       </div>`;
+    } else if(item.travelFrom){
+      card=`<div style="margin-top:6px;display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:var(--cream);border:1px solid var(--border);padding:3px 9px;border-radius:20px;">${item.travelMode||'🚗'} จากจุดก่อนหน้า ${item.travelFrom}</div>`;
     }
     return `<div class="tl-item">
       <div class="tl-time">${item.time||''}</div>
@@ -608,6 +763,7 @@ function openDay(key){
       </div>
     </div>`;
   }).join('');
+
   detail.innerHTML=`
     <div class="day-header">
       <button class="day-back-btn" onclick="showSection('daily',null)">← กลับ</button>
@@ -618,6 +774,7 @@ function openDay(key){
       </div>
     </div>
     <img class="day-hero-img" src="${day.hero}" alt="${day.subtitle}" loading="lazy">
+    ${routeMap}
     <div class="timeline">${items}</div>`;
   window.scrollTo({top:document.querySelector('.sticky-nav').offsetTop-10,behavior:'smooth'});
 }
