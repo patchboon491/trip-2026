@@ -221,17 +221,55 @@ tr:last-child td{border-bottom:none}
 .crew-name{font-size:11px;color:var(--muted);text-align:center;white-space:nowrap}
 
 @media(max-width:640px){
+  .route-visual{gap:0}.rv-line{width:16px}.route-visual-stop{width:120px}.rv-img{height:80px}
+}
+
+/* CREW AVATARS */
+.crew-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.crew-member{display:flex;flex-direction:column;align-items:center;gap:6px}
+.crew-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--white);box-shadow:0 0 0 2px var(--border)}
+.crew-avatar-init{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;border:2px solid var(--white);box-shadow:0 0 0 2px var(--border)}
+.crew-name{font-size:11px;color:var(--muted);text-align:center;white-space:nowrap}
+
+/* ROUTE MAP responsive */
+.route-map-box{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px}
+.route-map-header{padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.route-map-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:500}
+.route-map-total{margin-left:auto;font-size:11px;color:var(--muted)}
+.route-map-svg-wrap{padding:10px 14px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.route-map-svg-wrap svg{display:block}
+
+/* SEARCH */
+.search-suggest{padding:4px 12px;background:var(--cream);border:1px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;color:var(--ink2);font-family:'DM Sans',sans-serif;transition:all .15s}
+.search-suggest:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* SEARCH RESULT */
+.sr-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:16px;border-radius:10px;overflow:hidden}
+.sr-photo{height:140px;background-size:cover;background-position:center}
+.sr-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.sr-badge{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:var(--cream);color:var(--ink2)}
+
+@media(max-width:640px){
   .hero{padding:32px 24px}
-  .page{padding:0 20px}
+  .page{padding:0 16px}
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .regions{grid-template-columns:1fr}
-  .form-grid{grid-template-columns:1fr 1fr}
-  .form-grid2{grid-template-columns:1fr 1fr}
   .highlights-grid{grid-template-columns:1fr 1fr}
   .hl-img:first-child{grid-column:span 2}
   .expense-stats{grid-template-columns:repeat(3,1fr)}
-  .nav-inner{padding:0 20px}
+  .nav-inner{padding:0 16px}
   .scroll-hint{display:none}
+  /* Expense mobile */
+  .form-grid{grid-template-columns:1fr!important}
+  .add-form>div[style*="grid-template-columns:1fr 1fr 140px"]{grid-template-columns:1fr 1fr!important}
+  /* Search result photos */
+  .sr-photos{grid-template-columns:1fr 1fr}
+  .sr-photo:last-child{display:none}
+  /* Route map */
+  .route-map-svg-wrap{padding:8px 10px}
+  /* Day title */
+  .day-nav-btn{font-size:11px;padding:6px 10px}
+  .tl-time{width:36px!important;font-size:10px!important}
 }
 </style>
 </head>
@@ -243,7 +281,6 @@ tr:last-child td{border-bottom:none}
   <div class="hero-bg-img" id="hero-bg-img"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Content Creator Trip · 2026</div>
     <h1 class="hero-title">Denmark<br>&amp; <em>Italy</em></h1>
     <div class="hero-meta">
       <span class="hero-pill">28 May – 11 June</span>
@@ -261,6 +298,7 @@ tr:last-child td{border-bottom:none}
     <button class="nav-tab" onclick="showSection('daily',this)">รายวัน</button>
     <button class="nav-tab" onclick="showSection('highlights',this)">ไฮไลท์รูป</button>
     <button class="nav-tab" onclick="showSection('expense',this)">ค่าใช้จ่าย</button>
+    <button class="nav-tab" onclick="showSection('search',this)">🔍 ค้นหา</button>
   </div>
 </nav>
 
@@ -292,13 +330,13 @@ tr:last-child td{border-bottom:none}
     </a>
     <div class="rv-connector"><span class="rv-mode">🚗</span><div class="rv-line"></div></div>
     <a class="route-visual-stop" onclick="openDay('it10')" style="cursor:pointer">
-      <div class="rv-img" style="background-image:url('https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+      <div class="rv-img" style="background-color:#8B6914;background-image:url('https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
       <div class="rv-body"><div class="rv-flag">🇮🇹</div><div class="rv-name">Milan</div><div class="rv-date">9 – 11 Jun</div></div>
     </a>
   </div>
 
   <div class="regions">
-    <div class="region-card">
+    <div class="region-card" onclick="openDay('dk28')" style="cursor:pointer">
       <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')">
         <div class="region-img-overlay"></div>
         <div class="region-flag">🇩🇰</div>
@@ -329,7 +367,7 @@ tr:last-child td{border-bottom:none}
         </div>
       </div>
     </div>
-    <div class="region-card">
+    <div class="region-card" onclick="openDay('it01')" style="cursor:pointer">
       <div class="region-img" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0')">
         <div class="region-img-overlay"></div>
         <div class="region-flag">🇮🇹</div>
@@ -463,9 +501,11 @@ tr:last-child td{border-bottom:none}
 
   <div class="add-form">
     <h3>เพิ่มรายการ</h3>
-    <div class="form-grid">
-      <input class="form-input" id="e-desc" type="text" placeholder="รายการ เช่น ค่าโรงแรม Como">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px" class="e-row1">
+      <input class="form-input" id="e-desc" type="text" placeholder="รายการ" style="grid-column:span 2">
       <input class="form-input" id="e-amt" type="number" placeholder="จำนวนเงิน" min="0" step="0.01">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
       <select class="form-select" id="e-cat">
         <option value="food">🍜 อาหาร</option>
         <option value="transport">✈️ เดินทาง</option>
@@ -473,8 +513,11 @@ tr:last-child td{border-bottom:none}
         <option value="activity">🎭 กิจกรรม</option>
         <option value="other">📦 อื่นๆ</option>
       </select>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 140px 120px;gap:10px;margin-bottom:0">
+      <select class="form-select" id="e-cur">
+        <option value="THB">🇹🇭 THB</option>
+        <option value="DKK">🇩🇰 DKK</option>
+        <option value="EUR">🇪🇺 Euro</option>
+      </select>
       <select class="form-select" id="e-payer">
         <option value="">ใครจ่าย?</option>
         <option value="Ploy">Ploy</option>
@@ -483,9 +526,11 @@ tr:last-child td{border-bottom:none}
         <option value="Name">Name</option>
         <option value="Fern">Fern</option>
       </select>
-      <div style="position:relative">
+    </div>
+    <div style="display:flex;gap:8px">
+      <div style="position:relative;flex:1">
         <div id="split-picker" style="display:flex;gap:6px;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--cream);cursor:pointer;font-size:13px;color:var(--muted)" onclick="toggleSplitPicker()">หารกับใคร?</div>
-        <div id="split-dropdown" style="display:none;position:absolute;top:44px;left:0;z-index:50;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,0.08);min-width:160px">
+        <div id="split-dropdown" style="display:none;position:absolute;bottom:44px;left:0;z-index:50;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,0.12);min-width:160px">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">เลือกคนที่หารด้วย</div>
           <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Ploy" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" style="width:20px;height:20px;border-radius:50%"> Ploy</label>
           <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="P" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" style="width:20px;height:20px;border-radius:50%"> P</label>
@@ -495,12 +540,7 @@ tr:last-child td{border-bottom:none}
           <button onclick="selectAllCrew()" style="margin-top:8px;width:100%;padding:5px;background:var(--cream);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px">ทุกคน</button>
         </div>
       </div>
-      <select class="form-select" id="e-cur">
-        <option value="THB">🇹🇭 THB</option>
-        <option value="DKK">🇩🇰 DKK</option>
-        <option value="EUR">🇪🇺 Euro</option>
-      </select>
-      <button class="btn-add" onclick="addExpense()">+ เพิ่ม</button>
+      <button class="btn-add" onclick="addExpense()" style="flex:1">+ เพิ่มรายการ</button>
     </div>
   </div>
 
@@ -525,6 +565,36 @@ tr:last-child td{border-bottom:none}
     </div>
     <div id="settlement-list"></div>
   </div>
+</div>
+
+<!-- SEARCH -->
+<div id="search" class="section">
+  <div class="section-label">ค้นหาข้อมูล</div>
+  <h2 class="section-title">ค้นหาสถานที่</h2>
+
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:24px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+      <input id="search-input" class="form-input" type="text" placeholder="เช่น Nyhavn, Tre Cime, Duomo…" style="flex:1;min-width:200px" onkeydown="if(event.key==='Enter')doSearch()">
+      <select id="search-region" class="form-select" style="width:auto;min-width:140px">
+        <option value="all">🌍 ทุกที่</option>
+        <option value="dk">🇩🇰 Copenhagen</option>
+        <option value="it">🇮🇹 Italy</option>
+      </select>
+      <button onclick="doSearch()" style="padding:10px 20px;background:var(--ink);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;white-space:nowrap">🔍 ค้นหา</button>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--muted);padding-top:4px">แนะนำ:</span>
+      <button onclick="quickSearch('Nyhavn Copenhagen')" class="search-suggest">Nyhavn</button>
+      <button onclick="quickSearch('Tre Cime di Lavaredo Dolomites')" class="search-suggest">Tre Cime</button>
+      <button onclick="quickSearch('Alpe di Siusi Dolomites')" class="search-suggest">Alpe di Siusi</button>
+      <button onclick="quickSearch('Manarola Cinque Terre')" class="search-suggest">Manarola</button>
+      <button onclick="quickSearch('Duomo di Milano')" class="search-suggest">Duomo Milan</button>
+      <button onclick="quickSearch('Lake Como Italy')" class="search-suggest">Lake Como</button>
+    </div>
+  </div>
+
+  <div id="search-loading" style="display:none;text-align:center;padding:40px;color:var(--muted)">⏳ กำลังค้นหา...</div>
+  <div id="search-result"></div>
 </div>
 
 </div><!-- /page -->
@@ -901,6 +971,7 @@ function openDay(key){
     const isLast=i===day.items.length-1;
     const dotCls='tl-dot'+(item.type==='flight'?' flight':item.type==='hotel'?' hotel':'');
     const story = PLACE_STORIES[item.place]||PLACE_STORIES[item.mapLabel]||null;
+    const menu = RESTAURANT_MENUS[item.place]||RESTAURANT_MENUS[item.mapLabel]||null;
     let card='';
     if(item.photos||item.mapUrl||item.rating){
       const ph=item.photos?item.photos.map(u=>`<div class="place-photo" style="background-image:url('${u}')"></div>`).join(''):'';
@@ -917,8 +988,18 @@ function openDay(key){
     } else if(item.travelFrom){
       card=`<div style="margin-top:6px;display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:var(--cream);border:1px solid var(--border);padding:3px 9px;border-radius:20px;">${item.travelMode||'🚗'} ${item.travelFrom}</div>`;
     }
-    const storyHtml = story?`<div class="place-story"><div class="place-story-title">${story.title}</div>${story.story}</div>`:'';
-    const expandHint = story?`<span style="font-size:10px;color:var(--muted);margin-left:6px;letter-spacing:1px">▸ กดอ่านเพิ่มเติม</span>`:'';
+    const storyHtml = story?`<div class="place-story"><div class="place-story-title">${story.title}</div>${story.story}</div>`:
+      menu?`<div class="place-story">
+        <div class="place-story-title">${menu.emoji} ${menu.name}</div>
+        <div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:12px">
+          ${menu.photos.map(p=>`<img src="${p}" style="width:90px;height:65px;border-radius:8px;object-fit:cover;flex-shrink:0">`).join('')}
+        </div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">ต้องสั่ง 🍽️</div>
+        ${menu.mustOrder.map(m=>`<div style="display:flex;gap:8px;margin-bottom:5px;font-size:13px"><span style="color:var(--accent);flex-shrink:0">✦</span>${m}</div>`).join('')}
+        ${menu.tip?`<div style="background:#EAF4EE;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:12px;color:var(--dk-green)">💡 ${menu.tip}</div>`:''}
+        ${menu.priceRange?`<div style="margin-top:8px;font-size:12px;color:var(--muted)">💰 ${menu.priceRange}</div>`:''}
+      </div>`:'';
+    const expandHint = (story||menu)?`<span style="font-size:10px;color:var(--muted);margin-left:6px;letter-spacing:1px">${menu?'🍽️ ดูเมนู':'▸ อ่านเพิ่ม'}</span>`:'';
     return `<div class="tl-item" onclick="toggleExpand(this)">
       <div class="tl-time">${item.time||''}</div>
       <div class="tl-spine"><div class="${dotCls}"></div>${!isLast?'<div class="tl-connector"></div>':''}</div>
@@ -1301,9 +1382,150 @@ async function loadWeather(dayKey, containerEl){
   }
 }
 
+// ── Restaurant menus ─────────────────────────────────────────
+const RESTAURANT_MENUS = {
+  '🍜 Slurp Ramen': {
+    emoji:'🍜', name:'Slurp Ramen · Copenhagen',
+    mustOrder:['Tonkotsu Ramen — น้ำซุปใสแต่รสเข้ม ไข่ออนเซ็น','Spicy Miso Ramen — เผ็ดกำลังดี','Gyoza — แนะนำให้สั่งเป็น side'],
+    tip:'มาก่อนเปิด 10 นาที ไม่งั้นรอนาน เป็น ramen ที่ดีที่สุดใน Copenhagen',
+    priceRange:'150–200 DKK/คน',
+    photos:['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1557872943-16a5ac26437e?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1617196034183-421b4040ed20?fm=jpg&q=75&w=300&auto=format&fit=crop']
+  },
+  'Dinner / Bar Bellagio': {
+    emoji:'🍷', name:'Bar Bellagio · Lake Como',
+    mustOrder:['Aperol Spritz — ริมทะเลสาบ ต้องสั่ง','Risotto al Lago — ข้าวรสอูมามิ','Bruschetta Pomodoro — antipasto เบาๆก่อนมื้อหลัก'],
+    tip:'จองโต๊ะริมน้ำล่วงหน้า วิว sunset สวยมาก มาก่อน 18:30',
+    priceRange:'€35–60/คน',
+    photos:['https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1559339352-11d035aa65de?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1504674900247-0877df9cc836?fm=jpg&q=75&w=300&auto=format&fit=crop']
+  },
+  'Osteria da Fortunata': {
+    emoji:'🍝', name:'Osteria da Fortunata · Milan (Brera)',
+    mustOrder:['Cacio e Pepe — pasta แบบโรมัน เส้นทำสด','Carbonara — ไม่มีครีม แบบ original 100%','Supplì — ลูกข้าวทอดอิตาเลียน'],
+    tip:'เดินเข้าไป ไม่รับจอง รอแป๊บเดียว ราคาถูกมากสำหรับ Milan ของสดมาก',
+    priceRange:'€15–25/คน',
+    photos:['https://images.unsplash.com/photo-1414235077428-338989a2e8c0?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1555396273-367ea4eb4db5?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1567521464027-f127ff144326?fm=jpg&q=75&w=300&auto=format&fit=crop']
+  },
+  'La Banchina': {
+    emoji:'🦪', name:'La Banchina · Copenhagen',
+    mustOrder:['Fresh Oysters — หอยนางรมสด 6 ชิ้น','Natural Wine — เลือก orange wine','Smørrebrød — ขนมปังหน้าแซลมอน smoked'],
+    tip:'ไม่ต้องจอง มานั่งริมน้ำ สั่งทีละอย่าง บรรยากาศ hygge สุดๆ',
+    priceRange:'150–250 DKK/คน',
+    photos:['https://images.unsplash.com/photo-1559339352-11d035aa65de?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1536782376769-c3e9ba30f00c?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?fm=jpg&q=75&w=300&auto=format&fit=crop']
+  },
+};
+
 // Load expenses on page load
 loadExpenses();
-if(expenses.length>0) setTimeout(renderExpenses,100);
+if(expenses.length>0) setTimeout(renderExpenses,100);(q){
+  document.getElementById('search-input').value = q;
+  doSearch();
+  showSection('search', document.querySelectorAll('.nav-tab')[4]);
+}
+
+async function doSearch(){
+  const q = document.getElementById('search-input').value.trim();
+  const region = document.getElementById('search-region').value;
+  if(!q) return;
+
+  const loading = document.getElementById('search-loading');
+  const result = document.getElementById('search-result');
+  loading.style.display='block';
+  result.innerHTML='';
+
+  const regionHint = region==='dk'?' Copenhagen Denmark': region==='it'?' Italy':'';
+  const searchQuery = q + regionHint;
+
+  try {
+    // Call Claude API to get place info
+    const prompt = `Give detailed travel information about "${q}"${regionHint ? ' in'+regionHint : ''} for Thai tourists. Reply ONLY with valid JSON (no markdown, no backticks):
+{
+  "name": "Full place name",
+  "nameLocal": "Local language name if different",
+  "category": "museum/restaurant/nature/landmark/etc",
+  "location": "City, Country",
+  "hours": "Opening hours",
+  "price": "Entry fee or price range",
+  "summary": "2-3 engaging sentences about what makes this place special, in Thai language",
+  "highlights": ["highlight1","highlight2","highlight3"],
+  "tips": "1 practical tip for visitors, in Thai",
+  "lat": 0.0,
+  "lon": 0.0,
+  "mustTry": "If restaurant: signature dish to order. If attraction: best photo spot or activity"
+}`;
+
+    const apiRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const apiData = await apiRes.json();
+    const raw = apiData.content?.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
+    const info = JSON.parse(raw);
+
+    // Unsplash search photos based on place name
+    const photoKeywords = encodeURIComponent(info.name||q);
+    const photos = [
+      `https://images.unsplash.com/featured/?${photoKeywords}&w=400&q=80&auto=format&fit=crop`,
+      `https://images.unsplash.com/featured/?${photoKeywords}+travel&w=400&q=80&auto=format&fit=crop`,
+      `https://images.unsplash.com/featured/?${photoKeywords}+landscape&w=400&q=80&auto=format&fit=crop`,
+    ];
+
+    // Build map embed
+    const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(info.name||q)}&output=embed&hl=th&z=14`;
+    const mapLink = `https://www.google.com/maps/search/${encodeURIComponent(info.name||q)}`;
+
+    const catIcon = {museum:'🏛️',restaurant:'🍽️',nature:'🌿',landmark:'📍',beach:'🏖️',church:'⛪',castle:'🏰',market:'🛍️',park:'🌳',lake:'💧',mountain:'⛰️'}[info.category?.toLowerCase()]||'📍';
+
+    result.innerHTML = `
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+        <div class="sr-photos">
+          ${photos.map(p=>`<div class="sr-photo" style="background-image:url('${p}')"></div>`).join('')}
+        </div>
+        <div style="padding:20px 24px">
+          <div style="margin-bottom:8px">
+            <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500">${catIcon} ${info.category||'สถานที่'}</div>
+          </div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin-bottom:4px">${info.name}</h2>
+          ${info.nameLocal?`<div style="font-size:13px;color:var(--muted);margin-bottom:12px">${info.nameLocal}</div>`:''}
+          <div class="sr-meta">
+            <span class="sr-badge">📍 ${info.location||''}</span>
+            ${info.hours?`<span class="sr-badge">🕐 ${info.hours}</span>`:''}
+            ${info.price?`<span class="sr-badge">💰 ${info.price}</span>`:''}
+          </div>
+          <p style="font-size:14px;line-height:1.8;color:var(--ink2);margin-bottom:16px">${info.summary||''}</p>
+          ${info.highlights?.length?`<div style="margin-bottom:14px">
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">ไฮไลท์</div>
+            ${info.highlights.map(h=>`<div style="display:flex;gap:8px;margin-bottom:6px;font-size:13px"><span style="color:var(--accent);flex-shrink:0">✦</span>${h}</div>`).join('')}
+          </div>`:''}
+          ${info.mustTry?`<div style="background:var(--cream);border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px">
+            <span style="font-weight:500">⭐ ต้องลอง:</span> ${info.mustTry}
+          </div>`:''}
+          ${info.tips?`<div style="background:#EAF4EE;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
+            <span style="font-weight:500;color:var(--dk-green)">💡 เคล็ดลับ:</span> ${info.tips}
+          </div>`:''}
+          <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:12px">
+            <div style="padding:10px 14px;background:var(--cream);display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">แผนที่</span>
+              <a href="${mapLink}" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none;font-weight:500">เปิดใน Google Maps →</a>
+            </div>
+            <iframe style="width:100%;height:240px;border:none;display:block" loading="lazy" src="${mapSrc}" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>`;
+  } catch(err) {
+    result.innerHTML=`<div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;color:var(--muted)">
+      <div style="font-size:32px;margin-bottom:8px">🔍</div>
+      <div style="font-size:14px">ไม่พบข้อมูลสำหรับ "${q}"</div>
+      <div style="font-size:12px;margin-top:4px">ลองค้นหาด้วยชื่อภาษาอังกฤษครับ</div>
+    </div>`;
+    console.error('Search error:',err);
+  }
+  loading.style.display='none';
+}
 </script>
 </body>
 </html>
