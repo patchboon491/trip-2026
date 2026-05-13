@@ -191,7 +191,118 @@ tr:last-child td{border-bottom:none}
 .day-nav-btn:disabled{opacity:0.3;cursor:not-allowed}
 .day-nav-center{flex:1;text-align:center;font-size:13px;color:var(--muted)}
 
-/* GMAP EMBED */
+/* COUNTDOWN PAGE */
+#countdown-page{display:none;background:#0D1117;min-height:100vh}
+
+/* Timer hero section */
+.cd-timer-hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#0D1117 0%,#1a2744 35%,#2D1B4E 65%,#1a0f2e 100%);
+  padding:56px 40px 60px;text-align:center;
+}
+.cd-timer-hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=60&w=1200&auto=format&fit=crop') center/cover no-repeat;
+  opacity:0.18;
+}
+.cd-timer-hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(13,17,23,0.3) 0%,rgba(13,17,23,0.0) 40%,rgba(13,17,23,0.6) 100%);
+}
+.cd-timer-inner{position:relative;z-index:2;max-width:680px;margin:0 auto}
+.cd-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:#C4914A;margin-bottom:24px;font-weight:500;opacity:0.9}
+.cd-timer{display:flex;justify-content:center;gap:0;margin-bottom:36px;flex-wrap:nowrap}
+.cd-unit{display:flex;flex-direction:column;align-items:center;min-width:80px;position:relative}
+.cd-unit + .cd-unit::before{
+  content:':';
+  position:absolute;left:-12px;top:6px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,8vw,64px);
+  color:rgba(255,255,255,0.2);
+  line-height:1;
+}
+.cd-num{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(52px,12vw,88px);font-weight:400;line-height:1;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(196,145,74,0.4);
+  letter-spacing:-2px;
+}
+.cd-ulab{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px}
+.cd-quote-wrap{
+  margin-top:8px;
+  padding:28px 32px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;
+  backdrop-filter:blur(8px);
+}
+.cd-quote{font-family:'Playfair Display',serif;font-size:clamp(16px,3vw,21px);font-style:italic;color:rgba(255,255,255,0.9);line-height:1.7;margin-bottom:10px}
+.cd-quote-src{font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:2px;text-transform:uppercase}
+
+/* Checklist section */
+.cd-body{max-width:700px;margin:0 auto;padding:0 40px 60px}
+.cd-checklist-wrap{margin-top:-24px;position:relative;z-index:3}
+.cd-cl-header{
+  background:linear-gradient(135deg,#1D4038 0%,#2D6A4F 100%);
+  border-radius:16px 16px 0 0;
+  padding:20px 28px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cd-cl-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff}
+.cd-cl-sub{font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px}
+.cd-progress{height:5px;background:rgba(255,255,255,0.2);border-radius:2px;overflow:hidden;margin-top:14px}
+.cd-progress-bar{height:100%;background:linear-gradient(90deg,#9FE1CB,#EF9F27);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.cd-progress-label{font-size:11px;color:rgba(255,255,255,0.5);text-align:right;margin-top:5px}
+
+.cd-items-grid{
+  background:var(--white);
+  border:1px solid var(--border);border-top:none;
+  border-radius:0 0 16px 16px;
+  overflow:hidden;
+}
+.cd-item{
+  display:grid;grid-template-columns:56px 1fr auto;align-items:center;
+  gap:0;border-bottom:0.5px solid var(--border);
+  cursor:pointer;transition:background .15s;
+  min-height:72px;
+}
+.cd-item:last-child{border-bottom:none}
+.cd-item:hover{background:#FAFAF8}
+.cd-item.done{background:#F8FBF9}
+.cd-item.done .cd-emoji-wrap{opacity:0.5}
+.cd-item.done .cd-item-title{text-decoration:line-through;color:var(--muted)}
+.cd-item.done .cd-check{background:var(--dk-green);border-color:var(--dk-green);color:white}
+
+.cd-emoji-wrap{
+  display:flex;align-items:center;justify-content:center;
+  width:56px;height:100%;min-height:72px;
+  background:var(--cream);border-right:0.5px solid var(--border);
+  font-size:22px;flex-shrink:0;
+}
+.cd-item-mid{padding:12px 16px;flex:1}
+.cd-item-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.cd-item-cat{font-size:10px;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.cd-item-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.cd-check{
+  width:24px;height:24px;border-radius:50%;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-right:16px;
+  font-size:11px;font-weight:700;
+  transition:all .2s;
+  background:var(--cream);
+}
+
+.cd-footer{text-align:center;padding:24px 0 8px;font-size:12px;color:rgba(255,255,255,0.3)}
+
+@media(max-width:640px){
+  .cd-timer-hero{padding:44px 20px 48px}
+  .cd-body{padding:0 16px 48px}
+  .cd-unit{min-width:60px}
+  .cd-cl-header{padding:16px 20px 14px}
+  .cd-quote-wrap{padding:20px}
+}
 .gmap-box{border-radius:14px;overflow:hidden;margin-bottom:32px;border:1px solid var(--border)}
 .gmap-header{padding:14px 18px;background:var(--white);display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
 .gmap-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500}
@@ -291,8 +402,48 @@ tr:last-child td{border-bottom:none}
   <div class="scroll-hint">scroll</div>
 </div>
 
+<!-- COUNTDOWN PAGE (shown before 27 May 2026) -->
+<div id="countdown-page">
+
+  <!-- Hero with background photo + timer -->
+  <div class="cd-timer-hero">
+    <div class="cd-timer-inner">
+      <div class="cd-eyebrow">Denmark &amp; Italy 2026 — เหลืออีก</div>
+      <div class="cd-timer">
+        <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-ulab">วัน</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-ulab">ชั่วโมง</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-ulab">นาที</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-ulab">วินาที</span></div>
+      </div>
+      <div class="cd-quote-wrap">
+        <div class="cd-quote" id="cd-quote">"The world is a book, and those who do not travel read only one page."</div>
+        <div class="cd-quote-src">— Saint Augustine</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checklist -->
+  <div class="cd-body">
+    <div class="cd-checklist-wrap">
+      <div class="cd-cl-header">
+        <div>
+          <div class="cd-cl-title">✈️ Checklist ก่อนออกเดินทาง</div>
+          <div class="cd-cl-sub">Copenhagen · Lake Como · Cinque Terre · Dolomites · Milan</div>
+        </div>
+        <div style="text-align:right">
+          <div class="cd-progress" style="width:120px"><div class="cd-progress-bar" id="cd-bar" style="width:0%"></div></div>
+          <div class="cd-progress-label" id="cd-prog-label">0 / 18</div>
+        </div>
+      </div>
+      <div class="cd-items-grid" id="cd-items"></div>
+    </div>
+
+    <div class="cd-footer">ทริปเริ่ม 28 May 2026 · หน้านี้จะเปิดเต็มรูปแบบ 27 May 2026</div>
+  </div>
+</div>
+
 <!-- NAV -->
-<nav class="sticky-nav">
+<nav class="sticky-nav" id="main-nav">
   <div class="nav-inner">
     <button class="nav-tab active" onclick="showSection('overview',this)">ภาพรวม</button>
     <button class="nav-tab" onclick="showSection('daily',this)">รายวัน</button>
@@ -1413,6 +1564,123 @@ const RESTAURANT_MENUS = {
     photos:['https://images.unsplash.com/photo-1559339352-11d035aa65de?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1536782376769-c3e9ba30f00c?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?fm=jpg&q=75&w=300&auto=format&fit=crop']
   },
 };
+
+// ── Countdown & gate logic ────────────────────────────────────
+const UNLOCK_DATE = new Date('2026-05-27T00:00:00+07:00'); // Bangkok time
+
+const CHECKLIST = [
+  {id:'exercise', emoji:'🏃',cat:'สุขภาพ',    title:'ออกกำลังกายสม่ำเสมอ',          desc:'เตรียมร่างกายสำหรับเดินเยอะ โดยเฉพาะ Dolomites hiking 10km+'},
+  {id:'mama',     emoji:'🍜',cat:'ของกิน',    title:'มาม่า / บะหมี่สำเร็จรูป',       desc:'เผื่อคืนไหนหิวดึก ใส่ไปสัก 5–10 ซอง'},
+  {id:'namprik',  emoji:'🌶️',cat:'ของกิน',   title:'น้ำพริก / เครื่องปรุงไทย',      desc:'น้ำพริกนรก, พริกแห้ง หรือซอสพริก สำหรับอาหารขาดรส'},
+  {id:'lock',     emoji:'🔒',cat:'ความปลอดภัย',title:'กุญแจล็อคกระเป๋า TSA',         desc:'สนามบินยุโรปเปิดกระเป๋าได้ ต้องใช้ TSA lock ที่เจ้าหน้าที่มีกุญแจ'},
+  {id:'chain',    emoji:'⛓️',cat:'ความปลอดภัย',title:'สายล็อกหรือโซ่นิรภัย',         desc:'ล็อคกระเป๋าไว้กับเฟอร์นิเจอร์ในโรงแรม หรือที่นั่งในรถ'},
+  {id:'hotel',    emoji:'🏡',cat:'Confirm',   title:'Confirm ที่พักทุกแห่ง',          desc:'Go Hotel · Lavinia · La Casa Di Christine · Granvara · Misurina · Waldrast · Spontini'},
+  {id:'car',      emoji:'🚗',cat:'Confirm',   title:'Confirm รถเช่า Milan',            desc:'วันรับ-คืนรถ ประเภทรถ และประกัน CDW/TP ครบหรือยัง'},
+  {id:'idl',      emoji:'📄',cat:'เอกสาร',   title:'ใบขับขี่สากล (IDP)',              desc:'ทำที่กรมการขนส่ง ใช้เวลา 1 วัน ค่าธรรมเนียม 505 บาท'},
+  {id:'passport', emoji:'🛂',cat:'เอกสาร',   title:'Check หนังสือเดินทาง',            desc:'อายุเหลืออย่างน้อย 6 เดือน หลัง 11 June 2026'},
+  {id:'visa',     emoji:'🇪🇺',cat:'เอกสาร',  title:'ตรวจสอบ ETIAS',                  desc:'คนไทยเข้า Schengen ฟรี แต่ต้องลงทะเบียน ETIAS ล่วงหน้า'},
+  {id:'insurance',emoji:'🏥',cat:'ประกัน',   title:'ประกันการเดินทาง',               desc:'ครอบคลุม medical, cancellation, baggage loss อย่างน้อย 1.5M บาท'},
+  {id:'meds',     emoji:'💊',cat:'สุขภาพ',   title:'ยาประจำตัวและยาทั่วไป',          desc:'ยาแก้ปวด ยาท้องเสีย ยาแก้แพ้ ยานอนหลับ ยาแก้เมารถ'},
+  {id:'adaptor',  emoji:'🔌',cat:'อุปกรณ์',  title:'Adaptor ปลั๊กยุโรป Type C/E',    desc:'ยุโรปใช้ 220V/50Hz Type C/E ไม่ใช่ Type A ของไทย'},
+  {id:'bank',     emoji:'💳',cat:'เงิน',     title:'แจ้งธนาคาร + เตรียมเงินสด',      desc:'EUR 300–400 และ DKK 1,000–1,500 สำหรับช่วงแรก'},
+  {id:'esim',     emoji:'📱',cat:'สื่อสาร',  title:'eSIM หรือ SIM ยุโรป',             desc:'Airalo หรือ Truemove Europe สำหรับ nav ใน Dolomites ที่สัญญาณอ่อน'},
+  {id:'download', emoji:'🗺️',cat:'แอพ',      title:'Download แผนที่ offline',          desc:'Google Maps offline: Denmark + Italy ทั้งหมด รวม Dolomites'},
+  {id:'clothes',  emoji:'🥾',cat:'เสื้อผ้า', title:'เสื้อผ้าและอุปกรณ์ hiking',      desc:'Hiking shoes จริงๆ และ layer สำหรับ 8–20°C ในภูเขา Dolomites'},
+  {id:'camera',   emoji:'📷',cat:'อุปกรณ์', title:'Camera · SD card · Charger',       desc:'SD card 128GB+ เผื่อรูปเยอะ และ power bank สำหรับวันเดินเขา'},
+];
+
+const QUOTES = [
+  {q:'"The world is a book, and those who do not travel read only one page."',src:'— Saint Augustine'},
+  {q:'"Not all those who wander are lost."',src:'— J.R.R. Tolkien'},
+  {q:'"Travel is the only thing you buy that makes you richer."',src:'— Anonymous'},
+  {q:'"Life is either a daring adventure or nothing at all."',src:'— Helen Keller'},
+  {q:'"Wherever you go, go with all your heart."',src:'— Confucius'},
+  {q:'"The journey of a thousand miles begins with a single step."',src:'— Lao Tzu'},
+  {q:'"Jobs fill your pockets, adventures fill your soul."',src:'— Jaime Lyn Beatty'},
+];
+
+function initCountdown(){
+  const now = new Date();
+  const isUnlocked = now >= UNLOCK_DATE;
+
+  if(isUnlocked){
+    // Show full site
+    document.getElementById('countdown-page').style.display = 'none';
+    document.getElementById('main-nav').style.display = 'block';
+    document.querySelector('.page').style.display = 'block';
+  } else {
+    // Show countdown
+    document.getElementById('countdown-page').style.display = 'block';
+    document.getElementById('main-nav').style.display = 'none';
+    document.querySelector('.page').style.display = 'none';
+    buildChecklist();
+    tickCountdown();
+    setInterval(tickCountdown, 1000);
+    // Rotate quote daily
+    const qi = Math.floor(Date.now() / 86400000) % QUOTES.length;
+    document.getElementById('cd-quote').textContent = QUOTES[qi].q;
+    document.querySelector('.cd-quote-src').textContent = QUOTES[qi].src;
+  }
+}
+
+function tickCountdown(){
+  const now = new Date();
+  const diff = UNLOCK_DATE - now;
+  if(diff <= 0){ location.reload(); return; }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+}
+
+const CL_KEY = 'trip2026_checklist';
+function loadChecked(){ try{ return JSON.parse(localStorage.getItem(CL_KEY)||'[]'); }catch(e){ return []; } }
+function saveChecked(arr){ try{ localStorage.setItem(CL_KEY, JSON.stringify(arr)); }catch(e){} }
+
+function buildChecklist(){
+  const checked = loadChecked();
+  const container = document.getElementById('cd-items');
+  container.innerHTML = CHECKLIST.map(item => `
+    <div class="cd-item${checked.includes(item.id)?' done':''}" onclick="toggleCheck('${item.id}',this)" id="cl-${item.id}">
+      <div class="cd-emoji-wrap">${item.emoji}</div>
+      <div class="cd-item-mid">
+        <div class="cd-item-cat">${item.cat}</div>
+        <div class="cd-item-title">${item.title}</div>
+        <div class="cd-item-desc">${item.desc}</div>
+      </div>
+      <div class="cd-check">${checked.includes(item.id)?'✓':''}</div>
+    </div>`).join('');
+  updateProgress(checked.length);
+}
+
+function toggleCheck(id, el){
+  let checked = loadChecked();
+  const chk = el.querySelector('.cd-check');
+  if(checked.includes(id)){
+    checked = checked.filter(c=>c!==id);
+    el.classList.remove('done');
+    chk.textContent='';
+  } else {
+    checked.push(id);
+    el.classList.add('done');
+    chk.textContent='✓';
+  }
+  saveChecked(checked);
+  updateProgress(checked.length);
+}
+
+function updateProgress(n){
+  const pct = Math.round(n/CHECKLIST.length*100);
+  document.getElementById('cd-bar').style.width = pct+'%';
+  document.getElementById('cd-prog-label').textContent = `${n} / ${CHECKLIST.length} รายการ (${pct}%)`;
+}
+
+// ── Init ──────────────────────────────────────────────────────
+initCountdown();
 
 // Load expenses on page load
 loadExpenses();
