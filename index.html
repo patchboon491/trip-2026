@@ -307,20 +307,13 @@ tr:last-child td{border-bottom:none}
   pointer-events:none;
   display:none;
   overflow:hidden;
-}
-/* Dark fill that rises from bottom following the plane */
-.pt-dark{
-  position:absolute;
-  left:0;right:0;bottom:0;
-  height:0;
   background:#000;
-  transition:height 1.3s cubic-bezier(.4,0,.2,1);
 }
-/* Stars above the dark zone */
+/* Stars */
 .pt-stars{
   position:absolute;inset:0;
   opacity:0;
-  transition:opacity .4s ease .1s;
+  transition:opacity .4s ease;
 }
 .pt-star{
   position:absolute;
@@ -328,30 +321,44 @@ tr:last-child td{border-bottom:none}
   background:#fff;
   animation:twinkle .9s ease infinite alternate;
 }
-@keyframes twinkle{0%{opacity:.15}100%{opacity:.9}}
-/* Plane image */
+@keyframes twinkle{0%{opacity:.1}100%{opacity:.85}}
+
+/* Full-screen plane silhouette */
 .pt-plane{
   position:absolute;
   left:50%;
-  width:160px;
+  width:min(95vw, 680px);
   transform:translateX(-50%);
-  bottom:-200px;
-  opacity:0;
-  transition:bottom 1.3s cubic-bezier(.22,.61,.36,1), opacity .25s ease;
-  filter:drop-shadow(0 0 18px rgba(255,255,255,0.5));
-  will-change:bottom,opacity;
+  bottom:-110%;
+  opacity:1;
+  transition:bottom 1.4s cubic-bezier(.22,.61,.28,1);
+  will-change:bottom;
+  filter:drop-shadow(0 0 40px rgba(255,255,255,0.15));
 }
-/* Trail glow below plane */
-.pt-trail{
+
+/* Engine glow trails */
+.pt-glow{
   position:absolute;
-  left:calc(50% - 3px);
-  width:6px;
+  left:50%;
   bottom:0;
+  transform:translateX(-50%);
+  width:min(95vw,680px);
   height:0;
-  background:linear-gradient(to top,transparent,rgba(255,255,255,0.12));
-  transition:height 1.3s cubic-bezier(.22,.61,.36,1);
-  border-radius:3px;
+  transition:height 1.4s cubic-bezier(.22,.61,.28,1);
+  pointer-events:none;
 }
+.pt-glow::before,.pt-glow::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  width:6px;
+  border-radius:3px;
+  background:linear-gradient(to top,rgba(196,145,74,0.7),transparent);
+  height:100%;
+}
+/* engine positions — roughly where engines are on the SVG */
+.pt-glow::before{left:30%}
+.pt-glow::after{right:30%}
 
 /* ── FLOATING GUIDE BUTTON ── */
 .countdown-active .float-guide{display:none!important}
@@ -712,10 +719,32 @@ tr:last-child td{border-bottom:none}
 
 <!-- PLANE TRANSITION -->
 <div id="plane-transition">
-  <div class="pt-dark" id="pt-dark"></div>
   <div class="pt-stars" id="pt-stars"></div>
-  <div class="pt-trail" id="pt-trail"></div>
-  <img class="pt-plane" id="pt-plane" src="plane.png" alt="plane">
+  <div class="pt-glow" id="pt-glow"></div>
+  <!-- Full-screen plane SVG silhouette (top-down view) -->
+  <svg class="pt-plane" id="pt-plane"
+    viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg"
+    style="overflow:visible">
+    <!-- Fuselage -->
+    <ellipse cx="200" cy="160" rx="22" ry="140" fill="white"/>
+    <!-- Nose cone -->
+    <ellipse cx="200" cy="28" rx="14" ry="30" fill="white"/>
+    <!-- Main wings -->
+    <path d="M200,120 L20,200 L30,220 L200,170 L370,220 L380,200 Z" fill="white"/>
+    <!-- Wing tips curve -->
+    <ellipse cx="22" cy="210" rx="14" ry="6" fill="white" transform="rotate(-15,22,210)"/>
+    <ellipse cx="378" cy="210" rx="14" ry="6" fill="white" transform="rotate(15,378,210)"/>
+    <!-- Tail fins horizontal -->
+    <path d="M200,265 L110,295 L115,308 L200,282 L285,308 L290,295 Z" fill="white"/>
+    <!-- Tail fin vertical -->
+    <ellipse cx="200" cy="268" rx="10" ry="30" fill="white"/>
+    <!-- Engines left -->
+    <rect x="80" y="168" width="36" height="18" rx="9" fill="white"/>
+    <!-- Engines right -->
+    <rect x="284" y="168" width="36" height="18" rx="9" fill="white"/>
+    <!-- Cockpit windows -->
+    <ellipse cx="200" cy="52" rx="7" ry="10" fill="#111" opacity="0.6"/>
+  </svg>
 </div>
 
 <!-- NAV -->
@@ -2135,44 +2164,39 @@ function updateProgress(n){
 
 function skipCountdown(){
   const el    = document.getElementById('plane-transition');
-  const dark  = document.getElementById('pt-dark');
   const plane = document.getElementById('pt-plane');
-  const trail = document.getElementById('pt-trail');
+  const glow  = document.getElementById('pt-glow');
   const stars = document.getElementById('pt-stars');
+  const vh    = window.innerHeight;
 
-  const vh = window.innerHeight;
-
-  // Scatter stars (upper area only — above where dark will cover)
-  stars.innerHTML = Array.from({length:50},()=>{
-    const x = Math.random()*100;
-    const y = Math.random()*70; // top 70%
-    const s = Math.random()*2+1;
-    const d = Math.random()*0.6;
+  // Scatter stars
+  stars.innerHTML = Array.from({length:60},()=>{
+    const x = Math.random()*100, y = Math.random()*100;
+    const s = Math.random()*2.5+.5, d = Math.random()*.8;
     return `<div class="pt-star" style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s"></div>`;
   }).join('');
 
-  // Show layer
+  // Show black fullscreen layer
   el.style.display = 'block';
   el.style.pointerEvents = 'all';
+  stars.style.opacity = '1';
 
-  // Phase 1 — plane appears at bottom
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{
-      plane.style.opacity = '1';
-      plane.style.bottom  = '-200px'; // start below screen
-    });
-  });
+  // Phase 1 — plane starts below screen, glow starts at 0
+  plane.style.transition = 'none';
+  glow.style.transition  = 'none';
+  plane.style.bottom = '-110%';
+  glow.style.height  = '0';
 
-  // Phase 2 — plane takes off, dark rises from bottom, trail follows
-  setTimeout(()=>{
-    const target = vh + 220; // fly off top of screen
+  // Phase 2 — plane flies up through screen (takes 1.4s)
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    plane.style.transition = 'bottom 1.4s cubic-bezier(.22,.61,.28,1)';
+    glow.style.transition  = 'height 1.4s cubic-bezier(.22,.61,.28,1)';
+    const target = vh + 200;
     plane.style.bottom = target + 'px';
-    trail.style.height = target + 'px';
-    dark.style.height  = '100%';      // dark fills from bottom as plane rises
-    stars.style.opacity = '1';
-  }, 80);
+    glow.style.height  = target + 'px';
+  }));
 
-  // Phase 3 — swap to main site when plane is ~60% up
+  // Phase 3 — mid-flight: swap content behind black screen
   setTimeout(()=>{
     document.getElementById('countdown-page').style.display = 'none';
     document.getElementById('main-nav').style.display = 'block';
@@ -2180,30 +2204,28 @@ function skipCountdown(){
     document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
     document.documentElement.style.scrollBehavior = '';
-  }, 900);
+  }, 800);
 
-  // Phase 4 — fade out dark to reveal main site
+  // Phase 4 — fade out black overlay after plane exits
   setTimeout(()=>{
-    dark.style.transition  = 'height .5s ease';
-    dark.style.height      = '0';
-    stars.style.opacity    = '0';
-    plane.style.opacity    = '0';
-    trail.style.transition = 'height .5s ease';
-    trail.style.height     = '0';
-  }, 1100);
+    el.style.transition = 'opacity .55s ease';
+    el.style.opacity = '0';
+  }, 1200);
 
   // Phase 5 — cleanup
   setTimeout(()=>{
     el.style.display = 'none';
+    el.style.opacity = '1';
+    el.style.transition = '';
     el.style.pointerEvents = 'none';
     document.body.classList.remove('countdown-active');
-    // reset for next use
-    dark.style.transition  = 'height 1.3s cubic-bezier(.4,0,.2,1)';
-    trail.style.transition = 'height 1.3s cubic-bezier(.22,.61,.36,1)';
-    dark.style.height  = '0';
-    trail.style.height = '0';
-    plane.style.bottom = '-200px';
-  }, 1700);
+    // reset plane
+    plane.style.transition = 'none';
+    glow.style.transition  = 'none';
+    plane.style.bottom = '-110%';
+    glow.style.height  = '0';
+    stars.style.opacity = '0';
+  }, 1850);
 }
 
 // ── Init ──────────────────────────────────────────────────────
