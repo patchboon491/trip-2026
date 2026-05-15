@@ -483,21 +483,33 @@ tr:last-child td{border-bottom:none}
 }
 .cd-timer-inner{max-width:680px;width:100%;padding-bottom:48px}
 .cd-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:#C4914A;margin-bottom:20px;font-weight:500}
-.cd-timer{display:flex;justify-content:center;gap:0;margin-bottom:32px;flex-wrap:nowrap}
-.cd-unit{display:flex;flex-direction:column;align-items:center;min-width:80px;position:relative}
-.cd-unit+.cd-unit::before{
-  content:':';position:absolute;left:-12px;top:4px;
-  font-family:'Playfair Display',serif;
-  font-size:clamp(36px,8vw,64px);
-  color:rgba(255,255,255,0.18);line-height:1;
+.cd-timer{display:flex;justify-content:center;gap:16px;margin-bottom:36px;flex-wrap:nowrap}
+.cd-unit{display:flex;flex-direction:column;align-items:center}
+.cd-flip{
+  background:linear-gradient(180deg,#2c2c2c 49%,#1a1a1a 51%);
+  border-radius:14px;
+  width:82px;height:90px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.07);
+  position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.05);
+}
+.cd-flip::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 60%);
+}
+.cd-flip::after{
+  content:'';position:absolute;left:6px;right:6px;top:calc(50% - 0.5px);
+  height:1px;background:rgba(0,0,0,0.7);z-index:2;
+  box-shadow:0 1px 0 rgba(255,255,255,0.03);
 }
 .cd-num{
   font-family:'Playfair Display',serif;
-  font-size:clamp(52px,12vw,88px);font-weight:400;line-height:1;color:#fff;
-  text-shadow:0 0 40px rgba(196,145,74,0.6),0 2px 8px rgba(0,0,0,0.5);
-  letter-spacing:-2px;
+  font-size:clamp(40px,9vw,62px);font-weight:400;line-height:1;color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,0.8);
+  letter-spacing:-1px;position:relative;z-index:1;
 }
-.cd-ulab{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:8px}
+.cd-ulab{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#C4914A;margin-top:10px;font-weight:500}
 .cd-quote-wrap{
   padding:24px 28px;
   background:rgba(255,255,255,0.04);
@@ -505,8 +517,8 @@ tr:last-child td{border-bottom:none}
   border-radius:14px;
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
 }
-.cd-quote{font-family:'Playfair Display',serif;font-size:clamp(15px,2.8vw,20px);font-style:italic;color:rgba(255,255,255,0.85);line-height:1.75;margin-bottom:8px}
-.cd-quote-src{font-size:10px;color:rgba(255,255,255,0.32);letter-spacing:2.5px;text-transform:uppercase}
+.cd-quote{font-family:'Playfair Display',serif;font-size:clamp(15px,2.8vw,20px);font-style:italic;color:rgba(255,255,255,0.85);line-height:1.75;margin-bottom:8px;transition:opacity .3s ease}
+.cd-quote-src{font-size:10px;color:rgba(255,255,255,0.32);letter-spacing:2.5px;text-transform:uppercase;transition:opacity .3s ease}
 
 /* Checklist — ต่อเนื่องจาก hero บนพื้นดำสนิท */
 .cd-body{position:relative;z-index:2;max-width:700px;margin:0 auto;padding:0 40px 60px}
@@ -567,7 +579,8 @@ tr:last-child td{border-bottom:none}
 @media(max-width:640px){
   .cd-timer-hero{padding:0 20px 44px}
   .cd-body{padding:0 16px 48px}
-  .cd-unit{min-width:62px}
+  .cd-flip{width:66px;height:72px}
+  .cd-timer{gap:10px}
   .cd-cl-header{padding:16px 20px 14px}
   .cd-quote-wrap{padding:18px 20px}
 }
@@ -618,8 +631,16 @@ tr:last-child td{border-bottom:none}
 .route-map-svg-wrap{padding:10px 14px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .route-map-svg-wrap svg{display:block}
 
-/* SEARCH */
-.search-suggest{padding:4px 12px;background:var(--cream);border:1px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;color:var(--ink2);font-family:'DM Sans',sans-serif;transition:all .15s}
+/* TRANSLATE */
+.tl-lang-btn{padding:7px 14px;background:var(--cream);border:1px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;color:var(--ink2);font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap}
+.tl-lang-btn.active,.tl-lang-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tl-cat-btn{padding:6px 14px;background:var(--cream);border:1px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;color:var(--ink2);font-family:'DM Sans',sans-serif;transition:all .15s}
+.tl-cat-btn.active,.tl-cat-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tl-phrase-card{display:flex;flex-direction:column;gap:4px;padding:14px 16px;background:var(--white);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all .15s}
+.tl-phrase-card:hover{border-color:var(--accent);background:var(--cream)}
+.tl-phrase-th{font-size:13px;color:var(--ink);font-weight:500}
+.tl-phrase-target{font-size:15px;color:var(--accent);font-weight:500;font-family:'Playfair Display',serif}
+.tl-phrase-pronoun{font-size:11px;color:var(--muted);font-style:italic}padding:4px 12px;background:var(--cream);border:1px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;color:var(--ink2);font-family:'DM Sans',sans-serif;transition:all .15s}
 .search-suggest:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* SEARCH RESULT */
@@ -690,14 +711,22 @@ tr:last-child td{border-bottom:none}
     <div class="cd-timer-inner">
       <div class="cd-eyebrow">Denmark &amp; Italy 2026 — เหลืออีก</div>
       <div class="cd-timer">
-        <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-ulab">วัน</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-ulab">ชั่วโมง</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-ulab">นาที</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-ulab">วินาที</span></div>
+        <div class="cd-unit"><div class="cd-flip"><span class="cd-num" id="cd-days">--</span></div><span class="cd-ulab">วัน</span></div>
+        <div class="cd-unit"><div class="cd-flip"><span class="cd-num" id="cd-hours">--</span></div><span class="cd-ulab">ชั่วโมง</span></div>
+        <div class="cd-unit"><div class="cd-flip"><span class="cd-num" id="cd-mins">--</span></div><span class="cd-ulab">นาที</span></div>
+        <div class="cd-unit"><div class="cd-flip"><span class="cd-num" id="cd-secs">--</span></div><span class="cd-ulab">วินาที</span></div>
       </div>
       <div class="cd-quote-wrap">
         <div class="cd-quote" id="cd-quote">"The world is a book, and those who do not travel read only one page."</div>
-        <div class="cd-quote-src">— Saint Augustine</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+          <div class="cd-quote-src">— Saint Augustine</div>
+          <button onclick="randomQuote()" title="สุ่ม quote ใหม่"
+            style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);border-radius:20px;padding:4px 12px;cursor:pointer;font-size:11px;font-family:'DM Sans',sans-serif;letter-spacing:1px;transition:all .2s"
+            onmouseover="this.style.background='rgba(255,255,255,0.16)';this.style.color='#fff'"
+            onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(255,255,255,0.5)'">
+            ↻ สุ่มใหม่
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -762,6 +791,7 @@ tr:last-child td{border-bottom:none}
     <button class="nav-tab" onclick="showSection('daily',this)">รายวัน</button>
     <button class="nav-tab" onclick="showSection('expense',this)">ค่าใช้จ่าย</button>
     <button class="nav-tab" onclick="showSection('search',this)">🔍 ค้นหา</button>
+    <button class="nav-tab" onclick="showSection('translate',this)">🌐 แปลภาษา</button>
   </div>
 </nav>
 
@@ -1059,6 +1089,59 @@ tr:last-child td{border-bottom:none}
 
   <div id="search-loading" style="display:none;text-align:center;padding:40px;color:var(--muted)">⏳ กำลังค้นหา...</div>
   <div id="search-result"></div>
+</div>
+
+<!-- TRANSLATE -->
+<div id="translate" class="section">
+  <div class="section-label">AI Translator</div>
+  <h2 class="section-title">แปลภาษา</h2>
+
+  <!-- Language selector -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+    <button class="tl-lang-btn active" onclick="setLang('th','da',this)">🇹🇭 ไทย → 🇩🇰 เดนมาร์ก</button>
+    <button class="tl-lang-btn" onclick="setLang('th','it',this)">🇹🇭 ไทย → 🇮🇹 อิตาลี</button>
+    <button class="tl-lang-btn" onclick="setLang('th','en',this)">🇹🇭 ไทย → 🇬🇧 อังกฤษ</button>
+    <button class="tl-lang-btn" onclick="setLang('en','da',this)">🇬🇧 English → 🇩🇰 Danish</button>
+    <button class="tl-lang-btn" onclick="setLang('en','it',this)">🇬🇧 English → 🇮🇹 Italian</button>
+  </div>
+
+  <!-- Input -->
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px">
+    <textarea id="tl-input" placeholder="พิมพ์ข้อความที่ต้องการแปล..." rows="4"
+      style="width:100%;padding:18px 20px;font-size:15px;font-family:'DM Sans',sans-serif;border:none;outline:none;resize:none;background:transparent;color:var(--ink);box-sizing:border-box"
+      onkeydown="if((e=arguments[0]).key==='Enter'&&(e.metaKey||e.ctrlKey))doTranslate()"></textarea>
+    <div style="padding:10px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:11px;color:var(--muted)">⌘+Enter เพื่อแปล</span>
+      <button onclick="doTranslate()" style="background:var(--ink);color:#fff;border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500">แปลเลย →</button>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div id="tl-result" style="display:none;background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px">
+    <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">
+      <span id="tl-result-lang" style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500"></span>
+    </div>
+    <div style="padding:20px">
+      <div id="tl-translated" style="font-size:22px;font-family:'Playfair Display',serif;font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.5"></div>
+      <div id="tl-pronoun" style="font-size:13px;color:var(--muted);margin-bottom:14px;font-style:italic"></div>
+      <div id="tl-note" style="font-size:13px;color:var(--ink2);line-height:1.7;background:var(--cream);border-radius:8px;padding:12px 14px;display:none"></div>
+    </div>
+  </div>
+
+  <div id="tl-loading" style="display:none;text-align:center;padding:32px;color:var(--muted);font-size:14px">⏳ กำลังแปล...</div>
+
+  <!-- Phrase book -->
+  <div style="margin-top:8px">
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px">📖 PHRASE BOOK</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px" id="tl-cat-btns">
+      <button class="tl-cat-btn active" onclick="showPhrases('food',this)">🍽️ ร้านอาหาร</button>
+      <button class="tl-cat-btn" onclick="showPhrases('hotel',this)">🏡 ที่พัก</button>
+      <button class="tl-cat-btn" onclick="showPhrases('transport',this)">🚗 เดินทาง</button>
+      <button class="tl-cat-btn" onclick="showPhrases('shopping',this)">🛍️ ช้อปปิ้ง</button>
+      <button class="tl-cat-btn" onclick="showPhrases('emergency',this)">🆘 ฉุกเฉิน</button>
+    </div>
+    <div id="tl-phrases"></div>
+  </div>
 </div>
 
 </div><!-- /page -->
@@ -1827,28 +1910,29 @@ function renderExpenses(){
   if(expenses.length===0){
     listEl.innerHTML='<div class="empty">ยังไม่มีรายการ — ข้อมูลจะบันทึกอัตโนมัติ</div>';
   } else {
-    const rows=expenses.map(e=>{
-      const t=e.thb||toTHB(e.amt,e.cur);
-      const curLabel=e.cur==='THB'?'฿':e.cur==='DKK'?'DKK':'€';
-      return `<tr>
-        <td title="${e.desc}">${e.desc}</td>
-        <td><span class="tag ${tMap[e.cat]}">${lMap[e.cat]}</span></td>
-        <td style="text-align:right;font-weight:500">${e.amt.toLocaleString('th-TH',{maximumFractionDigits:1})} ${curLabel}</td>
-        <td style="text-align:right;color:var(--accent);font-weight:500">${t.toLocaleString('th-TH')} ฿</td>
-        <td>${e.payer}</td>
-        <td style="color:#8C897F;font-size:12px">${e.people&&e.people.length?e.people.join(', '):'—'}</td>
-        <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
-      </tr>`;
+    listEl.innerHTML = expenses.map(e=>{
+      const t = e.thb||toTHB(e.amt,e.cur);
+      const curLabel = e.cur==='THB'?'฿':e.cur==='DKK'?'DKK':'€';
+      const av = CREW[e.payer]
+        ? `<img src="${CREW[e.payer].img}" style="width:28px;height:28px;border-radius:50%;flex-shrink:0" alt="${e.payer}">`
+        : `<span style="font-size:11px;color:var(--muted)">${e.payer}</span>`;
+      return `<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:0.5px solid var(--border)">
+        <span class="tag ${tMap[e.cat]}" style="flex-shrink:0;writing-mode:initial">${lMap[e.cat]}</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.desc}</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:3px;flex-wrap:wrap">
+            ${av}
+            <span style="font-size:11px;color:var(--muted)">${e.payer}</span>
+            ${e.people&&e.people.length?`<span style="font-size:10px;color:var(--muted)">→ ${e.people.join(', ')}</span>`:''}
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:13px;font-weight:500">${e.amt.toLocaleString('th-TH',{maximumFractionDigits:1})} ${curLabel}</div>
+          <div style="font-size:11px;color:var(--accent)">${t.toLocaleString('th-TH')} ฿</div>
+        </div>
+        <button class="btn-del" onclick="deleteExpense(${e.id})" style="flex-shrink:0">✕</button>
+      </div>`;
     }).join('');
-    listEl.innerHTML=`<table><thead><tr>
-      <th style="width:22%">รายการ</th>
-      <th style="width:13%">หมวด</th>
-      <th style="width:14%;text-align:right">จำนวน</th>
-      <th style="width:12%;text-align:right">THB</th>
-      <th style="width:11%">จ่ายโดย</th>
-      <th style="width:18%">หารกัน</th>
-      <th style="width:6%"></th>
-    </tr></thead><tbody>${rows}</tbody></table>`;
   }
 
   // split summary with avatar
@@ -2126,7 +2210,52 @@ const QUOTES = [
   {q:'"Wherever you go, go with all your heart."',src:'— Confucius'},
   {q:'"The journey of a thousand miles begins with a single step."',src:'— Lao Tzu'},
   {q:'"Jobs fill your pockets, adventures fill your soul."',src:'— Jaime Lyn Beatty'},
+  {q:'"The mountains are calling and I must go."',src:'— John Muir'},
+  {q:'"In every walk with nature, one receives far more than he seeks."',src:'— John Muir'},
+  {q:'"Climb the mountains and get their good tidings."',src:'— John Muir'},
+  {q:'"The sea, once it casts its spell, holds one in its net of wonder forever."',src:'— Jacques Cousteau'},
+  {q:'"We are all like the bright moon — we still have our darker side."',src:'— Kahlil Gibran'},
+  {q:'"To travel is to live."',src:'— Hans Christian Andersen'},
+  {q:'"Adventure is worthwhile in itself."',src:'— Amelia Earhart'},
+  {q:'"A ship in harbor is safe, but that is not what ships are built for."',src:'— John A. Shedd'},
+  {q:'"The higher you climb, the better the view."',src:'— Anonymous'},
+  {q:'"It is not the mountain we conquer but ourselves."',src:'— Sir Edmund Hillary'},
+  {q:'"The ocean makes me feel really small — and it makes me put my whole life into perspective."',src:'— Beyoncé'},
+  {q:'"Twenty years from now you will be more disappointed by the things you didn\'t do than by the ones you did."',src:'— Mark Twain'},
+  {q:'"Man cannot discover new oceans unless he has the courage to lose sight of the shore."',src:'— André Gide'},
+  {q:'"Of all the paths you take in life, make sure a few of them are dirt."',src:'— John Muir'},
+  {q:'"Life is short and the world is wide."',src:'— Simon Raven'},
+  {q:'"The real voyage of discovery consists not in seeking new landscapes, but in having new eyes."',src:'— Marcel Proust'},
+  {q:'"The world is yours to explore."',src:'— Anonymous'},
+  {q:'"We travel not to escape life, but for life not to escape us."',src:'— Anonymous'},
 ];
+
+let currentQuoteIdx = Math.floor(Math.random() * QUOTES.length);
+let quoteInterval;
+
+function showQuote(idx){
+  const el = document.getElementById('cd-quote');
+  const src = document.querySelector('.cd-quote-src');
+  if(!el||!src) return;
+  el.style.opacity='0';
+  src.style.opacity='0';
+  setTimeout(()=>{
+    el.textContent = QUOTES[idx].q;
+    src.textContent = QUOTES[idx].src;
+    el.style.opacity='1';
+    src.style.opacity='1';
+  }, 300);
+}
+
+function randomQuote(){
+  let next;
+  do { next = Math.floor(Math.random()*QUOTES.length); } while(next===currentQuoteIdx&&QUOTES.length>1);
+  currentQuoteIdx = next;
+  showQuote(currentQuoteIdx);
+  // reset auto-rotate timer
+  clearInterval(quoteInterval);
+  quoteInterval = setInterval(()=>{ randomQuote(); }, 8000);
+}
 
 function initCountdown(){
   const now = new Date();
@@ -2147,10 +2276,9 @@ function initCountdown(){
     buildChecklist();
     tickCountdown();
     setInterval(tickCountdown, 1000);
-    // Rotate quote daily
-    const qi = Math.floor(Date.now() / 86400000) % QUOTES.length;
-    document.getElementById('cd-quote').textContent = QUOTES[qi].q;
-    document.querySelector('.cd-quote-src').textContent = QUOTES[qi].src;
+    // Rotate quote randomly + start auto-rotate
+    showQuote(currentQuoteIdx);
+    quoteInterval = setInterval(()=>{ randomQuote(); }, 8000);
   }
 }
 
@@ -2276,7 +2404,147 @@ function skipCountdown(){
   }, 1850);
 }
 
-// ── Init ──────────────────────────────────────────────────────
+// ── Translate ─────────────────────────────────────────────────
+let tlFrom = 'th', tlTo = 'da';
+
+const LANG_NAMES = {th:'ไทย',da:'เดนมาร์ก',it:'อิตาลี',en:'English'};
+const LANG_FLAGS = {th:'🇹🇭',da:'🇩🇰',it:'🇮🇹',en:'🇬🇧'};
+
+function setLang(from, to, btn){
+  tlFrom=from; tlTo=to;
+  document.querySelectorAll('.tl-lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tl-result').style.display='none';
+  // refresh current phrase category
+  const active = document.querySelector('.tl-cat-btn.active');
+  if(active) active.click();
+}
+
+async function doTranslate(){
+  const text = document.getElementById('tl-input').value.trim();
+  if(!text) return;
+  const loading = document.getElementById('tl-loading');
+  const result  = document.getElementById('tl-result');
+  loading.style.display='block';
+  result.style.display='none';
+
+  const langFullFrom = LANG_FLAGS[tlFrom]+' '+LANG_NAMES[tlFrom];
+  const langFullTo   = LANG_FLAGS[tlTo]+' '+LANG_NAMES[tlTo];
+  const prompt = `แปลข้อความนี้จาก${LANG_NAMES[tlFrom]}เป็น${LANG_NAMES[tlTo]}: "${text}"
+
+ตอบกลับเป็น JSON เท่านั้น (ไม่มี markdown หรือ backtick):
+{
+  "translated": "คำแปล",
+  "pronunciation": "วิธีอ่านออกเสียง (เขียนแบบ phonetic ภาษาไทย)",
+  "note": "หมายเหตุหรือบริบทที่เป็นประโยชน์ เช่น ใช้เมื่อไหร่ มีทางเป็นทางการ/ไม่เป็นทางการมั้ย (ถ้ามี)"
+}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:500,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data = await res.json();
+    const raw = data.content?.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
+    const json = JSON.parse(raw);
+    document.getElementById('tl-result-lang').textContent = `${langFullFrom} → ${langFullTo}`;
+    document.getElementById('tl-translated').textContent = json.translated||'';
+    document.getElementById('tl-pronoun').textContent = json.pronunciation ? `🔊 ${json.pronunciation}` : '';
+    const noteEl = document.getElementById('tl-note');
+    if(json.note){ noteEl.textContent=json.note; noteEl.style.display='block'; }
+    else noteEl.style.display='none';
+    result.style.display='block';
+  } catch(e){
+    document.getElementById('tl-result-lang').textContent='❌ แปลไม่สำเร็จ ลองอีกครั้ง';
+    document.getElementById('tl-translated').textContent='';
+    document.getElementById('tl-pronoun').textContent='';
+    document.getElementById('tl-note').style.display='none';
+    result.style.display='block';
+  }
+  loading.style.display='none';
+}
+
+const PHRASES = {
+  food:{
+    label:'🍽️ ร้านอาหาร',
+    items:[
+      {th:'ขอโต๊ะสำหรับ 5 คน',en:'Table for 5 please',da:'Et bord til 5 venligst',it:'Un tavolo per 5 per favore',da_p:'เอ็ต บอร์ ทิล เฟ็ม เว็นลิสท์',it_p:'อุน ตาโวโล เปร์ ชิงเก แปร์ ฟาโวเร'},
+      {th:'เมนูนี้มีอะไรบ้าง',en:'What is in this dish?',da:'Hvad indeholder denne ret?',it:'Cosa contiene questo piatto?',da_p:'แวด อินเนโฮเลอ เดนเนอ เร็ต',it_p:'โคซา คอนเตียเน กเวสโต ปิยัตโต'},
+      {th:'ไม่ทานเผ็ด',en:'Not spicy please',da:'Ikke stærkt tak',it:'Non piccante per favore',da_p:'อิกเก้ สแต็อร์ก ตัค',it_p:'นอน พิกกันเต เปร์ ฟาโวเร'},
+      {th:'เก็บเงินด้วย',en:'Bill please',da:'Regningen tak',it:'Il conto per favore',da_p:'ไร-นิงเงน ตัค',it_p:'อิล คอนโต เปร์ ฟาโวเร'},
+      {th:'อร่อยมากเลย',en:'This is delicious',da:'Det er lækkert',it:'È delizioso',da_p:'เด็ด เอ็ร์ แล็กเกิร์ต',it_p:'เอ เดลิตซิโอโซ'},
+      {th:'แพ้อาหารทะเล',en:'Allergic to seafood',da:'Allergisk over for skaldyr',it:'Allergico ai frutti di mare',da_p:'อัลเล็ร์กิสก์ โอเวอ ฟอ สกัลเดียร์',it_p:'อัลเลร์จิโก อาย ฟรุตติ ดิ มาเร'},
+    ]
+  },
+  hotel:{
+    label:'🏡 ที่พัก',
+    items:[
+      {th:'เช็คอิน',en:'Check in',da:'Check ind',it:'Check in',da_p:'เช็ค อิน',it_p:'เช็ค อิน'},
+      {th:'ห้องน้ำอยู่ที่ไหน',en:'Where is the bathroom?',da:'Hvor er badeværelset?',it:'Dov\'è il bagno?',da_p:'วอร์ เอ็ร์ บาเดอแว็เรลเซ็ท',it_p:'โดเว่ อิล บานโญ'},
+      {th:'WiFi รหัสผ่านคืออะไร',en:'What is the WiFi password?',da:'Hvad er WiFi-koden?',it:'Qual è la password del WiFi?',da_p:'แวด เอ็ร์ วาย-ฟาย โคเดน',it_p:'กวัล เอ ลา พาสเวิร์ด เดล วาย-ฟาย'},
+      {th:'ขอผ้าเช็ดตัวเพิ่ม',en:'Extra towels please',da:'Ekstra håndklæder tak',it:'Asciugamani extra per favore',da_p:'เอ็กสทรา ฮอนกเลเดอ ตัค',it_p:'อาชูกามานิ เอ็กสตรา เปร์ ฟาโวเร'},
+      {th:'เช็คเอาท์กี่โมง',en:'What time is check out?',da:'Hvad er udtjekkningstiden?',it:'A che ora è il check out?',da_p:'แวด เอ็ร์ อุดเจ็กนิงสทีเดน',it_p:'อา เก โอรา เอ อิล เช็ค เอาท์'},
+    ]
+  },
+  transport:{
+    label:'🚗 เดินทาง',
+    items:[
+      {th:'ไปที่นี่ได้ยังไง',en:'How do I get there?',da:'Hvordan kommer jeg derhen?',it:'Come ci arrivo?',da_p:'วอร์ดาน คอมเมอ ยาย เดียร์เฮน',it_p:'โคเม ชิ อาร์ริโว'},
+      {th:'ขึ้นรถที่ไหน',en:'Where do I board?',da:'Hvor stiger jeg på?',it:'Dove salgo?',da_p:'วอร์ สทีเยอ ยาย โป',it_p:'โดเว ซัลโก'},
+      {th:'ตั๋วราคาเท่าไหร่',en:'How much is the ticket?',da:'Hvad koster billetten?',it:'Quanto costa il biglietto?',da_p:'แวด คอสเตอ บิลเล็ตเทน',it_p:'กวันโต คอสตา อิล บิลเยตโต'},
+      {th:'จอดที่ป้ายนี้ได้เลยมั้ย',en:'Can you stop here?',da:'Kan du stoppe her?',it:'Può fermarsi qui?',da_p:'กัน ดู สตอบเบอ เฮอ',it_p:'ปัว เฟอร์มาร์ซิ กวี'},
+      {th:'หลงทางแล้ว',en:'I am lost',da:'Jeg er faret vild',it:'Mi sono perso',da_p:'ยาย เอ็ร์ ฟาเรด วิล',it_p:'มี โซโน แปร์โซ'},
+    ]
+  },
+  shopping:{
+    label:'🛍️ ช้อปปิ้ง',
+    items:[
+      {th:'ราคาเท่าไหร่',en:'How much is this?',da:'Hvad koster det?',it:'Quanto costa?',da_p:'แวด คอสเตอ เด็ด',it_p:'กวันโต คอสตา'},
+      {th:'ลดราคาได้มั้ย',en:'Can you give a discount?',da:'Kan du give rabat?',it:'Può farmi uno sconto?',da_p:'กัน ดู กีเวอ ราบาต',it_p:'ปัว ฟาร์มิ อูโน สกอนโต'},
+      {th:'ขอลองก่อนได้มั้ย',en:'Can I try this on?',da:'Må jeg prøve det?',it:'Posso provarlo?',da_p:'โม ยาย โปรเวอ เด็ด',it_p:'โปสโซ โปรวาร์โล'},
+      {th:'มีไซส์ใหญ่กว่านี้มั้ย',en:'Do you have a bigger size?',da:'Har du en større størrelse?',it:'Ha una taglia più grande?',da_p:'ฮา ดู เอน สทอเรอ สทอเรลเซอ',it_p:'อา อูนา ตาลยา ปิว กรันเด'},
+      {th:'ห่อของขวัญให้หน่อยได้มั้ย',en:'Can you gift wrap this?',da:'Kan du pakke det ind som gave?',it:'Può fare una confezione regalo?',da_p:'กัน ดู ปากเกอ เด็ด อิน ซอม กาเวอ',it_p:'ปัว ฟาเร อูนา กอนเฟตซิโอเน เรกาโล'},
+    ]
+  },
+  emergency:{
+    label:'🆘 ฉุกเฉิน',
+    items:[
+      {th:'ช่วยด้วย',en:'Help!',da:'Hjælp!',it:'Aiuto!',da_p:'เยลป์',it_p:'อายูโต'},
+      {th:'โทรเรียกรถพยาบาล',en:'Call an ambulance',da:'Ring efter en ambulance',it:'Chiami un\'ambulanza',da_p:'ริง เอฟเตอ เอน อัมบูลานเซอ',it_p:'เกียมิ อูน อัมบูลันซา'},
+      {th:'ฉันต้องการหมอ',en:'I need a doctor',da:'Jeg har brug for en læge',it:'Ho bisogno di un medico',da_p:'ยาย ฮา บรู ฟอ เอน แล็เกอ',it_p:'โอ บิโซนโย ดิ อุน เมดิโก'},
+      {th:'ฉันทำกระเป๋าหาย',en:'I lost my bag',da:'Jeg har mistet min taske',it:'Ho perso la mia borsa',da_p:'ยาย ฮา มิสเต็ด มิน ทาสเกอ',it_p:'โอ แปร์โซ ลา เมีย บอร์ซา'},
+      {th:'โทรตำรวจ',en:'Call the police',da:'Ring til politiet',it:'Chiami la polizia',da_p:'ริง ทิล โปลีตีเอ็ด',it_p:'เกียมิ ลา โปลิตซีอา'},
+      {th:'ฉันแพ้ยา',en:'I am allergic to this medicine',da:'Jeg er allergisk over for denne medicin',it:'Sono allergico a questa medicina',da_p:'ยาย เอ็ร์ อัลเล็ร์กิสก์ โอเวอ ฟอ เดนเนอ เมดิซีน',it_p:'โซโน อัลเลร์จิโก อา กเวสตา เมดิชินา'},
+    ]
+  }
+};
+
+function showPhrases(cat, btn){
+  document.querySelectorAll('.tl-cat-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const data = PHRASES[cat];
+  if(!data) return;
+  const targetKey = tlTo==='da'?'da':tlTo==='it'?'it':'en';
+  const pronKey = tlTo==='da'?'da_p':tlTo==='it'?'it_p':null;
+  document.getElementById('tl-phrases').innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      ${data.items.map(p=>`
+        <div class="tl-phrase-card" onclick="document.getElementById('tl-input').value='${p.th.replace(/'/g,"\\'")}';doTranslate()">
+          <div class="tl-phrase-th">${p.th}</div>
+          <div class="tl-phrase-target">${p[targetKey]||p.en}</div>
+          ${pronKey&&p[pronKey]?`<div class="tl-phrase-pronoun">🔊 ${p[pronKey]}</div>`:''}
+        </div>
+      `).join('')}
+    </div>`;
+}
+
+// init phrase book
+setTimeout(()=>{ showPhrases('food', document.querySelector('.tl-cat-btn')); },200);
 initCountdown();
 
 // Load expenses from Google Sheets on page load
