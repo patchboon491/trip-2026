@@ -940,7 +940,11 @@ tr:last-child td{border-bottom:none}
 <!-- EXPENSE -->
 <div id="expense" class="section">
   <div class="section-label">Trip Budget</div>
-  <h2 class="section-title">ค่าใช้จ่าย & หารบิล</h2>
+  <h2 class="section-title" style="display:flex;align-items:center;gap:12px">
+    ค่าใช้จ่าย & หารบิล
+    <button onclick="loadExpenses()" title="รีเฟรชจาก Google Sheets" style="background:none;border:1px solid var(--border);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:12px;color:var(--muted);font-family:'DM Sans',sans-serif">↻ Sync</button>
+  </h2>
+  <div style="font-size:12px;margin-bottom:16px;min-height:16px" id="sync-status"></div>
 
   <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:24px">
     <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:500">The Crew</div>
@@ -1683,10 +1687,47 @@ const CREW = {
 const FX = {THB:1, DKK:5, EUR:38};
 function toTHB(amt, cur){ return Math.round(amt * (FX[cur]||1)); }
 
-// ── Persistence ──────────────────────────────────────────────
-const STORAGE_KEY = 'trip2026_expenses_v2';
-function saveExpenses(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses)); }catch(e){} }
-function loadExpenses(){ try{ const d=localStorage.getItem(STORAGE_KEY); if(d) expenses=JSON.parse(d); }catch(e){} }
+// ── Google Sheets API ─────────────────────────────────────────
+const GS_URL = 'https://script.google.com/macros/s/AKfycbwKzrxjnqVk5TyHA302TK6-hDOGiASTznj1ZjRRZyDtDiMieOe4zMVuLgo-pCO4auG9RA/exec';
+
+function setStatus(msg, isError){
+  const el = document.getElementById('sync-status');
+  if(!el) return;
+  el.textContent = msg;
+  el.style.color = isError ? 'var(--it-red)' : 'var(--dk-green)';
+  if(msg) setTimeout(()=>{ if(el.textContent===msg) el.textContent=''; }, 3000);
+}
+
+async function gsPost(data){
+  const res = await fetch(GS_URL, {
+    method:'POST',
+    body: JSON.stringify(data),
+  });
+  return res;
+}
+
+async function loadExpenses(){
+  setStatus('⏳ กำลังโหลด...');
+  try {
+    const res = await fetch(GS_URL + '?t=' + Date.now());
+    const rows = await res.json();
+    expenses = rows.filter(r=>r[0]).map(r=>({
+      id:     Number(r[0]),
+      desc:   r[1]||'',
+      amt:    Number(r[2])||0,
+      thb:    Number(r[3])||0,
+      cat:    r[4]||'other',
+      payer:  r[5]||'',
+      people: r[6] ? String(r[6]).split(',').filter(Boolean) : [],
+      cur:    r[7]||'THB',
+    }));
+    setStatus('✅ โหลดสำเร็จ');
+    renderExpenses();
+  } catch(e) {
+    setStatus('❌ โหลดไม่ได้ ตรวจ internet', true);
+    console.error(e);
+  }
+}
 
 // ── Expense helpers ──────────────────────────────────────────
 function toggleSplitPicker(){
@@ -1709,7 +1750,7 @@ function getSelectedPeople(){
   return [...document.querySelectorAll('#split-dropdown input:checked')].map(c=>c.value);
 }
 
-function addExpense(){
+async function addExpense(){
   const desc=document.getElementById('e-desc').value.trim();
   const amt=parseFloat(document.getElementById('e-amt').value);
   const cat=document.getElementById('e-cat').value;
@@ -1718,25 +1759,48 @@ function addExpense(){
   const cur=document.getElementById('e-cur').value||'THB';
   if(!desc||isNaN(amt)||amt<=0) return;
   const thb=toTHB(amt,cur);
-  expenses.push({id:Date.now(),desc,amt,thb,cat,payer,people,cur});
+  const id=Date.now();
+  const entry={id,desc,amt,thb,cat,payer,people,cur};
+
+  // Optimistic UI update
+  expenses.push(entry);
   document.getElementById('e-desc').value='';
   document.getElementById('e-amt').value='';
-  saveExpenses();
   renderExpenses();
+  setStatus('⏳ กำลังบันทึก...');
+
+  try {
+    await gsPost({action:'add', ...entry});
+    setStatus('✅ บันทึกแล้ว');
+  } catch(e) {
+    setStatus('❌ บันทึกไม่สำเร็จ', true);
+  }
 }
 
-function deleteExpense(id){
+async function deleteExpense(id){
   expenses=expenses.filter(e=>e.id!==id);
-  saveExpenses();
   renderExpenses();
+  setStatus('⏳ กำลังลบ...');
+  try {
+    await gsPost({action:'delete', id});
+    setStatus('✅ ลบแล้ว');
+  } catch(e) {
+    setStatus('❌ ลบไม่สำเร็จ', true);
+  }
 }
 
-function resetExpenses(){
+async function resetExpenses(){
   if(!confirm('ล้างข้อมูลค่าใช้จ่ายทั้งหมด?')) return;
   expenses=[];
-  saveExpenses();
   renderExpenses();
   document.getElementById('settlement-box').style.display='none';
+  setStatus('⏳ กำลังล้าง...');
+  try {
+    await gsPost({action:'reset'});
+    setStatus('✅ ล้างแล้ว');
+  } catch(e) {
+    setStatus('❌ ล้างไม่สำเร็จ', true);
+  }
 }
 
 const tMap={food:'t-food',transport:'t-transport',hotel:'t-hotel',activity:'t-activity',other:'t-other'};
@@ -2215,9 +2279,8 @@ function skipCountdown(){
 // ── Init ──────────────────────────────────────────────────────
 initCountdown();
 
-// Load expenses on page load
+// Load expenses from Google Sheets on page load
 loadExpenses();
-if(expenses.length>0) setTimeout(renderExpenses,100);
 
 function quickSearch(q){
   document.getElementById('search-input').value = q;
