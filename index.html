@@ -395,16 +395,10 @@ tr:last-child td{border-bottom:none}
   padding:7px 14px;border-radius:20px;
   white-space:nowrap;
   box-shadow:0 4px 16px rgba(0,0,0,0.18);
-  opacity:0;
-  transform:translateX(8px);
+  opacity:1;
+  transform:translateX(0);
   transition:opacity .4s ease,transform .4s ease;
   pointer-events:none;
-}
-.float-guide-text.visible{
-  opacity:1;transform:translateX(0);
-}
-.float-guide:hover .float-guide-text{
-  opacity:1;transform:translateX(0);
 }
 .float-guide-avatar{
   position:relative;
@@ -767,8 +761,6 @@ tr:last-child td{border-bottom:none}
 <nav class="sticky-nav" id="main-nav">
   <div class="nav-inner">
     <button class="nav-tab active" onclick="showSection('overview',this)">ภาพรวม</button>
-    <button class="nav-tab" onclick="showSection('daily',this)">รายวัน</button>
-    <button class="nav-tab" onclick="showSection('highlights',this)">ไฮไลท์รูป</button>
     <button class="nav-tab" onclick="showSection('expense',this)">ค่าใช้จ่าย</button>
     <button class="nav-tab" onclick="showSection('search',this)">🔍 ค้นหา</button>
   </div>
@@ -2061,12 +2053,6 @@ const RESTAURANT_MENUS = {
     photos:['https://images.unsplash.com/photo-1559339352-11d035aa65de?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1536782376769-c3e9ba30f00c?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?fm=jpg&q=75&w=300&auto=format&fit=crop']
   },
 };
-
-// ── Show guide label after 4s ─────────────────────────────────
-setTimeout(()=>{
-  const label = document.querySelector('.float-guide-text');
-  if(label) label.classList.add('visible');
-}, 4000);
 
 // ── Scroll reveal ─────────────────────────────────────────────
 const UNLOCK_DATE = new Date('2026-05-27T00:00:00+07:00'); // Bangkok time
