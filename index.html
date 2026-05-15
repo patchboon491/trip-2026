@@ -786,9 +786,9 @@ tr:last-child td{border-bottom:none}
         <span class="imm-tag">Reffen</span>
       </div>
       <div class="imm-crew">
-        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" class="imm-av">
-        <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" class="imm-av">
-        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede" class="imm-av">
+        <img src="ploy.png" class="imm-av">
+        <img src="p.png" class="imm-av">
+        <img src="peachy.png" class="imm-av">
         <span class="imm-crew-label">Ploy · P · Peachy</span>
       </div>
       <div class="imm-days">
@@ -945,11 +945,11 @@ tr:last-child td{border-bottom:none}
   <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:24px">
     <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:500">The Crew</div>
     <div style="display:flex;gap:16px;flex-wrap:wrap">
-      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" alt="Ploy"><span class="crew-name" style="font-size:12px">Ploy</span><span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span></div>
-      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" alt="P"><span class="crew-name" style="font-size:12px">P</span><span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span></div>
-      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede" alt="Peachy"><span class="crew-name" style="font-size:12px">Peachy</span><span style="font-size:10px;color:var(--muted)">🇩🇰</span></div>
-      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4" alt="Name"><span class="crew-name" style="font-size:12px">Name</span><span style="font-size:10px;color:var(--muted)">🇮🇹</span></div>
-      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc" alt="Fern"><span class="crew-name" style="font-size:12px">Fern</span><span style="font-size:10px;color:var(--muted)">🇮🇹</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="ploy.png" alt="Ploy"><span class="crew-name" style="font-size:12px">Ploy</span><span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="p.png" alt="P"><span class="crew-name" style="font-size:12px">P</span><span style="font-size:10px;color:var(--muted)">🇩🇰🇮🇹</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="peachy.png" alt="Peachy"><span class="crew-name" style="font-size:12px">Peachy</span><span style="font-size:10px;color:var(--muted)">🇩🇰</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="name.png" alt="Name"><span class="crew-name" style="font-size:12px">Name</span><span style="font-size:10px;color:var(--muted)">🇮🇹</span></div>
+      <div class="crew-member"><img class="crew-avatar" style="width:52px;height:52px" src="fern.png" alt="Fern"><span class="crew-name" style="font-size:12px">Fern</span><span style="font-size:10px;color:var(--muted)">🇮🇹</span></div>
     </div>
   </div>
 
@@ -992,11 +992,11 @@ tr:last-child td{border-bottom:none}
         <div id="split-picker" style="display:flex;gap:6px;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--cream);cursor:pointer;font-size:13px;color:var(--muted)" onclick="toggleSplitPicker()">หารกับใคร?</div>
         <div id="split-dropdown" style="display:none;position:absolute;bottom:44px;left:0;z-index:50;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,0.12);min-width:160px">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">เลือกคนที่หารด้วย</div>
-          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Ploy" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc" style="width:20px;height:20px;border-radius:50%"> Ploy</label>
-          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="P" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4" style="width:20px;height:20px;border-radius:50%"> P</label>
-          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Peachy" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede" style="width:20px;height:20px;border-radius:50%"> Peachy</label>
-          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Name" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4" style="width:20px;height:20px;border-radius:50%"> Name</label>
-          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Fern" onchange="updateSplitLabel()"> <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc" style="width:20px;height:20px;border-radius:50%"> Fern</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Ploy" onchange="updateSplitLabel()"> <img src="ploy.png" style="width:20px;height:20px;border-radius:50%"> Ploy</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="P" onchange="updateSplitLabel()"> <img src="p.png" style="width:20px;height:20px;border-radius:50%"> P</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Peachy" onchange="updateSplitLabel()"> <img src="peachy.png" style="width:20px;height:20px;border-radius:50%"> Peachy</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Name" onchange="updateSplitLabel()"> <img src="name.png" style="width:20px;height:20px;border-radius:50%"> Name</label>
+          <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px"><input type="checkbox" value="Fern" onchange="updateSplitLabel()"> <img src="fern.png" style="width:20px;height:20px;border-radius:50%"> Fern</label>
           <button onclick="selectAllCrew()" style="margin-top:8px;width:100%;padding:5px;background:var(--cream);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px">ทุกคน</button>
         </div>
       </div>
@@ -1672,11 +1672,11 @@ function getGenericInfo(name){
 })();
 
 const CREW = {
-  'Ploy':  {img:'https://api.dicebear.com/7.x/adventurer/svg?seed=PloyF&backgroundColor=ffd5dc'},
-  'P':     {img:'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=PBoy&backgroundColor=b6e3f4'},
-  'Peachy':{img:'https://api.dicebear.com/7.x/adventurer/svg?seed=PeachyF&backgroundColor=c0aede'},
-  'Name':  {img:'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=NameBoy&backgroundColor=d1f7c4'},
-  'Fern':  {img:'https://api.dicebear.com/7.x/adventurer/svg?seed=FernF&backgroundColor=ffeacc'},
+  'Ploy':  {img:'ploy.png'},
+  'P':     {img:'p.png'},
+  'Peachy':{img:'peachy.png'},
+  'Name':  {img:'name.png'},
+  'Fern':  {img:'fern.png'},
 };
 
 // ── Currency conversion ──────────────────────────────────────
