@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Denmark & Italy 2026 ✈️</title>
-<meta name="description" content="15 วัน · Copenhagen → Lake Como → Cinque Terre → Dolomites → Milan · 28 May – 11 June 2026">
+<title>Denmark & Italy 2026</title>
+<meta name="description" content="Copenhagen · Lake Como · Cinque Terre · Dolomites · Milan">
 
 <!-- Open Graph (Facebook, Line, iMessage, Discord ฯลฯ) -->
 <meta property="og:type"        content="website">
 <meta property="og:url"         content="https://patchboon491.github.io/trip-2026/">
-<meta property="og:title"       content="Denmark & Italy 2026 ✈️">
-<meta property="og:description" content="15 วัน · Copenhagen → Lake Como → Cinque Terre → Dolomites → Milan · 28 May – 11 June 2026">
+<meta property="og:title"       content="Denmark & Italy 2026">
+<meta property="og:description" content="Copenhagen · Lake Como · Cinque Terre · Dolomites · Milan">
 <meta property="og:image"       content="https://images.unsplash.com/photo-1651578852608-0200168d48f6?fm=jpg&q=85&w=1200&h=630&auto=format&fit=crop&ixlib=rb-4.1.0">
 <meta property="og:image:width"  content="1200">
 <meta property="og:image:height" content="630">
@@ -18,8 +18,8 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="Denmark & Italy 2026 ✈️">
-<meta name="twitter:description" content="15 วัน · Copenhagen → Lake Como → Cinque Terre → Dolomites · 28 May – 11 June 2026">
+<meta name="twitter:title"       content="Denmark & Italy 2026">
+<meta name="twitter:description" content="Copenhagen · Lake Como · Cinque Terre · Dolomites · Milan">
 <meta name="twitter:image"       content="https://images.unsplash.com/photo-1651578852608-0200168d48f6?fm=jpg&q=85&w=1200&h=630&auto=format&fit=crop&ixlib=rb-4.1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -397,8 +397,11 @@ tr:last-child td{border-bottom:none}
   box-shadow:0 4px 16px rgba(0,0,0,0.18);
   opacity:0;
   transform:translateX(8px);
-  transition:opacity .2s ease,transform .2s ease;
+  transition:opacity .4s ease,transform .4s ease;
   pointer-events:none;
+}
+.float-guide-text.visible{
+  opacity:1;transform:translateX(0);
 }
 .float-guide:hover .float-guide-text{
   opacity:1;transform:translateX(0);
@@ -2058,6 +2061,12 @@ const RESTAURANT_MENUS = {
     photos:['https://images.unsplash.com/photo-1559339352-11d035aa65de?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1536782376769-c3e9ba30f00c?fm=jpg&q=75&w=300&auto=format&fit=crop','https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?fm=jpg&q=75&w=300&auto=format&fit=crop']
   },
 };
+
+// ── Show guide label after 4s ─────────────────────────────────
+setTimeout(()=>{
+  const label = document.querySelector('.float-guide-text');
+  if(label) label.classList.add('visible');
+}, 4000);
 
 // ── Scroll reveal ─────────────────────────────────────────────
 const UNLOCK_DATE = new Date('2026-05-27T00:00:00+07:00'); // Bangkok time
