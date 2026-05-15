@@ -277,30 +277,138 @@ tr:last-child td{border-bottom:none}
 /* gradient over hero image */
 .day-hero-wrap{
   position:relative;overflow:hidden;
-  margin:-40px -40px 32px;
+  margin:-40px -40px 0;
 }
-.day-hero-wrap img{display:block;width:100%;height:360px;object-fit:cover}
+.day-hero-wrap img{
+  display:block;width:100%;height:380px;object-fit:cover;
+}
 .day-hero-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.0) 40%,rgba(250,247,242,0.9) 85%,rgba(250,247,242,1) 100%);
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.05) 0%,
+    rgba(0,0,0,0.0)  30%,
+    rgba(250,247,242,0.0) 52%,
+    rgba(250,247,242,0.85) 76%,
+    rgba(250,247,242,1.0)  100%
+  );
 }
 .day-hero-text{
   position:absolute;bottom:0;left:0;right:0;
-  padding:24px 40px 0;
+  padding:0 40px 20px;
+}
+/* weather ต่อจาก hero ทันที ไม่มีช่องว่าง */
+#weather-container{margin-top:0}
+#weather-container:empty{display:none}
+
+/* ── PLANE TRANSITION ── */
+#plane-transition{
+  position:fixed;inset:0;z-index:9999;
+  pointer-events:none;
+  display:none;
+  overflow:hidden;
+}
+/* Dark fill that rises from bottom following the plane */
+.pt-dark{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:0;
+  background:#000;
+  transition:height 1.3s cubic-bezier(.4,0,.2,1);
+}
+/* Stars above the dark zone */
+.pt-stars{
+  position:absolute;inset:0;
+  opacity:0;
+  transition:opacity .4s ease .1s;
+}
+.pt-star{
+  position:absolute;
+  border-radius:50%;
+  background:#fff;
+  animation:twinkle .9s ease infinite alternate;
+}
+@keyframes twinkle{0%{opacity:.15}100%{opacity:.9}}
+/* Plane image */
+.pt-plane{
+  position:absolute;
+  left:50%;
+  width:160px;
+  transform:translateX(-50%);
+  bottom:-200px;
+  opacity:0;
+  transition:bottom 1.3s cubic-bezier(.22,.61,.36,1), opacity .25s ease;
+  filter:drop-shadow(0 0 18px rgba(255,255,255,0.5));
+  will-change:bottom,opacity;
+}
+/* Trail glow below plane */
+.pt-trail{
+  position:absolute;
+  left:calc(50% - 3px);
+  width:6px;
+  bottom:0;
+  height:0;
+  background:linear-gradient(to top,transparent,rgba(255,255,255,0.12));
+  transition:height 1.3s cubic-bezier(.22,.61,.36,1);
+  border-radius:3px;
 }
 
-@media(max-width:640px){
-  .imm-block{height:380px}
-  .imm-block-tall{height:500px}
-  .imm-content{padding:20px 24px 28px}
-  .imm-duo{grid-template-columns:1fr}
-  .imm-duo-card{height:300px}
-  .imm-italy-header{padding:20px 24px}
-  .day-hero-wrap{margin:-40px -16px 24px}
-  .day-hero-text{padding:20px 24px 0}
+/* ── FLOATING GUIDE BUTTON ── */
+.countdown-active .float-guide{display:none!important}
+.float-guide{
+  position:fixed;
+  bottom:28px;right:24px;
+  z-index:1000;
+  display:flex;align-items:center;gap:10px;
+  cursor:pointer;
+  text-decoration:none;
+  animation:floatBob 3s ease-in-out infinite;
+}
+@keyframes floatBob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+.float-guide-text{
+  background:var(--ink);color:#fff;
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:500;
+  padding:7px 14px;border-radius:20px;
+  white-space:nowrap;
+  box-shadow:0 4px 16px rgba(0,0,0,0.18);
+  opacity:0;
+  transform:translateX(8px);
+  transition:opacity .2s ease,transform .2s ease;
+  pointer-events:none;
+}
+.float-guide:hover .float-guide-text{
+  opacity:1;transform:translateX(0);
+}
+.float-guide-avatar{
+  position:relative;
+  width:54px;height:54px;border-radius:50%;
+  border:2.5px solid #fff;
+  box-shadow:0 4px 20px rgba(0,0,0,0.25);
+  overflow:hidden;
+  flex-shrink:0;
+}
+.float-guide-avatar img{
+  width:100%;height:100%;object-fit:cover;
+  border-radius:50%;
+  display:block;
+}
+.float-guide-ring{
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:2px solid rgba(196,145,74,0.55);
+  animation:pulseRing 2.4s ease-out infinite;
+  pointer-events:none;
+}
+@keyframes pulseRing{
+  0%{transform:scale(1);opacity:.7}
+  100%{transform:scale(1.5);opacity:0}
 }
 
-/* ── STICKY NAV GLASS ── */
 .sticky-nav{
   background:rgba(250,247,242,0.82);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
@@ -515,6 +623,16 @@ tr:last-child td{border-bottom:none}
   .expense-stats{grid-template-columns:repeat(3,1fr)}
   .nav-inner{padding:0 16px}
   .scroll-hint{display:none}
+  /* Day hero mobile */
+  .day-hero-wrap{margin:-40px -16px 0}
+  .day-hero-text{padding:0 20px 16px}
+  /* Immersive overview mobile */
+  .imm-block{height:380px}
+  .imm-block-tall{height:500px}
+  .imm-content{padding:20px 24px 28px}
+  .imm-duo{grid-template-columns:1fr}
+  .imm-duo-card{height:300px}
+  .imm-italy-header{padding:20px 24px}
   /* Expense mobile */
   .form-grid{grid-template-columns:1fr!important}
   .add-form>div[style*="grid-template-columns:1fr 1fr 140px"]{grid-template-columns:1fr 1fr!important}
@@ -587,9 +705,17 @@ tr:last-child td{border-bottom:none}
 
     <div class="cd-footer">ทริปเริ่ม 28 May 2026 · หน้านี้จะเปิดเต็มรูปแบบ 27 May 2026</div>
     <div style="padding-bottom:40px">
-      <button onclick="skipCountdown()" style="background:none;border:none;cursor:pointer;font-size:11px;color:rgba(255,255,255,0.2);font-family:'DM Sans',sans-serif;letter-spacing:1px;padding:8px 16px;border-radius:20px;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">🤫 แอบดูก่อน</button>
+      <button onclick="skipCountdown()" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);cursor:pointer;font-size:14px;color:rgba(255,255,255,0.45);font-family:'DM Sans',sans-serif;letter-spacing:1.5px;padding:12px 28px;border-radius:30px;transition:all .2s;display:block;margin:0 auto;backdrop-filter:blur(8px)" onmouseover="this.style.color='rgba(255,255,255,0.85)';this.style.background='rgba(255,255,255,0.12)';this.style.borderColor='rgba(255,255,255,0.35)'" onmouseout="this.style.color='rgba(255,255,255,0.45)';this.style.background='rgba(255,255,255,0.07)';this.style.borderColor='rgba(255,255,255,0.15)'">🤫 แอบดูก่อน</button>
     </div>
   </div>
+</div>
+
+<!-- PLANE TRANSITION -->
+<div id="plane-transition">
+  <div class="pt-dark" id="pt-dark"></div>
+  <div class="pt-stars" id="pt-stars"></div>
+  <div class="pt-trail" id="pt-trail"></div>
+  <img class="pt-plane" id="pt-plane" src="plane.png" alt="plane">
 </div>
 
 <!-- NAV -->
@@ -609,7 +735,7 @@ tr:last-child td{border-bottom:none}
 <div id="overview" class="section active">
 
   <!-- ① Denmark full-width immersive block -->
-  <div class="imm-block" onclick="openDay('dk28')">
+  <div class="imm-block" onclick="openDay('dk29')">
     <div class="imm-bg" style="background-image:url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
     <div class="imm-grad imm-grad-dk"></div>
     <div class="imm-content">
@@ -649,7 +775,7 @@ tr:last-child td{border-bottom:none}
   <!-- ③ Italy sub-blocks: Lake Como + Cinque Terre side by side -->
   <div class="imm-duo">
     <div class="imm-duo-card" onclick="openDay('it01')">
-      <div class="imm-bg" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=85&w=800&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+      <div class="imm-bg" style="background-image:url('https://plus.unsplash.com/premium_photo-1722680738736-66a4cdc08923?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
       <div class="imm-grad imm-grad-it"></div>
       <div class="imm-content imm-content-sm">
         <div class="imm-eyebrow">1 – 3 Jun</div>
@@ -666,7 +792,7 @@ tr:last-child td{border-bottom:none}
       </div>
     </div>
     <div class="imm-duo-card" onclick="openDay('it03')">
-      <div class="imm-bg" style="background-image:url('https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=85&w=800&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+      <div class="imm-bg" style="background-image:url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
       <div class="imm-grad imm-grad-it"></div>
       <div class="imm-content imm-content-sm">
         <div class="imm-eyebrow">3 – 5 Jun</div>
@@ -977,7 +1103,7 @@ dk01:{title:'1 Jun',subtitle:'Copenhagen → Lake Como',loc:'CPH → Milan → B
      photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it01:{title:'1 Jun',subtitle:'Varenna, Lake Como',loc:'Varenna / Bellano, Italy',isDk:false,
-  hero:'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
+  hero:'https://plus.unsplash.com/premium_photo-1722680738736-66a4cdc08923?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'15:00',type:'place',place:'Villa Monastero Garden',mapLabel:'Villa Monastero',desc:'สวนพฤกษศาสตร์ริมทะเลสาบ · €10',mapUrl:'https://maps.google.com/?place_id=ChIJGe2VLikdhEcR87_XMhQv31E',rating:'4.6 ⭐',hours:'9:30–19:30',
      photos:['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
@@ -987,7 +1113,7 @@ it01:{title:'1 Jun',subtitle:'Varenna, Lake Como',loc:'Varenna / Bellano, Italy'
      photos:['https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it02:{title:'2 Jun',subtitle:'Bellagio, Lake Como',loc:'Bellagio, Italy',isDk:false,
-  hero:'https://images.unsplash.com/photo-1533105045747-b0394ac2c222?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
+  hero:'https://plus.unsplash.com/premium_photo-1722680738736-66a4cdc08923?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'09:00',type:'place',place:'⛴️ Ferry to Bellagio',mapLabel:'Ferry Bellano→Bellagio',desc:'จาก Bellano · ข้ามทะเลสาบ'},
     {time:'10:00',type:'place',place:'Salita Serbelloni',mapLabel:'Salita Serbelloni',desc:'บันไดหินสวย · หมู่บ้านชาวประมง',mapUrl:'https://maps.google.com/?q=Salita+Serbelloni+Bellagio',travelFrom:'30 min',travelMode:'⛴️',
@@ -1076,7 +1202,7 @@ it09:{title:'9 Jun',subtitle:'Dolomites → Milan',loc:'Ortisei → Verona → M
      photos:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it10:{title:'10 Jun',subtitle:'Milan ทั้งวัน',loc:'Milan, Italy',isDk:false,
-  hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
+  hero:'https://images.unsplash.com/photo-1520440229-6469a149ac59?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'10:00',type:'place',place:'Duomo di Milano + Rooftop',mapLabel:'Duomo',desc:'Rooftop view · ซื้อตั๋วล่วงหน้า',mapUrl:'https://maps.google.com/?place_id=ChIJ1Tpt7K7GhkcRZbKfL7oet3E',rating:'4.7 ⭐',hours:'9:00–19:00',
      photos:['https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1534430480872-3498386e7856?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
@@ -1088,7 +1214,7 @@ it10:{title:'10 Jun',subtitle:'Milan ทั้งวัน',loc:'Milan, Italy',i
      photos:['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
 ]},
 it11:{title:'11 Jun',subtitle:'กลับบ้าน 🏠',loc:'Milan → Bangkok',isDk:false,
-  hero:'https://images.unsplash.com/photo-1609867053012-a7ce1f2e3afd?fm=jpg&q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0',
+  hero:'https://images.unsplash.com/photo-1520440229-6469a149ac59?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
   items:[
     {time:'09:00',type:'place',place:'Cafe / Brunch',desc:'มื้อสุดท้ายในอิตาลี 🥲',mapUrl:'https://maps.google.com/?q=cafe+Milan',
      photos:['https://images.unsplash.com/photo-1554118811-1e0d58224f24?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1493857671505-72967e2e2760?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?fm=jpg&q=75&w=400&auto=format&fit=crop&ixlib=rb-4.1.0']},
@@ -1343,10 +1469,31 @@ function openDay(key){
     </div>`;
   }).join('');
 
+  // ใช้รูป hero ที่ตรงกับวันนั้น
+  const HERO_MAP = {
+    'dk28':'https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'dk29':'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'dk30':'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'dk31':'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'dk01':'https://images.unsplash.com/photo-1534430480872-3498386e7856?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it01':'https://plus.unsplash.com/premium_photo-1722680738736-66a4cdc08923?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it02':'https://plus.unsplash.com/premium_photo-1722680738736-66a4cdc08923?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it03':'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it04':'https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it05':'https://images.unsplash.com/photo-1651578852608-0200168d48f6?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it06':'https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it07':'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it08':'https://images.unsplash.com/photo-1501854140801-50d01698950b?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it09':'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?fm=jpg&q=85&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it10':'https://images.unsplash.com/photo-1520440229-6469a149ac59?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+    'it11':'https://images.unsplash.com/photo-1520440229-6469a149ac59?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0',
+  };
+  const heroSrc = HERO_MAP[key] || day.hero;
+
   detail.innerHTML=`
     ${navHtml}
-    <div class="day-hero-wrap reveal">
-      <img src="${day.hero}" alt="${day.subtitle}" loading="lazy" onerror="this.style.display='none'">
+    <div class="day-hero-wrap">
+      <img src="${heroSrc}" alt="${day.subtitle}" loading="lazy" onerror="this.src='${day.hero}';this.onerror=null">
       <div class="day-hero-overlay"></div>
       <div class="day-hero-text">
         <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:${accentColor};font-weight:500;margin-bottom:4px">${day.title}</div>
@@ -1354,13 +1501,13 @@ function openDay(key){
         <div style="font-size:12px;color:var(--muted);margin-top:4px">📍 ${day.loc}</div>
       </div>
     </div>
-    <div id="weather-container" class="reveal"></div>
+    <div id="weather-container"></div>
     ${routeMapHtml}
     ${gmapHtml}
     <div class="timeline">${items}</div>`;
   window.scrollTo({top:document.querySelector('.sticky-nav').offsetTop-10,behavior:'smooth'});
   // trigger scroll reveal on newly rendered content
-  setTimeout(()=>{ if(window._revealObserve) window._revealObserve(); },50);
+  setTimeout(()=>{ if(window._revealObserve) window._revealObserve(); },100);
   // Load weather async
   loadWeather(key, document.getElementById('weather-container'));
 }
@@ -1428,6 +1575,20 @@ async function fetchPlaceInfo(placeName, storyEl){
     'Galleria Vittorio Emanuele II':{title:'Galleria Vittorio Emanuele II — ห้างแรกของโลก',text:'เปิดปี 1877 ถือเป็น shopping mall ที่เก่าแก่ที่สุดในโลก สร้างถวายกษัตริย์ Vittorio Emanuele II ผู้รวมชาติอิตาลี พื้น mosaic ตรงกลางมีวัวที่ต้องเอาส้นเท้าหมุนบนลูกอัณฑะวัว 3 รอบเพื่อขอโชค แบรนด์ Prada สาขาแรกของโลกเปิดที่นี่ตั้งแต่ปี 1913'},
     'Fondazione Prada':{title:'Fondazione Prada — โรงกลั่นเหล้าที่กลายเป็นพิพิธภัณฑ์',text:'ตั้งอยู่ใน complex โรงกลั่น Gin เก่าอายุ 100 ปี ออกแบบโดย Rem Koolhaas เปิดปี 2015 นอกจากงานศิลปะร่วมสมัย ยังมี "Bar Luce" ที่ Wes Anderson ออกแบบเองเป็น instagrammable spot ที่หลายคนยังไม่รู้จัก'},
     'Lungolago di Varenna':{title:'Lungolago — ทางเดินริมทะเลสาบ Varenna',text:'Lungolago di Varenna คือทางเดินริมทะเลสาบที่สวยงาม เชื่อมหมู่บ้าน Varenna กับท่าเรือและ Villa Monastero ให้เห็นวิว Bellagio และ Villa Carlotta ฝั่งตรงข้าม เป็นเส้นทางยอดนิยมสำหรับชม sunset ใน Lake Como'},
+    // ===== สถานที่ที่เพิ่มเติม =====
+    'Apollo Bar':{title:'Apollo Bar — ร้านกาแฟ iconic ของ Copenhagen',text:'Apollo Bar ตั้งอยู่ใต้ Kunsthal Charlottenborg แกลลอรีศิลปะริมคลอง Nyhavn เสิร์ฟ specialty coffee และอาหารเช้าสไตล์ Nordic บรรยากาศ artistic มีงานศิลปะจัดแสดงตลอด เหมาะสำหรับมื้อเช้าก่อนออกไปสำรวจเมือง'},
+    'Brera':{title:'Brera — ย่านศิลปะที่มีชีวิตชีวาที่สุดของ Milan',text:'Brera เป็นย่านเก่าใจกลาง Milan รู้จักกันในชื่อ "เมืองเล็กในมหานคร" มี Pinacoteca di Brera หนึ่งในพิพิธภัณฑ์ศิลปะที่ดีที่สุดในอิตาลี เต็มไปด้วยแกลลอรี ร้านวินเทจ และ aperitivo bar บรรยากาศ bohemian มาก'},
+    'Fegina':{title:'Fegina Beach — ชายหาดทรายเดียวใน Cinque Terre',text:'Fegina เป็นชายหาดทรายกว้างที่สุดใน Cinque Terre ที่ Monterosso al Mare น้ำทะเล Mediterranean สีฟ้าใส มีรูปปั้น Neptune ยักษ์บนโขดหิน ขาย limoncello spritz ริมทะเล เปิดว่ายน้ำฟรีในบางส่วน'},
+    'La Caba':{title:'La Caba — cafe สไตล์ Copenhagen ใน Vesterbro',text:'La Caba เป็นร้านกาแฟใน Vesterbro ย่าน trendy ของ Copenhagen เสิร์ฟ specialty coffee และอาหารเช้าแบบ Nordic ย่านรอบๆ มีร้านดีไซเนอร์อิสระน่าแวะช้อปมาก เหมาะสำหรับ morning coffee ก่อนเริ่มต้นวันช้อปปิ้ง'},
+    'Sirmione':{title:'Sirmione — คาบสมุทรที่สวยที่สุดของ Lake Garda',text:'Sirmione เป็นคาบสมุทรแคบยาวยื่นออกไปใน Lake Garda ทะเลสาบที่ใหญ่ที่สุดในอิตาลี มีปราสาท Scaligero ยุคกลางที่ยังสมบูรณ์มาก น้ำพุร้อน thermal springs และซากโรมันโบราณ Grotte di Catullo รถยนต์เข้าได้จำกัด'},
+    'Milano Centrale':{title:'Milano Centrale — สถานีรถไฟที่ยิ่งใหญ่ที่สุดของอิตาลี',text:'Milano Centrale เปิดปี 1931 สมัย Mussolini ออกแบบสไตล์ Art Nouveau ผสม fascist architecture ตัวสถานีมีหน้าต่างกระจกกว้างบนหลังคา เป็นสถานีที่มีผู้ใช้บริการมากที่สุดในอิตาลี กว่า 120 ล้านคนต่อปี'},
+    'Passeggiata Innamorati':{title:"Passeggiata degli Innamorati — 'Lovers' Walk' แห่ง Varenna",text:"ทางเดินโรแมนติกแคบๆ ริมทะเลสาบ Como เชื่อม Varenna กับ Fiumelatte แคบมากจนต้องเดินเรียงกันไป บางช่วงเดินแนบผา วิวทะเลสาบสวยตลอดเส้นทาง ถือเป็นหนึ่งในเส้นทางโรแมนติกที่สุดในอิตาลี"},
+    'Rifugio Auronzo':{title:'Rifugio Auronzo — ฐานปฏิบัติการ Tre Cime',text:'Rifugio Auronzo สูง 2,333 เมตร เป็นจุดจอดรถและ trailhead หลักสำหรับ Loop Trail รอบ Tre Cime มีร้านอาหารและที่พัก เปิด June–October ถนนขึ้นมีค่าผ่านทาง ควรมาก่อน 8:00 เพราะที่จอดรถเต็มเร็วมาก'},
+    'Riomaggiore':{title:'Riomaggiore — หมู่บ้านใต้สุดของ Cinque Terre',text:'Riomaggiore เป็นหมู่บ้านแรกสุดทางใต้ของ Cinque Terre ชื่อมาจาก "Rio Maggiore" แปลว่า "แม่น้ำใหญ่" บ้านสีสดในหุบเขาชัน มีท่าเรือเล็กๆ เหมาะมากสำหรับดู sunset เพราะหันหน้าไปทางทิศตะวันตก'},
+    'Salita Serbelloni':{title:'Salita Serbelloni — บันไดหินสายพรีเมี่ยมของ Bellagio',text:'ถนนบันไดหินแคบๆ สายหลักของ Bellagio ขึ้นจาก Piazza Mazzini เรียงรายด้วยร้านขายของที่ระลึก ร้านไอศกรีม และร้านสีสัน เป็นจุดถ่ายรูปที่โด้งดังที่สุดใน Bellagio ทั้งช่วงขึ้นและลงจากทะเลสาบ'},
+    'Strøget':{title:'Strøget — ถนน pedestrian ยาวที่สุดในยุโรป',text:'Strøget (อ่านว่า "ส-โทรเอล") ยาว 1.1 กม. เชื่อม Rådhuspladsen กับ Kongens Nytorv ผ่านใจกลาง Copenhagen สร้างปี 1962 เป็นถนนปลอดรถแห่งแรกในสแกนดิเนเวีย มีทั้ง H&M, Lego Store, Georg Jensen ไปจนถึงแบรนด์ luxury'},
+    'Val di Funes':{title:'Val di Funes — หุบเขาพระเจ้าใน Dolomites',text:'Val di Funes (Villnösstal) ขึ้นชื่อเรื่องโบสถ์ St. Johann ใน Ranui กลางทุ่งหญ้าสีเขียวตัดกับยอดเขา Odle Geisler เป็นภาพ iconic ของ South Tyrol ที่ถ่ายซ้ำมากที่สุด ชุมชนนี้พูดภาษา Ladin เป็นภาษาหลัก'},
+    'Villa Melzi':{title:'Villa Melzi — สวนที่สวยที่สุดริม Lake Como',text:'สร้างปี 1808 โดย Francesco Melzi d\'Eril รัฐมนตรีของ Napoleon สวนสไตล์ English landscape มีต้นไม้หายากจากทั่วโลกและประติมากรรม Franz Liszt นักเปียโนระดับโลกเคยมาพักและแต่งเพลงที่นี่'},
   };
 
   // ตรวจสอบ extra data ก่อน
@@ -1899,8 +2060,10 @@ function initCountdown(){
     document.getElementById('countdown-page').style.display = 'none';
     document.getElementById('main-nav').style.display = 'block';
     document.querySelector('.page').style.display = 'block';
+    document.body.classList.remove('countdown-active');
   } else {
     // Show countdown
+    document.body.classList.add('countdown-active');
     document.getElementById('countdown-page').style.display = 'block';
     document.getElementById('main-nav').style.display = 'none';
     document.querySelector('.page').style.display = 'none';
@@ -1971,15 +2134,76 @@ function updateProgress(n){
 }
 
 function skipCountdown(){
-  // ป้องกัน browser scroll ขึ้นบนสุดตอน toggle display
-  const scrollY = window.scrollY;
-  document.getElementById('countdown-page').style.display='none';
-  document.getElementById('main-nav').style.display='block';
-  document.querySelector('.page').style.display='block';
-  // reset ไปที่ top ของ main content อย่าง instant
-  document.documentElement.style.scrollBehavior='auto';
-  window.scrollTo(0,0);
-  document.documentElement.style.scrollBehavior='';
+  const el    = document.getElementById('plane-transition');
+  const dark  = document.getElementById('pt-dark');
+  const plane = document.getElementById('pt-plane');
+  const trail = document.getElementById('pt-trail');
+  const stars = document.getElementById('pt-stars');
+
+  const vh = window.innerHeight;
+
+  // Scatter stars (upper area only — above where dark will cover)
+  stars.innerHTML = Array.from({length:50},()=>{
+    const x = Math.random()*100;
+    const y = Math.random()*70; // top 70%
+    const s = Math.random()*2+1;
+    const d = Math.random()*0.6;
+    return `<div class="pt-star" style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s"></div>`;
+  }).join('');
+
+  // Show layer
+  el.style.display = 'block';
+  el.style.pointerEvents = 'all';
+
+  // Phase 1 — plane appears at bottom
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      plane.style.opacity = '1';
+      plane.style.bottom  = '-200px'; // start below screen
+    });
+  });
+
+  // Phase 2 — plane takes off, dark rises from bottom, trail follows
+  setTimeout(()=>{
+    const target = vh + 220; // fly off top of screen
+    plane.style.bottom = target + 'px';
+    trail.style.height = target + 'px';
+    dark.style.height  = '100%';      // dark fills from bottom as plane rises
+    stars.style.opacity = '1';
+  }, 80);
+
+  // Phase 3 — swap to main site when plane is ~60% up
+  setTimeout(()=>{
+    document.getElementById('countdown-page').style.display = 'none';
+    document.getElementById('main-nav').style.display = 'block';
+    document.querySelector('.page').style.display = 'block';
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = '';
+  }, 900);
+
+  // Phase 4 — fade out dark to reveal main site
+  setTimeout(()=>{
+    dark.style.transition  = 'height .5s ease';
+    dark.style.height      = '0';
+    stars.style.opacity    = '0';
+    plane.style.opacity    = '0';
+    trail.style.transition = 'height .5s ease';
+    trail.style.height     = '0';
+  }, 1100);
+
+  // Phase 5 — cleanup
+  setTimeout(()=>{
+    el.style.display = 'none';
+    el.style.pointerEvents = 'none';
+    document.body.classList.remove('countdown-active');
+    // reset for next use
+    dark.style.transition  = 'height 1.3s cubic-bezier(.4,0,.2,1)';
+    trail.style.transition = 'height 1.3s cubic-bezier(.22,.61,.36,1)';
+    dark.style.height  = '0';
+    trail.style.height = '0';
+    plane.style.bottom = '-200px';
+  }, 1700);
 }
 
 // ── Init ──────────────────────────────────────────────────────
@@ -2105,5 +2329,17 @@ function renderSearchResult(info, q, result){
     </div>`;
 }
 </script>
+<!-- FLOATING GUIDE BUTTON -->
+<a class="float-guide"
+   href="https://chatgpt.com/g/g-6a06e4e407308191b81fbcbaa23af935-hawhnaaaikd-denmark-italy"
+   target="_blank"
+   title="ติดต่อหัวหน้าไกด์">
+  <span class="float-guide-text">ติดต่อหัวหน้าไกด์</span>
+  <div class="float-guide-avatar">
+    <img src="guide.png" alt="หัวหน้าไกด์">
+    <div class="float-guide-ring"></div>
+  </div>
+</a>
+
 </body>
 </html>
