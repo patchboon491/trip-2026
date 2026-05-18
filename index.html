@@ -1633,7 +1633,26 @@ function toggleExpand(el){
 async function fetchPlaceInfo(placeName, storyEl){
   const clean = placeName.replace(/[▸🍽️ดูเมนูกดอ่านเพิ่มถามAI\s]+$/u,'').trim();
 
-  // Check EXTRA hardcoded first
+  // Hardcoded info for specific places
+  const EXTRA = {
+    'Passo Sella':{title:'Passo Sella — ช่องเขาโด้งดังใน Dolomites',text:'Passo Sella สูง 2,240 เมตร เป็นช่องเขาที่เชื่อม Val Gardena กับ Val di Fassa มีร้านขายโดนัทริมทาง (Rifugio Salei) ที่โด้งดังในหมู่นักท่องเที่ยว เส้นทางนี้เป็นหนึ่งในถนนที่สวยที่สุดใน Dolomites'},
+    'Charlottenlund Fort':{title:'Charlottenlund Fort — ป้อมปราการริมทะเล',text:'สร้างปี 1886–1889 เพื่อป้องกันโคเปนเฮเกน ปัจจุบันเป็นสวนสาธารณะและชายหาดยอดนิยม มีสนามแคมปิ้งที่เก่าแก่ที่สุดในเดนมาร์ก'},
+    'Helle Mardahl':{title:'Helle Mardahl Studio — ศิลปินแก้วชื่อดัง',text:'Helle Mardahl เป็นศิลปินชาวเดนมาร์กที่มีชื่อเสียงด้านงานแก้วเป่า (blown glass) สีสันสดใส ผลงานมีรูปทรง organic เหมือนผลไม้หรือลูกอม สตูดิโอและแกลลอรีอยู่บนถนน Bredgade ใจกลาง Copenhagen'},
+    'Reffen':{title:'Reffen — ตลาด street food ริมน้ำ',text:'Reffen เปิดปี 2017 บน Refshaleøen มี 50+ stalls อาหารนานาชาติ บาร์ craft beer ได้รับการโหวตให้เป็นตลาดอาหารที่ดีที่สุดในยุโรปหลายปีซ้อน'},
+    'La Banchina':{title:'La Banchina — wine bar และ sauna ริมน้ำ',text:'La Banchina แปลว่า "ท่าเทียบเรือเล็ก" เป็นทั้งร้านอาหาร wine bar และ sauna สาธารณะ วัฒนธรรม harbour bathing ของ Copenhagen มีชื่อเสียงมาก'},
+    'Borgo di Pescallo':{title:'Borgo di Pescallo — หมู่บ้านชาวประมง Bellagio',text:'Pescallo เป็นหมู่บ้านชาวประมงเล็กๆ อยู่ห่างจาก Bellagio เพียง 10 นาทีเดิน เงียบสงบและเป็นจุดถ่ายรูปสวยที่นักท่องเที่ยวส่วนใหญ่ยังไม่รู้จัก'},
+    'Rifugio Locatelli':{title:'Rifugio Locatelli — ที่พักกลางเส้นทาง Tre Cime',text:'สูง 2,405 เมตร เปิดมาตั้งแต่ปี 1882 มีอาหาร Tyrolean อร่อย วิว Tre Cime แบบ front-row เป็น lunch stop ยอดนิยมของนักเดินเขาจากทั่วโลก'},
+    'Torvehallerne':{title:'Torvehallerne — ตลาดกระจกสุดคูล',text:'เปิดปี 2011 บน Israels Plads กว่า 80 ร้านค้า ขายทุกอย่างตั้งแต่ smørrebrød, specialty coffee ไปจนถึง truffle ถูกโหวตให้เป็น food hall ที่ดีที่สุดในสแกนดิเนเวีย'},
+    'Galleria Vittorio':{title:'Galleria Vittorio Emanuele II — ห้างแรกของโลก',text:'เปิดปี 1877 ถือเป็น shopping mall ที่เก่าแก่ที่สุดในโลก พื้น mosaic ตรงกลางมีวัวที่ต้องเอาส้นเท้าหมุนบนลูกอัณฑะวัว 3 รอบเพื่อขอโชค Prada สาขาแรกของโลกเปิดที่นี่ปี 1913'},
+    'Fondazione Prada':{title:'Fondazione Prada — โรงกลั่นเหล้าที่กลายเป็นพิพิธภัณฑ์',text:'ตั้งอยู่ใน complex โรงกลั่น Gin เก่าอายุ 100 ปี ออกแบบโดย Rem Koolhaas เปิดปี 2015 มี "Bar Luce" ที่ Wes Anderson ออกแบบเอง'},
+    'Apollo Bar':{title:'Apollo Bar — ร้านกาแฟ iconic ของ Copenhagen',text:'ตั้งอยู่ใต้ Kunsthal Charlottenborg แกลลอรีศิลปะริมคลอง Nyhavn เสิร์ฟ specialty coffee และอาหารเช้าสไตล์ Nordic บรรยากาศ artistic'},
+    'Brera':{title:'Brera — ย่านศิลปะของ Milan',text:'ย่านเก่าใจกลาง Milan รู้จักในชื่อ "เมืองเล็กในมหานคร" มี Pinacoteca di Brera พิพิธภัณฑ์ศิลปะชั้นนำ เต็มไปด้วยแกลลอรี ร้านวินเทจ และ aperitivo bar'},
+    'Sirmione':{title:'Sirmione — คาบสมุทรที่สวยที่สุดของ Lake Garda',text:'คาบสมุทรแคบยาวใน Lake Garda มีปราสาท Scaligero ยุคกลาง น้ำพุร้อน thermal springs และซากโรมันโบราณ Grotte di Catullo'},
+    'Val di Funes':{title:'Val di Funes — หุบเขาพระเจ้าใน Dolomites',text:'ขึ้นชื่อเรื่องโบสถ์ St. Johann ใน Ranui กลางทุ่งหญ้าตัดกับยอดเขา Odle Geisler เป็นภาพ iconic ของ South Tyrol ที่ถ่ายซ้ำมากที่สุด'},
+    'Strøget':{title:'Strøget — ถนน pedestrian ยาวที่สุดในยุโรป',text:'ยาว 1.1 กม. เชื่อม Rådhuspladsen กับ Kongens Nytorv สร้างปี 1962 เป็นถนนปลอดรถแห่งแรกในสแกนดิเนเวีย มี Lego Store, Georg Jensen และแบรนด์ luxury'},
+  };
+
+  // Check EXTRA first
   for(const [key, val] of Object.entries(EXTRA)){
     if(clean.toLowerCase().includes(key.toLowerCase()) || key.toLowerCase().includes(clean.toLowerCase())){
       storyEl.innerHTML = `<div class="place-story-title">${val.title}</div>${val.text}`;
