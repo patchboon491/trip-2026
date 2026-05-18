@@ -1718,15 +1718,24 @@ function toTHB(amt, cur){ return Math.round(amt * (FX[cur]||1)); }
 const GS_URL = 'https://script.google.com/macros/s/AKfycbwKzrxjnqVk5TyHA302TK6-hDOGiASTznj1ZjRRZyDtDiMieOe4zMVuLgo-pCO4auG9RA/exec';
 const AI_URL = 'https://trip-ai.patchboon-shop.workers.dev';
 
-// ── AI helper via Cloudflare Worker → Gemini ─────────────────
+// ── AI helper via Cloudflare Worker → Groq ───────────────────
 async function askAI(prompt){
-  const res = await fetch(AI_URL, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({prompt})
-  });
-  const data = await res.json();
-  return data.text || '';
+  const controller = new AbortController();
+  const timeout = setTimeout(()=>controller.abort(), 5000);
+  try {
+    const res = await fetch(AI_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({prompt}),
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    const data = await res.json();
+    return data.text || '';
+  } catch(e) {
+    clearTimeout(timeout);
+    throw new Error('timeout');
+  }
 }
 
 function setStatus(msg, isError){
