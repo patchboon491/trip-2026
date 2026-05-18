@@ -2025,7 +2025,7 @@ function renderWeatherSlots(slots, city, label, isReal){
     ? `<span style="background:#E1F5EE;color:#085041;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500">📡 พยากรณ์จริง</span>`
     : isReal==='historical'
     ? `<span style="background:#EEF3FB;color:#0C447C;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500">📊 ERA5 ปี 2025</span>`
-    : `<span style="background:#F1EFE8;color:#555;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500">📈 ค่าเฉลี่ยฤดูกาล</span>`;
+    : `<span style="background:#F1EFE8;color:#555;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500">📈 ค่าเฉลี่ยฤดูกาล</span>`;;
   return `<div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px">
     <div style="padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <span style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500">🌤 ${city}</span>
@@ -2061,9 +2061,9 @@ async function loadWeather(dayKey, containerEl){
   try {
     let url, isReal, dateToUse;
 
-    if(diffDays<=16 && diffDays>=0){
-      // ใช้ Forecast API — ข้อมูลพยากรณ์จริง
-      url=`https://api.open-meteo.com/v1/forecast?latitude=${cfg.lat}&longitude=${cfg.lon}&hourly=temperature_2m,precipitation_probability,weathercode&start_date=${cfg.tripDate}&end_date=${cfg.tripDate}&timezone=auto&forecast_days=16`;
+    if(diffDays<=35 && diffDays>=0){
+      // GFS Ensemble API — รองรับถึง 35 วัน ครอบคลุมทั้งทริป
+      url=`https://ensemble-api.open-meteo.com/v1/ensemble?latitude=${cfg.lat}&longitude=${cfg.lon}&hourly=temperature_2m,precipitation_probability,weathercode&start_date=${cfg.tripDate}&end_date=${cfg.tripDate}&timezone=auto&models=gfs_seamless`;
       isReal='forecast';
     } else if(diffDays<0){
       // วันที่ผ่านมาแล้ว — ใช้ archive ของวันจริง
@@ -2081,9 +2081,12 @@ async function loadWeather(dayKey, containerEl){
     if(data.error) throw new Error(data.reason||'API error');
 
     const hours=data.hourly.time;
-    const temps=data.hourly.temperature_2m;
-    const precip=data.hourly.precipitation_probability||new Array(24).fill(0);
-    const codes=data.hourly.weathercode;
+    // Ensemble API อาจ return temperature_2m_member01..50 หรือ mean
+    // หา key ที่มี temperature_2m
+    const tempKey = Object.keys(data.hourly).find(k=>k.startsWith('temperature_2m')) || 'temperature_2m';
+    const temps=data.hourly[tempKey];
+    const precip=data.hourly.precipitation_probability||data.hourly.precipitation_probability_mean||new Array(hours.length).fill(0);
+    const codes=data.hourly.weathercode||data.hourly.weather_code||new Array(hours.length).fill(0);
 
     const slots=hours.map((t,i)=>({
       h: parseInt(t.slice(11,13)),
